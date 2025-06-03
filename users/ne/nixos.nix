@@ -1,4 +1,4 @@
-{
+{ pkgs-unstable, username, ... }: {
   # Locale
   i18n.defaultLocale = "en_DK.UTF-8";
 
@@ -12,5 +12,27 @@
     LC_PAPER = "da_DK.UTF-8";
     LC_TELEPHONE = "da_DK.UTF-8";
     LC_TIME = "da_DK.UTF-8";
+  };
+
+  # Install 1Password
+  environment.systemPackages = with pkgs-unstable; [
+   _1password-cli
+   _1password-gui
+  ];
+
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ username ];
+  };
+
+  # Allow custom browsers for 1Password
+  environment.etc = {
+    "1password/custom_allowed_browsers" = {
+      text = ''
+        .zen-wrapped
+      '';
+      mode = "0755";
+    };
   };
 }
