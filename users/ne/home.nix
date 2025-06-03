@@ -3,6 +3,7 @@
     ../../home/core.nix
 
     ./1Password.nix
+    ./browser.nix
   ];
 
   # Git config
