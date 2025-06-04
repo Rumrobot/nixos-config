@@ -5,7 +5,7 @@
 }: {
   imports = [
     ../../modules/system.nix
-    ../../modules/gnome.nix
+    ../../modules/hyprland.nix
 
     ./hardware-configuration.nix
   ];
