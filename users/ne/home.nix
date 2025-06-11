@@ -1,6 +1,10 @@
-{ inputs, pkgs, system, ... }: {
-  imports = [ ../../modules/home ];
-
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}: {
+  imports = [../../modules/home];
 
   # Git config
   programs.git = {
@@ -14,7 +18,6 @@
 
     extraConfig = {
       init.defaultBranch = "main";
-    };   
+    };
   };
-
 }

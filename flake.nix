@@ -46,12 +46,14 @@
       NVM-NE = let
         username = "ne";
         system = "x86_64-linux";
+        nixosConfig = config.nixosConfig;
 
         specialArgs = {
           inherit username;
           inherit system;
           inherit inputs;
-          
+          inherit nixosConfig;
+
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
@@ -63,8 +65,9 @@
 
           modules = [
             ./hosts/NVM-NE
-            
-            home-manager.nixosModules.home-manager {
+
+            home-manager.nixosModules.home-manager
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 

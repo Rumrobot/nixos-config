@@ -1,5 +1,12 @@
-{ config, pkgs, pkgs-unstable, inputs, system, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  system,
+  lib,
+  ...
+}: let
   cfg = config.nixosConfig.windowManagers.hyprland;
 in {
   options.nixosConfig.windowManagers.hyprland.enable =

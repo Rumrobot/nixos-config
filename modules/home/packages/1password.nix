@@ -1,13 +1,18 @@
-{ config, lib, pkgs, inputs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: let
   cfg = config.nixosConfig.packages.onepassword;
   onePassPath = "~/.1password/agent.sock";
 in {
   config = lib.mkIf cfg.enable {
-    imports = [ inputs._1password-shell-plugins.hmModules.default ];
+    imports = [inputs._1password-shell-plugins.hmModules.default];
     programs._1password-shell-plugins = {
       enable = true;
-      plugins = with pkgs; [ gh ];
+      plugins = with pkgs; [gh];
     };
 
     programs.ssh = lib.mkIf cfg.sshAgent {
@@ -23,7 +28,7 @@ in {
       extraConfig = {
         gpg = {
           format = "ssh";
-          ssh = { program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}"; };
+          ssh = {program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";};
         };
         commit.gpgsign = lib.mkDefault true;
       };

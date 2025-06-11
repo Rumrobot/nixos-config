@@ -1,9 +1,12 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.nixosConfig.system.audio.enable;
 in {
   options.nixosConfig.system.audio.enable =
-    lib.mkEnableOption "Audio configuration" // { default = true; };
+    lib.mkEnableOption "Audio configuration" // {default = true;};
 
   config = lib.mkIf cfg {
     services.pulseaudio.enable = false;

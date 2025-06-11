@@ -1,9 +1,12 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.nixosConfig.core.enable;
 in {
   options.nixosConfig.core.enable =
-    lib.mkEnableOption "Core system settings" // { default = true; };
+    lib.mkEnableOption "Core system settings" // {default = true;};
 
   config = lib.mkIf cfg {
     # Locale settings

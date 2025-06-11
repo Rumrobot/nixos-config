@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.nixosConfig.packages.terminal;
 in {
   options.nixosConfig.packages.terminal = {
@@ -11,6 +15,6 @@ in {
   };
 
   config = {
-    home.packages = [ cfg.package ];
+    home.packages = [cfg.package];
   };
 }

@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.nixosConfig.system.keymap;
 in {
   options.nixosConfig.system.keymap = {

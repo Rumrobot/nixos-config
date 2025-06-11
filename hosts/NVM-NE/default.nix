@@ -26,7 +26,5 @@
     variant = "winkeys";
   };
 
-
-
   nixosConfig.system.kvmClipboard.enable = true;
 }

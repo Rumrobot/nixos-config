@@ -1,9 +1,12 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.nixosConfig.system.bootloader;
 in {
   options.nixosConfig.system.bootloader = {
-    enable = lib.mkEnableOption "Bootloader configuration" // { default = true; };
+    enable = lib.mkEnableOption "Bootloader configuration" // {default = true;};
     device = lib.mkOption {
       type = lib.types.str;
       default = "/dev/vda";

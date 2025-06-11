@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   cfg = config.nixosConfig.gnome.enable;
 in {
   options.nixosConfig.gnome.enable = lib.mkEnableOption "GNOME desktop";
