@@ -36,7 +36,6 @@
 
   outputs = inputs @ {
     self,
-    config,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
@@ -47,13 +46,11 @@
       NVM-NE = let
         username = "ne";
         system = "x86_64-linux";
-        nixosConfig = config.nixosConfig;
 
         specialArgs = {
           inherit username;
           inherit system;
           inherit inputs;
-          inherit nixosConfig;
 
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
@@ -72,7 +69,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
-              home-manager.extraSpecialArgs = specialArgs // {nixosConfig = config.nixosConfig;};
+              home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
           ];
