@@ -1,10 +1,10 @@
 {
-  nixosConfig,
+  config,
   lib,
   pkgs,
   ...
 }: let
-  cfg = nixosConfig.packages.terminal;
+  cfg = config.nixosConfig.packages.terminal;
 in {
   options.nixosConfig.packages.terminal = {
     package = lib.mkOption {
