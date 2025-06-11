@@ -1,19 +1,6 @@
 { inputs, pkgs, system, ... }: {
-  imports = [
-    ../../home/core.nix
+  imports = [ ../../modules/home ];
 
-    ./1Password.nix
-    ./browser.nix
-    ./hyprland.nix
-  ];
-
-  # WM
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages.${system}.hyprland;
-    portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
-  };
 
   # Git config
   programs.git = {
@@ -30,8 +17,4 @@
     };   
   };
 
-  # Packages
-  home.packages = with pkgs; [
-    ghostty
-  ];  
 }
