@@ -36,6 +36,7 @@
 
   outputs = inputs @ {
     self,
+    config,
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
