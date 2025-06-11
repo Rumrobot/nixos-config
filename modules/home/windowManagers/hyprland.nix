@@ -1,10 +1,10 @@
 {
-  config,
+  nixosConfig,
   lib,
   ...
 }: let
-  cfg = config.nixosConfig.windowManagers.hyprland;
-  termPkg = config.nixosConfig.packages.terminal.package;
+  cfg = nixosConfig.windowManagers.hyprland;
+  termPkg = nixosConfig.packages.terminal.package;
   termCmd = lib.getExe termPkg;
 in {
   options.nixosConfig.windowManagers.hyprland = {

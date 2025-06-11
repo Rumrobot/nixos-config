@@ -1,11 +1,11 @@
 {
-  config,
+  nixosConfig,
   lib,
   pkgs,
   inputs,
   ...
 }: let
-  cfg = config.nixosConfig.packages.onepassword;
+  cfg = nixosConfig.packages.onepassword;
   onePassPath = "~/.1password/agent.sock";
 in {
   config = lib.mkIf cfg.enable {

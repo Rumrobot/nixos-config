@@ -71,7 +71,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
-              home-manager.extraSpecialArgs = inputs // specialArgs;
+              home-manager.extraSpecialArgs = specialArgs // {nixosConfig = config.nixosConfig;};
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
           ];

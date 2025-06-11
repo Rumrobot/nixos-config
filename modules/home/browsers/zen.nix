@@ -1,11 +1,11 @@
 {
-  config,
+  nixosConfig,
   pkgs,
   inputs,
   lib,
   ...
 }: let
-  cfg = config.nixosConfig.home.browsers.zen.enable;
+  cfg = nixosConfig.home.browsers.zen.enable;
 in {
   options.nixosConfig.home.browsers.zen.enable =
     lib.mkEnableOption "Zen browser" // {default = true;};
