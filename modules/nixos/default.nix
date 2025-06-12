@@ -1,4 +1,9 @@
 {
+  lib,
+  pkgs,
+  username,
+  ...
+}: {
   imports = [
     ./1password.nix
     ./audio.nix
