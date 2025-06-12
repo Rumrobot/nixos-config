@@ -6,6 +6,8 @@
 }: let
   cfg = config.nixosConfig.browsers.zen;
 in {
+  imports = [inputs.zen-browser.homeModules.beta inputs.zen-browser.homeModules.twilight];
+
   options.nixosConfig.browsers.zen = {
     enable = lib.mkEnableOption "Zen browser" // {default = true;};
     version = lib.mkOption {
@@ -15,16 +17,13 @@ in {
     };
   };
 
-  config = with inputs;
-    lib.mkIf cfg.enable {
-      imports = [inputs.zen-browser.homeModules.${cfg.version}];
-
-      programs.zen-browser = {
-        enable = true;
-        policies = {
-          DisableAppUpdate = true;
-          DisableTelemetry = true;
-        };
+  config = lib.mkIf cfg.enable {
+    programs.zen-browser = {
+      enable = true;
+      policies = {
+        DisableAppUpdate = true;
+        DisableTelemetry = true;
       };
     };
+  };
 }
