@@ -1,8 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   hasNixos = config ? environment;
-  hasHome  = config ? home;
+  hasHome = config ? home;
   cfg = config.nixosConfig.packages.terminal;
 in {
   options.nixosConfig.packages.terminal = {
@@ -15,10 +18,10 @@ in {
 
   config = lib.mkMerge [
     (lib.mkIf hasHome {
-      home.packages = [ cfg.package ];
+      home.packages = [cfg.package];
     })
     (lib.mkIf hasNixos {
-      environment.systemPackages = [ cfg.package ];
+      environment.systemPackages = [cfg.package];
     })
   ];
 }

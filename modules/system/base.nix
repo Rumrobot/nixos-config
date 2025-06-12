@@ -1,23 +1,27 @@
-{ config, pkgs, lib, username, ... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  username,
+  ...
+}: let
   hasNixos = config ? environment;
 in {
   options.nixosConfig.system.enable =
-    lib.mkEnableOption "Base system configuration" // { default = true; };
+    lib.mkEnableOption "Base system configuration" // {default = true;};
 
   config = lib.mkMerge [
     (lib.mkIf hasNixos {
       users.users.${username} = {
         isNormalUser = true;
         description = username;
-        extraGroups = [ "networkmanager" "wheel" ];
+        extraGroups = ["networkmanager" "wheel"];
       };
 
-      nix.settings.trusted-users = [ username ];
+      nix.settings.trusted-users = [username];
 
       nix.settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = ["nix-command" "flakes"];
       };
 
       nix.gc = {

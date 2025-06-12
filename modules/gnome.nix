@@ -1,6 +1,8 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   hasNixos = config ? environment;
 in {
   options.nixosConfig.gnome.enable = lib.mkEnableOption "GNOME desktop";

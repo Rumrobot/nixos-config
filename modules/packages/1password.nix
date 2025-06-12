@@ -1,23 +1,23 @@
-{ config
-, lib
-, pkgs
-, pkgs-unstable
-, inputs
-, username
-, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-unstable,
+  inputs,
+  username,
+  ...
+}: let
   hasNixos = config ? environment;
-  hasHome  = config ? home;
+  hasHome = config ? home;
   cfg = config.nixosConfig.packages.onepassword;
   onePassPath = "~/.1password/agent.sock";
 in {
   options.nixosConfig.packages.onepassword = {
-    enable = lib.mkEnableOption "1Password support" // { default = true; };
+    enable = lib.mkEnableOption "1Password support" // {default = true;};
     gitSigning =
-      lib.mkEnableOption "Enable git signing via 1Password" // { default = true; };
+      lib.mkEnableOption "Enable git signing via 1Password" // {default = true;};
     sshAgent =
-      lib.mkEnableOption "Use 1Password as SSH agent" // { default = true; };
+      lib.mkEnableOption "Use 1Password as SSH agent" // {default = true;};
     shell = lib.mkOption {
       type = lib.types.enum ["bash" "zsh"];
       default = "bash";
@@ -34,15 +34,15 @@ in {
       programs._1password.enable = true;
       programs._1password-gui = {
         enable = true;
-        polkitPolicyOwners = [ username ];
+        polkitPolicyOwners = [username];
       };
     })
 
     (lib.mkIf hasHome {
-      imports = [ inputs._1password-shell-plugins.hmModules.default ];
+      imports = [inputs._1password-shell-plugins.hmModules.default];
       programs._1password-shell-plugins = {
         enable = true;
-        plugins = with pkgs; [ gh ];
+        plugins = with pkgs; [gh];
       };
       programs.ssh = {
         enable = true;
@@ -56,7 +56,7 @@ in {
         extraConfig = {
           gpg = {
             format = "ssh";
-            ssh = { program = "${lib.getExe' pkgs._1password-gui \"op-ssh-sign\"}"; };
+            ssh = {program = "${lib.getExe' pkgs._1password-gui "op-ssh-sign"}";};
           };
           commit.gpgsign = lib.mkDefault true;
         };

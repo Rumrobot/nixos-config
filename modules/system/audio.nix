@@ -1,10 +1,12 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   hasNixos = config ? environment;
 in {
   options.nixosConfig.system.audio.enable =
-    lib.mkEnableOption "Audio configuration" // { default = true; };
+    lib.mkEnableOption "Audio configuration" // {default = true;};
 
   config = lib.mkMerge [
     (lib.mkIf hasNixos {

@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   hasNixos = config ? environment;
 in {
   options.nixosConfig.system.kvmClipboard.enable =
@@ -12,7 +15,7 @@ in {
 
       systemd.user.services.spice-vdagent-client = {
         description = "spice-vdagent client";
-        wantedBy = [ "graphical-session.target" ];
+        wantedBy = ["graphical-session.target"];
         serviceConfig = {
           ExecStart = "${pkgs.spice-vdagent}/bin/spice-vdagent -x";
           Restart = "on-failure";

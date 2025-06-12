@@ -1,6 +1,8 @@
-{ config, lib, ... }:
-
-let
+{
+  config,
+  lib,
+  ...
+}: let
   hasNixos = config ? environment;
   cfg = config.nixosConfig.system.keymap;
 in {

@@ -1,11 +1,14 @@
-{ config, lib, username, ... }:
-
-let
+{
+  config,
+  lib,
+  username,
+  ...
+}: let
   hasNixos = config ? environment;
-  hasHome  = config ? home;
+  hasHome = config ? home;
 in {
   options.nixosConfig.core.enable =
-    lib.mkEnableOption "Core system settings" // { default = true; };
+    lib.mkEnableOption "Core system settings" // {default = true;};
 
   config = lib.mkMerge [
     (lib.mkIf hasNixos {
