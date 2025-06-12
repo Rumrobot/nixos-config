@@ -4,27 +4,30 @@
   ...
 }: {
   imports = [
-    ../../modules
+    ../../modules/nixos
     ./hardware-configuration.nix
   ];
 
-  nixosConfig.windowManagers.hyprland.enable = true;
   # NixOS system
   system.stateVersion = "25.05";
 
-  nixosConfig.system.bootloader.device = "/dev/vda";
+  # Timezone
+  time.timeZone = "Europe/Copenhagen";
 
   # Networking
   networking.hostName = "NVM-NE";
   networking.networkmanager.enable = true;
 
-  # Timezone
-  time.timeZone = "Europe/Copenhagen";
-
-  nixosConfig.system.keymap = {
-    layout = "dk";
-    variant = "winkeys";
+  # Config
+  nixosConfig = {
+    windowManagers.hyprland.enable = true;
+    system = {
+      bootloader.device = "/dev/vda";
+      kvmClipboard.enable = true;
+      keymap = {
+        layout = "dk";
+        variant = "winkeys";
+      };
+    };
   };
-
-  nixosConfig.system.kvmClipboard.enable = true;
 }

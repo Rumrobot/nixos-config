@@ -3,7 +3,6 @@
   lib,
   ...
 }: let
-  hasNixos = config ? environment;
   cfg = config.nixosConfig.system.keymap;
 in {
   options.nixosConfig.system.keymap = {
@@ -24,11 +23,7 @@ in {
     };
   };
 
-  config = lib.mkMerge [
-    (lib.mkIf hasNixos {
-      console.keyMap = lib.mkDefault (cfg.console or (cfg.layout + "-latin1"));
-      services.xserver.xkb.layout = cfg.layout;
-      services.xserver.xkb.variant = cfg.variant;
-    })
-  ];
+  console.keyMap = lib.mkDefault (cfg.console or (cfg.layout + "-latin1"));
+  services.xserver.xkb.layout = cfg.layout;
+  services.xserver.xkb.variant = cfg.variant;
 }
