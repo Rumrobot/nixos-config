@@ -4,7 +4,7 @@
   system,
   ...
 }: {
-  imports = [../../modules/home];
+  imports = [../../modules];
 
   # Git config
   programs.git = {

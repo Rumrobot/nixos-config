@@ -7,7 +7,9 @@
     ./system/keymap.nix
     ./system/kvm-clipboard.nix
     ./packages/1password.nix
-    ./hyprland.nix
+    ./packages/terminal.nix
+    ./browsers/zen.nix
+    ./windowManagers/hyprland.nix
     ./gnome.nix
   ];
 }
