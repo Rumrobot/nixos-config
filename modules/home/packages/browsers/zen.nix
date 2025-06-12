@@ -6,16 +6,10 @@
 }: let
   cfg = config.nixosConfig.browsers.zen;
 in {
-  imports = [inputs.zen-browser.homeModules.beta inputs.zen-browser.homeModules.twilight];
+  imports = [inputs.zen-browser.homeModules.beta]; # beta / twilight
 
-  options.nixosConfig.browsers.zen = {
-    enable = lib.mkEnableOption "Zen browser" // {default = true;};
-    version = lib.mkOption {
-      type = lib.types.enum ["beta" "twilight"];
-      default = "beta";
-      description = "Zen browser version";
-    };
-  };
+  options.nixosConfig.browsers.zen.enable =
+    lib.mkEnableOption "Zen browser" // {default = true;};
 
   config = lib.mkIf cfg.enable {
     programs.zen-browser = {
