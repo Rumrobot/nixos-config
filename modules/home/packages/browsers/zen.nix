@@ -17,7 +17,7 @@ in {
     };
   };
 
-  config = {
+  config = lib.mkIf cfg.enable {
     programs.zen-browser = {
       enable = true;
       policies = {
