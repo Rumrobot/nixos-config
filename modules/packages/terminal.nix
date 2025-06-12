@@ -7,6 +7,24 @@
   hasNixos = config ? environment;
   hasHome = config ? home;
   cfg = config.nixosConfig.packages.terminal;
+
+  modules = lib.concatLists [
+    (lib.optional hasNixos [
+      {
+        config = lib.mkIf cfg.enable {
+          environment.systemPackages = [cfg.package];
+        };
+      }
+    ])
+
+    (lib.optional hasHome [
+      {
+        config = lib.mkIf cfg.enable {
+          home.packages = [cfg.package];
+        };
+      }
+    ])
+  ];
 in {
   options.nixosConfig.packages.terminal = {
     package = lib.mkOption {
@@ -16,12 +34,5 @@ in {
     };
   };
 
-  config = lib.mkMerge [
-    (lib.mkIf hasHome {
-      home.packages = [cfg.package];
-    })
-    (lib.mkIf hasNixos {
-      environment.systemPackages = [cfg.package];
-    })
-  ];
+  imports = modules;
 }
