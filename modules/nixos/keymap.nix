@@ -18,7 +18,7 @@ in {
     };
     console = lib.mkOption {
       type = lib.types.str;
-      default = "-latin1";
+      default = "${cfg.layout}-latin1";
       description = "Console keymap";
     };
   };
