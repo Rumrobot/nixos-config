@@ -1,7 +1,7 @@
 {username, ...}: {
   imports = [
-    "./packages"
-    "./hyprland.nix"
+    ./packages
+    ./hyprland.nix
   ];
 
   home = {
