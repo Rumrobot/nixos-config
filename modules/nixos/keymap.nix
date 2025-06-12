@@ -23,7 +23,9 @@ in {
     };
   };
 
-  console.keyMap = lib.mkDefault (cfg.console or (cfg.layout + "-latin1"));
-  services.xserver.xkb.layout = cfg.layout;
-  services.xserver.xkb.variant = cfg.variant;
+  config = {
+    console.keyMap = lib.mkDefault (cfg.console or (cfg.layout + "-latin1"));
+    services.xserver.xkb.layout = cfg.layout;
+    services.xserver.xkb.variant = cfg.variant;
+  };
 }
