@@ -8,6 +8,8 @@
   cfg = config.nixosConfig.packages._1password;
   onePassPath = "~/.1password/agent.sock";
 in {
+  imports = [inputs._1password-shell-plugins.hmModules.default];
+
   options.nixosConfig.packages._1password = {
     enable = lib.mkEnableOption "1Password support" // {default = true;};
     gitSigning =
@@ -22,7 +24,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    imports = [inputs._1password-shell-plugins.hmModules.default];
     programs._1password-shell-plugins = {
       enable = true;
       plugins = with pkgs; [gh];
