@@ -24,7 +24,7 @@ in {
   };
 
   config = {
-    console.keyMap = lib.mkDefault (cfg.console or (cfg.layout + "-latin1"));
+    console.keyMap = cfg.console;
     services.xserver.xkb.layout = cfg.layout;
     services.xserver.xkb.variant = cfg.variant;
   };
