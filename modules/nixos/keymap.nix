@@ -17,8 +17,8 @@ in {
       description = "Keyboard variant";
     };
     console = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
-      default = null;
+      type = lib.types.str;
+      default = "-latin1";
       description = "Console keymap";
     };
   };
