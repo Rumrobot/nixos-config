@@ -1,3 +1,5 @@
-[
-  (import ./sunpaper.nix)
-]
+{pkgs, ...}: {
+  nixpkgs.overlays = [
+    (import ./sunpaper.nix)
+  ];
+}

@@ -47,11 +47,6 @@
           inherit system;
           inherit inputs;
 
-          pkgs = import nixpkgs {
-            inherit system;
-            overlays = import ./overlays;
-          };
-
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
             config.allowUnfree = true;
@@ -62,6 +57,8 @@
           inherit specialArgs;
 
           modules = [
+            (import ./overlays)
+
             ./hosts/NVM-NE
 
             home-manager.nixosModules.home-manager
