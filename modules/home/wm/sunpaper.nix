@@ -7,7 +7,7 @@
   lat = "55.83333N";
   long = "12.33333E";
 in {
-  packages = with pkgs; [sunpaper jq];
+  home.packages = with pkgs; [sunpaper jq];
 
   home.file."data/wallpapers/${wallpaper}".source = ./users/${username}/wallpapers/${wallpaper};
   xdg.configFile."sunpaper/config".text = lib.concatStringsSep "\n" [
