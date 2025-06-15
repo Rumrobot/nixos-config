@@ -10,7 +10,7 @@
   cfg = config.nixosConfig.windowManagers.hyprland;
 in {
   options.nixosConfig.windowManagers.hyprland.enable =
-    lib.mkEnableOption "Hyprland window manager";
+    lib.mkEnableOption "Hyprland window manager" // {default = true;};
 
   config = lib.mkIf cfg.enable {
     programs.hyprland = {
@@ -18,14 +18,6 @@ in {
       package = inputs.hyprland.packages.${system}.hyprland;
       portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
     };
-
-    environment.systemPackages = with pkgs; [
-      waybar
-      mako
-      swww
-      rofi-wayland
-      kitty
-    ];
 
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 

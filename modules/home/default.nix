@@ -1,7 +1,7 @@
 {username, ...}: {
   imports = [
     ./packages
-    ./hyprland.nix
+    ./wm
   ];
 
   home = {
