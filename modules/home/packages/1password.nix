@@ -28,14 +28,16 @@ in {
       enable = true;
       plugins = with pkgs; [gh];
     };
-    programs.ssh = {
+
+    programs.ssh = lib.mkIf cfg.sshAgent {
       enable = true;
       extraConfig = ''
         Host *
             IdentityAgent ${onePassPath}
       '';
     };
-    programs.git = {
+
+    programs.git = lib.mkIf cfg.gitSigning {
       enable = true;
       extraConfig = {
         gpg = {
