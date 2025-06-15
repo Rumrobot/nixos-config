@@ -1,5 +1,6 @@
 {
   config,
+  osConfig,
   lib,
   ...
 }: let
@@ -31,7 +32,7 @@ in {
               9)
           );
         input = {
-          kb_layout = config.nixosConfig.system.keymap.layout;
+          kb_layout = osConfig.nixosConfig.system.keymap.layout;
         };
       };
       extraConfig = ''
