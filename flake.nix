@@ -38,7 +38,6 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    config,
     home-manager,
     hyprland,
     ...
@@ -52,7 +51,6 @@
           inherit username;
           inherit system;
           inherit inputs;
-          inherit config;
 
           pkgs-unstable = import nixpkgs-unstable {
             inherit system;
