@@ -21,7 +21,7 @@ in {
       wallpaperPath="$XDG_DATA_HOME/wallpapers/${wallpaper}"
       wallpaperMode="fill"
       swww_enable="true"
-      swww_fps="${swwwFPS}"
+      swww_fps="${swwwFps}"
       swww_step="${swwwStep}"
     ''
   ];
