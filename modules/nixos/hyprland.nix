@@ -1,9 +1,6 @@
 {
   config,
-  pkgs,
   pkgs-unstable,
-  inputs,
-  system,
   lib,
   ...
 }: let
@@ -15,10 +12,10 @@ in {
   config = lib.mkIf cfg.enable {
     programs.hyprland = {
       enable = true;
-      package = inputs.hyprland.packages.${system}.hyprland;
-      portalPackage = inputs.hyprland.packages.${system}.xdg-desktop-portal-hyprland;
+      withUWSM = true;
     };
 
+    # Optional, hint Electron apps to use Wayland:
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     hardware.graphics = {
