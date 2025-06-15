@@ -10,7 +10,7 @@
 in {
   home.packages = with pkgs; [sunpaper jq];
 
-  home.file."data/wallpapers/${wallpaper}".source = ../../../users/${username}/wallpapers/${wallpaper};
+  xdg.dataFile."wallpapers/${wallpaper}".source = ../../../users/${username}/wallpapers/${wallpaper};
   xdg.configFile."sunpaper/config".text = lib.concatStringsSep "\n" [
     ''
       latitude="${lat}"
