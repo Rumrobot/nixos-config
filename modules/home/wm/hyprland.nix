@@ -35,6 +35,7 @@ in {
       };
       extraConfig = ''
         exec-once = "swww init"
+        exec-once = "sunpaper -d"
       '';
     };
   };
