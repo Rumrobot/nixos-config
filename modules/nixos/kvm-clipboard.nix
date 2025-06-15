@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.nixosConfig.system.kvmClipboard;
+  cfg = config.nixosConfig.system.kvm-clipboard;
 in {
-  options.nixosConfig.system.kvmClipboard.enable =
+  options.nixosConfig.system.kvm-clipboard.enable =
     lib.mkEnableOption "Clipboard integration for KVM";
 
   config = lib.mkIf cfg.enable {

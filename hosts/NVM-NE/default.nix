@@ -23,7 +23,7 @@
     windowManagers.hyprland.enable = true;
     system = {
       bootloader.device = "/dev/vda";
-      kvmClipboard.enable = true;
+      kvm-clipboard.enable = true;
       keymap = {
         layout = "dk";
         variant = "winkeys";
