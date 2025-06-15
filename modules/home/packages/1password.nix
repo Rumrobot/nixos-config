@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  cfg = osConfig.nixosConfig.packages._1password;
+  cfg = osConfig.config.nixosConfig.packages._1password;
   onePassPath = "~/.1password/agent.sock";
 in {
   imports = [inputs._1password-shell-plugins.hmModules.default];
@@ -47,6 +47,7 @@ in {
         commit.gpgsign = lib.mkDefault true;
       };
     };
+
     programs.${cfg.shell} = {
       enable = true;
       initExtra = ''
