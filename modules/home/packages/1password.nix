@@ -5,7 +5,7 @@
   inputs,
   ...
 }: let
-  cfg = config.config.nixosConfig.packages._1password;
+  cfg = config.nixosConfig.packages._1password;
   onePassPath = "~/.1password/agent.sock";
 in {
   imports = [inputs._1password-shell-plugins.hmModules.default];
