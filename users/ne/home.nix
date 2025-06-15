@@ -1,9 +1,10 @@
-{
+{osConfig, ...}: {
   imports = [../../modules/home];
 
   # Custom config
   nixosConfig = {
     windowManagers.hyprland.enable = true;
+    system.keymap = osConfig.nixosConfig.system.keymap;
   };
 
   # Git config
