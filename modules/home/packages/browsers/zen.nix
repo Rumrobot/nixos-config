@@ -1,10 +1,10 @@
 {
-  config,
+  osConfig,
   inputs,
   lib,
   ...
 }: let
-  cfg = config.nixosConfig.browsers.zen;
+  cfg = osConfig.nixosConfig.browsers.zen;
 in {
   imports = [inputs.zen-browser.homeModules.beta]; # beta / twilight
 

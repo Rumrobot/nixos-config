@@ -1,9 +1,9 @@
 {
-  config,
+  osConfig,
   lib,
   ...
 }: let
-  cfg = config.nixosConfig.windowManagers.hyprland;
+  cfg = osConfig.nixosConfig.windowManagers.hyprland;
   termPkg = config.nixosConfig.packages.terminal.package;
   termCmd = lib.getExe termPkg;
 in {
