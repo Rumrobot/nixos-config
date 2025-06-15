@@ -38,7 +38,7 @@ in {
         };
       };
       extraConfig = ''
-        exec-once = "swww init"
+        exec-once = "swww-daemon"
         exec-once = "sunpaper -d"
       '';
       enable = true;
