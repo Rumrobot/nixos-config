@@ -5,7 +5,9 @@
   pkgs,
   system,
   ...
-}: {
+}: let
+  cfg = config;
+in {
   imports = [../../modules/home];
 
   # Import nixos custom config
