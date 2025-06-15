@@ -12,9 +12,11 @@ in {
     lib.mkEnableOption "Hyprland window manager" // {default = true;};
 
   config = lib.mkIf cfg.enable {
+    systemd.user.targets.hyprland-session.Unit.Wants = [
+      "xdg-desktop-autostart.target"
+    ];
+
     wayland.windowManager.hyprland = {
-      enable = true;
-      systemd.enable = true;
       settings = {
         "$mod" = "SUPER";
         bind =
@@ -39,6 +41,11 @@ in {
         exec-once = "swww init"
         exec-once = "sunpaper -d"
       '';
+      enable = true;
+      systemd.enable = true;
+      xwayland = {
+        enable = true;
+      };
     };
   };
 }
