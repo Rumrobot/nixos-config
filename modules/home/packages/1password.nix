@@ -1,11 +1,11 @@
 {
-  osConfig,
+  config,
   lib,
   pkgs,
   inputs,
   ...
 }: let
-  cfg = osConfig.config.nixosConfig.packages._1password;
+  cfg = config.config.nixosConfig.packages._1password;
   onePassPath = "~/.1password/agent.sock";
 in {
   imports = [inputs._1password-shell-plugins.hmModules.default];

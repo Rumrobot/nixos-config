@@ -1,10 +1,15 @@
 {
   inputs,
+  config,
+  osConfig,
   pkgs,
   system,
   ...
 }: {
   imports = [../../modules/home];
+
+  # Import nixos custom config
+  config.nixosConfig = osConfig.nixosConfig;
 
   # Git config
   programs.git = {

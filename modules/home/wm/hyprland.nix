@@ -1,10 +1,10 @@
 {
-  osConfig,
+  config,
   lib,
   ...
 }: let
-  cfg = osConfig.nixosConfig.windowManagers.hyprland;
-  termPkg = osConfig.nixosConfig.packages.terminal.package;
+  cfg = config.nixosConfig.windowManagers.hyprland;
+  termPkg = config.nixosConfig.packages.terminal.package;
   termCmd = lib.getExe termPkg;
 in {
   options.nixosConfig.windowManagers.hyprland.enable =
@@ -31,7 +31,7 @@ in {
               9)
           );
         input = {
-          kb_layout = osConfig.nixosConfig.system.keymap.layout;
+          kb_layout = config.nixosConfig.system.keymap.layout;
         };
       };
       extraConfig = ''
