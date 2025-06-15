@@ -1,0 +1,3 @@
+[
+  (import ./sunpaper.nix)
+]
