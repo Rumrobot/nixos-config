@@ -5,13 +5,11 @@
   pkgs,
   system,
   ...
-}: let
-  cfg = config;
-in {
+}: {
   imports = [../../modules/home];
 
   # Import nixos custom config
-  config.nixosConfig = osConfig.nixosConfig;
+  nixosConfig = osConfig.nixosConfig;
 
   # Git config
   programs.git = {
