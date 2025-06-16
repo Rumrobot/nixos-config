@@ -28,6 +28,8 @@
       # to have it up-to-date or simply don't specify the nixpkgs input
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    ags.url = "github:aylur/ags";
   };
 
   outputs = inputs @ {
