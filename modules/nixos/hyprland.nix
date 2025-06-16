@@ -10,10 +10,7 @@ in {
     lib.mkEnableOption "Hyprland window manager" // {default = true;};
 
   config = lib.mkIf cfg.enable {
-    programs.hyprland = {
-      enable = true;
-      withUWSM = true;
-    };
+    programs.hyprland.enable = true;
 
     # Optional, hint Electron apps to use Wayland:
     environment.sessionVariables.NIXOS_OZONE_WL = "1";

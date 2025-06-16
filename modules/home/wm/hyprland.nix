@@ -12,10 +12,6 @@ in {
     lib.mkEnableOption "Hyprland window manager" // {default = true;};
 
   config = lib.mkIf cfg.enable {
-    systemd.user.targets.hyprland-session.Unit.Wants = [
-      "xdg-desktop-autostart.target"
-    ];
-
     wayland.windowManager.hyprland = {
       settings = {
         "$mod" = "SUPER";
@@ -47,9 +43,7 @@ in {
       portalPackage = null;
 
       systemd.enable = true;
-      xwayland = {
-        enable = true;
-      };
+      xwayland.enable = true;
     };
   };
 }
