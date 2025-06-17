@@ -1,8 +1,8 @@
 {
   inputs,
   config,
-  osConfig,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.nixosConfig.windowManagers.ags;
@@ -15,7 +15,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.ags = {
       enable = true;
-      configDir = ./ags;
+      configDir = ./.;
 
       # additional packages to add to gjs's runtime
       extraPackages = with pkgs; [
