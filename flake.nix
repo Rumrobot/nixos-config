@@ -29,7 +29,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
-    ags.url = "github:aylur/ags";
+    ags = {
+      url = "github:aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs @ {
