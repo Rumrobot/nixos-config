@@ -14,6 +14,11 @@ in {
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
       settings = {
+        exec-once = [
+          "ags run --gtk4"
+          "swww-daemon"
+        ];
+
         "$mod" = "SUPER";
         bind =
           [
@@ -33,16 +38,11 @@ in {
           kb_layout = osConfig.nixosConfig.system.keymap.layout;
         };
       };
-      extraConfig = ''
-        exec-once = "swww-daemon"
-        exec-once = "sunpaper -d"
-      '';
+
       enable = true;
       # set the Hyprland and XDPH packages to null to use the ones from the NixOS module
       package = null;
       portalPackage = null;
-
-      systemd.enable = true;
       xwayland.enable = true;
     };
   };
