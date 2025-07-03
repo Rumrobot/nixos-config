@@ -1,7 +1,8 @@
 {
   inputs,
   lib,
-  pkgs,
+  pkgs-unstable,
+  system,
   ...
 }: {
   imports = [inputs.ags.homeManagerModules.default];
@@ -10,9 +11,8 @@
     enable = true;
     configDir = ./.;
 
-    # additional packages to add to gjs's runtime
-    extraPackages = with pkgs; [
-      inputs.ags.packages.${pkgs.system}.hyprland
+    extraPackages = with pkgs-unstable; [
+      inputs.ags.packages.${system}.hyprland
       fzf
     ];
   };

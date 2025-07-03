@@ -1,0 +1,6 @@
+{
+  "name": "ags",
+  "dependencies": {
+    "astal": "../.local/share/ags"
+  }
+}
