@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   username,
   ...
@@ -38,14 +37,15 @@
       trusted-users = [username];
       experimental-features = ["nix-command" "flakes"];
     };
-    gc = {
-      automatic = lib.mkDefault true;
-      dates = lib.mkDefault "weekly";
-      options = lib.mkDefault "--delete-older-than 7d";
-    };
   };
-
   nixpkgs.config.allowUnfree = true;
+
+  environment.sessionVariables.NH_FLAKE = "/home/ne/nixos-config";
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 7d --keep 5";
+  };
 
   environment.systemPackages = with pkgs; [
     nano
