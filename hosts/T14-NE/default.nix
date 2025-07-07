@@ -25,6 +25,12 @@
       };
     };
   };
+
+  ne = {
+    programs = {
+      neovim.enable = true;
+    };
+  };
   
   # Boot
   # boot.loader.systemd-boot.enable = true;

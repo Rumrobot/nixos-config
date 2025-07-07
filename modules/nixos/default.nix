@@ -11,6 +11,7 @@
     ./keymap.nix
     ./kvm-clipboard.nix
     ./hyprland.nix
+    ../nvf.nix
   ];
 
   users.users.${username} = {
