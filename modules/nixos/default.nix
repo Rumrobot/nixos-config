@@ -40,11 +40,11 @@
   };
   nixpkgs.config.allowUnfree = true;
 
-  environment.sessionVariables.NH_FLAKE = "/home/ne/nixos-config";
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 7d --keep 5";
+    flake = "/home/ne/nixos-config";
   };
 
   environment.systemPackages = with pkgs; [
