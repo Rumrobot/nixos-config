@@ -76,6 +76,40 @@
             }
           ];
         };
+
+      T14-NE = let
+        username = "ne";
+        system = "x86_64-linux";
+
+        specialArgs = {
+          inherit username;
+          inherit system;
+          inherit inputs;
+
+          pkgs-unstable = import nixpkgs-unstable {
+            inherit system;
+            config.allowUnfree = true;
+          };
+        };
+      in
+        nixpkgs.lib.nixosSystem {
+          inherit specialArgs;
+
+          modules = [
+            (import ./overlays)
+
+            ./hosts/T14-NE
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.users.${username} = import ./users/${username}/home.nix;
+            }
+          ];
+        };
     };
   };
 }

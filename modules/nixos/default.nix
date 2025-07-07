@@ -7,7 +7,7 @@
   imports = [
     ./1password.nix
     ./audio.nix
-    ./bootloader.nix
+    # ./bootloader.nix
     ./keymap.nix
     ./kvm-clipboard.nix
     ./hyprland.nix
