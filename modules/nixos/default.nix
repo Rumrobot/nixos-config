@@ -10,6 +10,7 @@
     ./keymap.nix
     ./kvm-clipboard.nix
     ./hyprland.nix
+    ../desktop/ags
     ../nvf.nix
   ];
 

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{ ... }: {
   imports = [
     ../../modules/nixos
     ./hardware-configuration.nix
@@ -27,6 +23,7 @@
   };
 
   ne = {
+    desktop.ags.enable = true;
     programs = {
       neovim.enable = true;
     };

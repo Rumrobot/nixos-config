@@ -4,6 +4,5 @@
     ./swww.nix
     ./rofi-wayland.nix
     ./sunpaper.nix
-    ./ags
   ];
 }
