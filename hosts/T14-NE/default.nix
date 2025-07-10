@@ -1,22 +1,46 @@
 { ... }: {
   imports = [
     ../../modules/nixos
+    ../../modules
+    ../../modules/desktop/hyprland
     ./hardware-configuration.nix
     ./configuration.nix
   ];
 
   nixosConfig = {
-    windowManagers.hyprland.enable = true;
     system = {
       keymap = {
         layout = "dk";
         variant = "latin1";
+        options = "caps:swapescape";
       };
     };
-  };
 
-  ne = {
-    desktop.ags.enable = true;
+    desktop = {
+      ags.enable = true;
+
+      monitors = [
+        {
+          id = "California Institute of Technology 0x1404";
+          width = 1920;
+          height = 1200;
+          refreshRate = 60.0;
+          position = { x = 0; y = 0; };
+          scale = 1;
+          rotation = 0;
+        }
+      ];
+    };
+
+    environment = {
+      terminals = {
+        ghostty = {
+          enable = true;
+          default = true;
+        };
+      };
+    };
+
     programs = {
       neovim.enable = true;
     };

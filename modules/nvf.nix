@@ -1,9 +1,9 @@
 { config, lib, inputs, username, ... }:
 with lib; let 
-  cfg = config.ne.programs.neovim;
+  cfg = config.nixosConfig.programs.neovim;
   nvf-hmModule = inputs.nvf.homeManagerModules.default;
 in {
-  options.ne.programs.neovim = {
+  options.nixosConfig.programs.neovim = {
     enable = mkEnableOption "neovim editor";
   };
 

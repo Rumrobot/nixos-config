@@ -2,12 +2,11 @@
   inputs,
   lib,
   config,
-  pkgs-unstable,
   username,
   system,
   ...
 }: with lib; let 
-  cfg = config.ne.desktop.ags;
+  cfg = config.nixosConfig.desktop.ags;
   
   astalRuntimePkgs = with inputs.ags.packages.${system}; [
     hyprland
@@ -19,7 +18,7 @@
 
   # pkgsExtraAgs = with pkgs-unstable; [];
 in {
-  options.ne.desktop.ags = {
+  options.nixosConfig.desktop.ags = {
     enable = mkEnableOption "AGS bar and UI";
   };
 

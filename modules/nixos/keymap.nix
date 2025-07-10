@@ -8,13 +8,18 @@ in {
   options.nixosConfig.system.keymap = {
     layout = lib.mkOption {
       type = lib.types.str;
-      default = "us";
-      description = "Keyboard layout";
+      default = "dk";
+      description = "Keymap layout";
     };
     variant = lib.mkOption {
       type = lib.types.str;
       default = "";
-      description = "Keyboard variant";
+      description = "Keymap variant";
+    };
+    options = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      description = "Keymap options";
     };
     console = lib.mkOption {
       type = lib.types.str;

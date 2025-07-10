@@ -1,7 +1,6 @@
 {username, ...}: {
   imports = [
     ./packages
-    ./wm
   ];
 
   home = {

@@ -1,11 +1,6 @@
 {
   imports = [../../modules/home];
 
-  # Custom config
-  nixosConfig = {
-    windowManagers.hyprland.enable = true;
-  };
-
   # Git config
   programs.git = {
     enable = true;
