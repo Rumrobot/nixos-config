@@ -4,6 +4,7 @@
   config,
   username,
   system,
+  pkgs,
   ...
 }: with lib; let 
   cfg = config.nixosConfig.desktop.ags;
@@ -23,6 +24,8 @@ in {
   };
 
   config = mkIf cfg.enable {
+    services.upower.enable = true;
+
     home-manager.users.${username} = {
       imports = [inputs.ags.homeManagerModules.default];
 

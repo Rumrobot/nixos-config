@@ -13,6 +13,15 @@ window.Bar {
         margin: 8px;
     }
 
+    .ws-button {
+      border-radius: 20px;
+      margin: 20px;
+    }
+
+    .focused {
+      background: blue;
+    }
+
     button {
         border-radius: 8px;
         margin: 2px;

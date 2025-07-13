@@ -1,4 +1,4 @@
-import { For, createBinding, type Accessor, type Binding } from "ags"
+import { With, For, createBinding, type Accessor, type Binding } from "ags"
 import { Gtk } from "ags/gtk4"
 import AstalHyprland from "gi://AstalHyprland"
 
@@ -15,31 +15,27 @@ export default function Workspaces(props: {
     createBinding(hyprland, "focusedWorkspace")
 
   return (
-    <widget
-      // GTK4 layout-manager replaces Astal.Box
-      layoutManager={new Gtk.BoxLayout({
-        orientation: props.vertical
-          ? Gtk.Orientation.VERTICAL
-          : Gtk.Orientation.HORIZONTAL,
-        spacing: 6,
-      })}
-      hexpand
+    <box
+      orientation={props.vertical
+        ? Gtk.Orientation.VERTICAL
+        : Gtk.Orientation.HORIZONTAL}
+      spacing={6}
+      hexpand={true}
       halign={Gtk.Align.CENTER}
     >
       {/* Dynamically render buttons for each workspace */}
       <For each={workspaces}>
         {(ws, idx: Binding<number>) => (
-          <button
+          <With value={focused}>
+          {(value) => focused && <button
             // ws.as(fn) is the v3 way to map an Accessor → prop
             label={`${ws.id}`}
-            className={ws.id === hyprland.get_focused_workspace().id
-                ? "ws-button focused"
-                : "ws-button"
-            }
+            class={ws.id === focused.id ? "ws-button focused" : "ws-button"}
             onClicked={() => ws.focus()}
-          />
+          />}
+          </With>
         )}
       </For>
-    </widget>
+    </box>
   )
 }
