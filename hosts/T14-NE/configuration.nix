@@ -1,4 +1,6 @@
-{ inputs, ... }: {
+{ inputs, config, ... }: let
+  hostname = config.nixosConfig.system.hostname;
+in {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
   ];
@@ -8,7 +10,7 @@
 
   # Networking
   networking = {
-    hostName = "T14-NE";
+    hostName = hostname;
     networkmanager.enable = true;
   };
 

@@ -2,6 +2,7 @@
 with lib; let 
   cfg = config.nixosConfig.programs.neovim;
   nvf-hmModule = inputs.nvf.homeManagerModules.default;
+  hostname = config.nixosConfig.system.hostname;
 in {
   options.nixosConfig.programs.neovim = {
     enable = mkEnableOption "neovim editor";
@@ -41,8 +42,8 @@ in {
                   enable = true;
                   server = "nixd";
                   options = {
-                    nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${username}.options";
-                    home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${username}.options.home-manager.users.type.getSubOptions []";
+                    nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${hostname}.options";
+                    home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${hostname}.options.home-manager.users.type.getSubOptions []";
                   };
                 };
                 format.type = "alejandra";

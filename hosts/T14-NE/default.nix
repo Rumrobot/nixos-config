@@ -9,6 +9,7 @@
 
   nixosConfig = {
     system = {
+      hostname = "T14-NE";
       keymap = {
         layout = "dk";
         variant = "latin1";
