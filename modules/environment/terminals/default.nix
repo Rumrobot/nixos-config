@@ -1,4 +1,8 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  ...
+}:
 with lib; let
   cfg = config.nixosConfig.environment.terminals;
   terminals = cfg;
@@ -9,7 +13,7 @@ with lib; let
 
   # TODO: Custom lib.optionalHead function
   # TODO: Make .terminal default if .terminals isnt present
-  defaultTerminal = 
+  defaultTerminal =
     if defaultTerminals == []
     then null
     else builtins.head defaultTerminals;

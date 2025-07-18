@@ -1,4 +1,4 @@
-{ lib, ... }:
+{lib, ...}:
 with lib; let
   monitorModule = types.submodule {
     options = {

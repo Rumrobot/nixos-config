@@ -4,19 +4,17 @@
   config,
   username,
   system,
-  pkgs,
   ...
-}: with lib; let 
+}:
+with lib; let
   cfg = config.nixosConfig.desktop.ags;
-  
+
   astalRuntimePkgs = with inputs.ags.packages.${system}; [
     hyprland
     battery
   ];
   # ++ pkgsExtra;
-  
   # pkgsExtra = with pkgs-unstable; [];
-
   # pkgsExtraAgs = with pkgs-unstable; [];
 in {
   options.nixosConfig.desktop.ags = {
@@ -37,5 +35,5 @@ in {
 
       home.packages = astalRuntimePkgs;
     };
-  }; 
+  };
 }

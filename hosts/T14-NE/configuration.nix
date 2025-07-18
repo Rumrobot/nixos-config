@@ -1,10 +1,14 @@
-{ inputs, config, ... }: let
+{
+  inputs,
+  config,
+  ...
+}: let
   hostname = config.nixosConfig.system.hostname;
 in {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
   ];
-  
+
   # Timezone
   time.timeZone = "Europe/Copenhagen";
 

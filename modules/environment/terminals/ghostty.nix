@@ -1,5 +1,10 @@
-{config, lib, pkgs, username, ...}:
-let 
+{
+  config,
+  lib,
+  pkgs,
+  username,
+  ...
+}: let
   cfg = config.nixosConfig.environment.terminals.ghostty;
   mkTerminalOption = import ./options.nix;
   package = pkgs.ghostty;
@@ -11,7 +16,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     home-manager.users.${username} = {
-      home.packages = [ package ];
+      home.packages = [package];
     };
   };
 }

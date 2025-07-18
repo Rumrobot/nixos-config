@@ -30,7 +30,7 @@
       url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-  
+
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs-unstable";

@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   username,
   pkgs-unstable,
   ...
@@ -23,7 +22,7 @@ in {
   config = {
     programs.hyprland.enable = true;
     programs.xwayland.enable = true;
-    
+
     hardware.graphics = {
       enable = true;
       package = pkgs-unstable.mesa;
@@ -33,25 +32,25 @@ in {
       home.sessionVariables.NIXOS_OZONE_WL = "1";
 
       wayland.windowManager.hyprland = {
-      enable = true;
-      xwayland.enable = true;
+        enable = true;
+        xwayland.enable = true;
 
-      # Set the Hyprland and XDPH packages to null to use the ones from the NixOS module
-      package = null;
-      portalPackage = null;
+        # Set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+        package = null;
+        portalPackage = null;
 
-      settings = {
-          monitor = 
+        settings = {
+          monitor =
             map monitorToHyprland monitors
             ++ [
               ",preffered,auto,1" # Auto
             ];
 
-        exec-once = [
-          "ags run --gtk 4"
-          "swww-daemon"
-        ];
-        
+          exec-once = [
+            "ags run --gtk 4"
+            "swww-daemon"
+          ];
+
           gestures = {
             workspace_swipe = true;
             workspace_swipe_fingers = 3;
@@ -65,30 +64,30 @@ in {
             workspace_swipe_create_new = true;
           };
 
-        "$mod" = "SUPER";
-        bind =
-          [
-            "$mod, return, exec, ${terminal}"
-            "$mod, D, exec, rofi -show drun -show-icons"
+          "$mod" = "SUPER";
+          bind =
+            [
+              "$mod, return, exec, ${terminal}"
+              "$mod, D, exec, rofi -show drun -show-icons"
               "Alt, Tab, cyclenext"
               "Alt, Tab, bringactivetotop"
               "$mod, Q, killactive"
-          ]
-          ++ (
-            builtins.concatLists (builtins.genList (i: let
-                ws = i + 1;
-              in [
-                "$mod, code:1${toString i}, workspace, ${toString ws}"
-                "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-              ])
-              9)
-          );
+            ]
+            ++ (
+              builtins.concatLists (builtins.genList (i: let
+                  ws = i + 1;
+                in [
+                  "$mod, code:1${toString i}, workspace, ${toString ws}"
+                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                ])
+                9)
+            );
 
-        input = {
-          kb_layout = config.nixosConfig.system.keymap.layout;
+          input = {
+            kb_layout = config.nixosConfig.system.keymap.layout;
             kb_options = config.nixosConfig.system.keymap.options;
-        
-          touchpad = {
+
+            touchpad = {
               natural_scroll = true;
               disable_while_typing = false;
               clickfinger_behavior = true;
@@ -97,8 +96,8 @@ in {
 
             follow_mouse = 1;
           };
+        };
       };
     };
-  };
   };
 }

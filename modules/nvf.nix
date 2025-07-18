@@ -1,5 +1,11 @@
-{ config, lib, inputs, username, ... }:
-with lib; let 
+{
+  config,
+  lib,
+  inputs,
+  username,
+  ...
+}:
+with lib; let
   cfg = config.nixosConfig.programs.neovim;
   nvf-hmModule = inputs.nvf.homeManagerModules.default;
   hostname = config.nixosConfig.system.hostname;
@@ -9,15 +15,15 @@ in {
   };
 
   config = {
-      home-manager.users.${username} = {
-      imports = [ nvf-hmModule ];
-      
-      # Needed for nixd 
-      nix.nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    home-manager.users.${username} = {
+      imports = [nvf-hmModule];
+
+      # Needed for nixd
+      nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
       programs.nvf = {
         enable = cfg.enable;
-      
+
         settings = {
           vim = {
             telescope.enable = true;
@@ -31,7 +37,11 @@ in {
               expandtab = true;
             };
 
-            lsp.enable = true;
+            lsp = {
+              enable = true;
+              formatOnSave = true;
+            };
+
             languages = {
               enableTreesitter = true;
               enableFormat = true;
@@ -39,7 +49,6 @@ in {
               nix = {
                 enable = true;
                 lsp = {
-                  enable = true;
                   server = "nixd";
                   options = {
                     nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${hostname}.options";

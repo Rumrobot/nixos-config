@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ../../modules/nixos
     ../../modules
@@ -26,7 +26,10 @@
           width = 1920;
           height = 1200;
           refreshRate = 60.0;
-          position = { x = 0; y = 0; };
+          position = {
+            x = 0;
+            y = 0;
+          };
           scale = 1;
           rotation = 0;
         }
