@@ -43,6 +43,12 @@
           default = true;
         };
       };
+      shells = {
+        zsh = {
+          enable = true;
+          default = true;
+        };
+      };
     };
 
     programs = {
