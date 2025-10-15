@@ -10,10 +10,10 @@
       rpi-imager
       yaak
     ];
+  };
 
-    programs = {
-      thunar.enable = true;
-      wireshark.enable = true;
-    };
+  programs = {
+    thunar.enable = true;
+    wireshark.enable = true;
   };
 }
