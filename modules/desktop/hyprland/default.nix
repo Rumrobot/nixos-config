@@ -31,6 +31,8 @@ in {
     home-manager.users.${username} = {
       home.sessionVariables.NIXOS_OZONE_WL = "1";
 
+      services.hyprpolkitagent.enable = true;
+
       wayland.windowManager.hyprland = {
         enable = true;
         xwayland.enable = true;
