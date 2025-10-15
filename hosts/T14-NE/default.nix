@@ -49,6 +49,10 @@
           default = true;
         };
       };
+      dev = {
+        node.enable = true;
+        python.enable = true;
+      };
     };
 
     programs = {
