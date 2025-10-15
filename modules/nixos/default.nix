@@ -9,13 +9,14 @@
     # ./bootloader.nix
     ./keymap.nix
     ./kvm-clipboard.nix
+    ./package-installers.nix
     ../nvf.nix
   ];
 
   users.users.${username} = {
     isNormalUser = true;
     description = username;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "wireshark" "dialout" "docker"];
   };
 
   i18n.defaultLocale = "en_DK.UTF-8";
@@ -57,4 +58,19 @@
 
   services.geoclue2.enable = true;
   services.printing.enable = true;
+
+  services.udisks2.enable = true;
+  home-manager.users.${username} = {
+    services.udiskie = {
+      enable = true;
+      settings = {
+        # workaround for
+        # https://github.com/nix-community/home-manager/issues/632
+        program_options = {
+          # replace with your favorite file manager
+          file_manager = "${pkgs.xfce.thunar}/bin/thunar";
+        };
+      };
+    };
+  };
 }
