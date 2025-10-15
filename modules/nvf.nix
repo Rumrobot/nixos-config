@@ -31,6 +31,8 @@ in {
             navigation.harpoon.enable = true;
             filetree.neo-tree.enable = true;
 
+            git.enable = true;
+
             options = {
               tabstop = 2;
               shiftwidth = 2;
