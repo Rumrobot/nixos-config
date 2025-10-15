@@ -9,6 +9,13 @@ in {
   home-manager.users.${username} = {
     home.packages = with pkgs; [
       zoxide
+      nmap
+      screen
+      zip
+      unzip
+      p7zip
+      squashfsTools
+      openssl
     ];
 
     # Zoxide
