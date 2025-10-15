@@ -10,7 +10,6 @@
     ./keymap.nix
     ./kvm-clipboard.nix
     ./package-installers.nix
-    ../nvf.nix
   ];
 
   users.users.${username} = {
