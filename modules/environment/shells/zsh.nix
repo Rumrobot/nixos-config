@@ -15,9 +15,9 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    programs.zsh.enable = true;
     home-manager.users.${username} = {
       programs.zsh = {
-        enable = true;
         syntaxHighlighting.enable = true;
 
         shellAliases = {

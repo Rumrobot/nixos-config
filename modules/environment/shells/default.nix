@@ -6,7 +6,6 @@
 with lib; let
   cfg = config.nixosConfig.environment.shells;
   shells = cfg;
-  mkShellOption = import ./options;
 
   defaultShells = lib.attrValues (
     lib.filterAttrs (name: value: value ? default && value.default) shells
@@ -33,12 +32,12 @@ in {
   };
 
   config = mkIf hasDefaultShell {
-    users.defaultUserShell = defaultShell.package;
-
     nixosConfig.environment.shell = {
       package = defaultShell.package;
       name = defaultShell.name;
     };
+
+    users.defaultUserShell = defaultShell.package;
 
     assertions = [
       {
