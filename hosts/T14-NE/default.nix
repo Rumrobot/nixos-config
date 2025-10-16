@@ -18,7 +18,7 @@
     };
 
     desktop = {
-      ags.enable = true;
+      ags.enable = false;
 
       monitors = [
         {

@@ -7,6 +7,7 @@
     ./slicers.nix
     ./media-editors.nix
     ./utilities.nix
+    ./fonts.nix
   ];
 
   environment.systemPackages = with pkgs; [

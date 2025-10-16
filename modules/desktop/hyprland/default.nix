@@ -17,6 +17,7 @@ in {
     ./rofi-wayland.nix
     ./swww.nix
     ./tui-greet.nix
+    ./hyprpanel.nix
   ];
 
   config = {
@@ -42,6 +43,10 @@ in {
         portalPackage = null;
 
         settings = {
+          env = [
+            "GRIMBLAST_HIDE_CURSOR, 0"
+          ];
+
           monitor =
             map monitorToHyprland monitors
             ++ [
@@ -49,7 +54,8 @@ in {
             ];
 
           exec-once = [
-            "ags run --gtk 4"
+            # "ags run --gtk 4"
+            "hyprpanel"
             "swww-daemon"
           ];
 
@@ -95,8 +101,6 @@ in {
               clickfinger_behavior = true;
               scroll_factor = 0.5;
             };
-
-            follow_mouse = 1;
           };
         };
       };
