@@ -14,7 +14,8 @@
     else "desc:${monitor.id},disable";
 in {
   imports = [
-    ./rofi-wayland.nix
+    # ./rofi-wayland.nix
+    ./vicinae.nix
     ./swww.nix
     ./tui-greet.nix
     ./hyprpanel.nix
@@ -76,7 +77,8 @@ in {
           bind =
             [
               "$mod, return, exec, ${terminal}"
-              "$mod, D, exec, rofi -show drun -show-icons"
+              # "$mod, D, exec, rofi -show drun -show-icons"
+              "$mod, D, exec, vicinae toggle"
               "Alt, Tab, cyclenext"
               "Alt, Tab, bringactivetotop"
               "$mod, Q, killactive"
@@ -90,6 +92,12 @@ in {
                 ])
                 9)
             );
+
+          layerrule = [
+            "blur,vicinae"
+            "ignorealpha 0, vicinae"
+            # "noanim, vicinae" # Disable fade for vicinae
+          ];
 
           input = {
             kb_layout = config.nixosConfig.system.keymap.layout;

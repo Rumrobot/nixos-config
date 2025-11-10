@@ -58,5 +58,7 @@
     programs = {
       neovim.enable = true;
     };
+
+    packages._1password.enable = true;
   };
 }

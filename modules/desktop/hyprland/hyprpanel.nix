@@ -1,9 +1,21 @@
 {
+  inputs,
+  system,
   username,
   pkgs,
   ...
 }: {
+  imports = [
+    inputs.wallpaper-daemon.nixosModules.${system}.default
+  ];
+
   services.upower.enable = true;
+  services.wallpaper-daemon = {
+    enable = true;
+    wallpaperDir = "/etc/nixos/users/${username}/wallpapers";
+    timezone = "Europe/Copenhagen";
+    tool = "swww";
+  };
 
   home-manager.users.${username} = {
     home.packages = with pkgs; [
@@ -17,6 +29,7 @@
 
     programs.hyprpanel = {
       enable = true;
+      systemd.enable = false;
       settings = {
         layout = {
           bar.layouts = {

@@ -4,9 +4,11 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
+      "https://vicinae.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
     ];
   };
 
@@ -37,6 +39,10 @@
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
+
+    vicinae.url = "github:vicinaehq/vicinae";
   };
 
   outputs = inputs @ {
