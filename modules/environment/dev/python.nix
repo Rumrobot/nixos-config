@@ -16,6 +16,8 @@ in {
       python3
       python3Packages.pip
       python3Packages.virtualenv
+      python3Packages.build
+      python3Packages.uv
     ];
   };
 }
