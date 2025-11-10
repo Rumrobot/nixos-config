@@ -21,4 +21,11 @@
     "/var/lib/flatpak/exports/share"
     "$HOME/.local/share/flatpak/exports/share"
   ];
+
+  nixosConfig.packages._1password = {
+    enable = true;
+    sshAgent = true;
+    gitSigning = true;
+    shell = "zsh";
+  };
 }
