@@ -1,13 +1,13 @@
 {
   config,
   lib,
-  pkgs,
+  pkgs-unstable,
   username,
   ...
 }: let
   cfg = config.nixosConfig.environment.terminals.ghostty;
   mkTerminalOption = import ./options.nix;
-  package = pkgs.ghostty;
+  package = pkgs-unstable.ghostty;
 in {
   options.nixosConfig.environment.terminals.ghostty = mkTerminalOption {
     inherit lib package;

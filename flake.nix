@@ -17,7 +17,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
 
@@ -25,11 +25,6 @@
       url = "github:0xc000022070/zen-browser-flake";
       # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
       # to have it up-to-date or simply don't specify the nixpkgs input
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    ags = {
-      url = "github:aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
@@ -81,6 +76,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
+              home-manager.backupFileExtension = "backup";
+
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = import ./users/${username}/home.nix;
             }
@@ -114,6 +111,8 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+
+              home-manager.backupFileExtension = "backup";
 
               home-manager.extraSpecialArgs = specialArgs;
               home-manager.users.${username} = import ./users/${username}/home.nix;

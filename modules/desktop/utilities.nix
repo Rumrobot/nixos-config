@@ -1,15 +1,19 @@
 {
   pkgs,
+  pkgs-unstable,
   username,
   ...
 }: {
   home-manager.users.${username} = {
-    home.packages = with pkgs; [
-      angryipscanner
-      wireshark
-      rpi-imager
-      yaak
-    ];
+    home.packages =
+      (with pkgs; [
+        angryipscanner
+        # rpi-imager
+      ])
+      ++ (with pkgs-unstable; [
+        wireshark
+        yaak
+      ]);
   };
 
   programs = {

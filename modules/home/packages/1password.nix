@@ -50,7 +50,7 @@ in {
 
     programs.${cfg.shell} = {
       enable = true;
-      initExtra = ''
+      initContent = ''
         if [ -f "$HOME/.config/op/plugins.sh" ]; then
           source "$HOME/.config/op/plugins.sh"
         fi

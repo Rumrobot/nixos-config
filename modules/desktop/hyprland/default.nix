@@ -22,7 +22,11 @@ in {
   ];
 
   config = {
-    programs.hyprland.enable = true;
+    programs.hyprland = {
+      enable = true;
+      package = pkgs-unstable.hyprland;
+      portalPackage = pkgs-unstable.xdg-desktop-portal-hyprland;
+    };
     programs.xwayland.enable = true;
 
     hardware.graphics = {
@@ -57,12 +61,10 @@ in {
           exec-once = [
             # "ags run --gtk 4"
             "hyprpanel"
-            "swww-daemon"
+            "swww-daemon --no-cache"
           ];
 
           gestures = {
-            workspace_swipe = true;
-            workspace_swipe_fingers = 3;
             workspace_swipe_distance = 700;
             workspace_swipe_touch = true;
 
@@ -73,22 +75,21 @@ in {
             workspace_swipe_create_new = true;
           };
 
-          "$mod" = "SUPER";
           bind =
             [
-              "$mod, return, exec, ${terminal}"
-              # "$mod, D, exec, rofi -show drun -show-icons"
-              "$mod, D, exec, vicinae toggle"
+              "SUPER, return, exec, ${terminal}"
+              # "SUPER, D, exec, rofi -show drun -show-icons"
+              "SUPER, D, exec, vicinae toggle"
               "Alt, Tab, cyclenext"
               "Alt, Tab, bringactivetotop"
-              "$mod, Q, killactive"
+              "SUPER, Q, killactive"
             ]
             ++ (
               builtins.concatLists (builtins.genList (i: let
                   ws = i + 1;
                 in [
-                  "$mod, code:1${toString i}, workspace, ${toString ws}"
-                  "$mod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+                  "SUPER, code:1${toString i}, workspace, ${toString ws}"
+                  "SUPER SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
                 ])
                 9)
             );
