@@ -18,6 +18,12 @@ in {
     networkmanager.enable = true;
   };
 
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   # Boot
   boot.loader = {
     efi.canTouchEfiVariables = true;
