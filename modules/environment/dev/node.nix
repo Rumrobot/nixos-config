@@ -15,6 +15,7 @@ in {
   config = mkIf cfg.enable {
     home-manager.users.${username} = {
       home.packages = with pkgs-unstable; [
+        nodejs_24
         bun
       ];
     };
