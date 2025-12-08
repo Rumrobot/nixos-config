@@ -6,6 +6,7 @@
   imports = [
     ./node.nix
     ./python.nix
+    ./android.nix
   ];
 
   virtualisation.docker.enable = true;

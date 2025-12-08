@@ -5,6 +5,8 @@
     jetbrains.pycharm-community
     jetbrains.phpstorm
 
+    # Others
     vscode
+    android-studio
   ];
 }
