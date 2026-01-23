@@ -1,5 +1,6 @@
 {
   delib,
+  host,
   inputs,
   pkgs,
   ...
@@ -8,10 +9,7 @@
 in delib.module {
   name = "services.awww";
 
-  options = {myconfig, ...}:
-  with delib; {
-    services.awww = boolOption myconfig.wayland.enable;
-  };
+  options = delib.singleEnableOption host.guiFeatured;
 
   home.ifEnabled = {
     home.packages = [awww];
