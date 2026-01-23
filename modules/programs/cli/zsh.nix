@@ -13,10 +13,9 @@
     default = boolOption false;
   };
 
-  nixos.ifEnabled = {cfg, ...}: {
-    lib.optionalAttrs cfg.default {
-      users.users.${homeManagerUser}.shell = pkgs.zsh;
-    };
+  nixos.ifEnabled = {cfg, ...}:
+  lib.optionalAttrs cfg.default {
+    users.users.${homeManagerUser}.shell = pkgs.zsh;
   };
 
   home.ifEnabled = {myconfig, ...}: {
