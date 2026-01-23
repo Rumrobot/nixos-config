@@ -7,7 +7,7 @@
 delib.module {
   name = "features.vm";
 
-  options = delib.singleEnableOption host.vmFeatured;
+  options = delib.singleEnableOption false;
 
   nixos.ifEnabled = {
     services.spice-vdagentd.enable = true;
