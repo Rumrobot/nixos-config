@@ -18,7 +18,7 @@
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    inputs.awww.url = "git+https://codeberg.org/LGFae/awww";
+    awww.url = "git+https://codeberg.org/LGFae/awww";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
 
