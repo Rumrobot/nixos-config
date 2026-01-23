@@ -20,7 +20,7 @@
 
         default_session = {
           user = "greeter";
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --greeting 'Hello, ${homeManagerUser}' --asterisks --remember --remember-user-session --time --cmd hyprland"; # TODO: Config variable
+          command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Hello, ${homeManagerUser}' --asterisks --remember --remember-user-session --time --cmd hyprland"; # TODO: Config variable
         };
       };
     };
