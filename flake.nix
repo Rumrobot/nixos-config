@@ -1,6 +1,46 @@
 {
   description = "Modular NixOS configuration";
 
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    denix = {
+      url = "github:yunfachi/denix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+    inputs.awww.url = "git+https://codeberg.org/LGFae/awww";
+
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
+
+    vicinae.url = "github:vicinaehq/vicinae";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+      # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    _1password-shell-plugins.url = "github:1Password/shell-plugins";
+
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
+  };
+
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
@@ -12,113 +52,39 @@
     ];
   };
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+  outputs =
+    inputs @ {
+      denix,
+      nixpkgs,
+      nixpkgs-stable,
+      ...
+    }: let
+     mkConfigurations =
+      moduleSystem:
+      denix.lib.configurations rec {
+        inherit moduleSystem;
+        homeManagerUser = "ne";
 
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
+        paths = [
+          ./hosts
+          ./modules
+          ./rices
+          ./overlays
+        ];
 
-    _1password-shell-plugins.url = "github:1Password/shell-plugins";
-
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-      # to have it up-to-date or simply don't specify the nixpkgs input
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-    wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
-
-    vicinae.url = "github:vicinaehq/vicinae";
-  };
-
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixpkgs-unstable,
-    home-manager,
-    ...
-  }: {
-    nixosConfigurations = {
-      NVM-NE = let
-        username = "ne";
-        system = "x86_64-linux";
+        extensions = import ./extensions { delib = denix.lib; };
 
         specialArgs = {
-          inherit username;
-          inherit system;
-          inherit inputs;
-
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
+          inherit
+            inputs
+            moduleSystem
+            homeManagerUser
+            ;
           };
         };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-
-          modules = [
-            (import ./overlays)
-
-            ./hosts/NVM-NE
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.backupFileExtension = "backup";
-
-              home-manager.extraSpecialArgs = specialArgs;
-              home-manager.users.${username} = import ./users/${username}/home.nix;
-            }
-          ];
-        };
-
-      T14-NE = let
-        username = "ne";
-        system = "x86_64-linux";
-
-        specialArgs = {
-          inherit username;
-          inherit system;
-          inherit inputs;
-
-          pkgs-unstable = import nixpkgs-unstable {
-            inherit system;
-            config.allowUnfree = true;
-          };
-        };
-      in
-        nixpkgs.lib.nixosSystem {
-          inherit specialArgs;
-
-          modules = [
-            (import ./overlays)
-
-            ./hosts/T14-NE
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              home-manager.backupFileExtension = "backup";
-
-              home-manager.extraSpecialArgs = specialArgs;
-              home-manager.users.${username} = import ./users/${username}/home.nix;
-            }
-          ];
-        };
+    in
+    {
+      nixosConfigurations = mkConfigurations "nixos";
+      homeConfigurations = mkConfigurations "home";
     };
-  };
 }
