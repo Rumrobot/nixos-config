@@ -12,10 +12,8 @@
       enable = true;
       lfs.enable = true;
 
-      user = {
-        name = "Rumrobot";
-        email = "46647057+Rumrobot@users.noreply.github.com";
-      };
+      userName = "Rumrobot";
+      userEmail = "46647057+Rumrobot@users.noreply.github.com";
 
       signing = {
         format = "ssh";
