@@ -1,4 +1,4 @@
-{delib, host, homeManagerUser, ...}:
+{delib, host, pkgs, homeManagerUser, ...}:
 delib.module {
   name = "programs.development.python";
 
