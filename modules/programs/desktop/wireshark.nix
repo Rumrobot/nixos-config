@@ -1,5 +1,5 @@
 { delib, host, ...}:
-with delib; {
+delib.module {
   name = "programs.desktop.wireshark";
 
   options = delib.singleEnableOption host.hackingFeatured;
