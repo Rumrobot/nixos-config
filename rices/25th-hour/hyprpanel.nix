@@ -23,7 +23,7 @@ delib.rice {
     # };
   };
 
-  home = {}: let
+  home = let
     wallpaperPath = ./wallpaper/1.jpg;
     iconPath = ./icon.png;
   in {
