@@ -12,9 +12,6 @@
       enable = true;
       lfs.enable = true;
 
-      userName = "Rumrobot";
-      userEmail = "46647057+Rumrobot@users.noreply.github.com";
-
       signing = {
         format = "ssh";
         key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDul1CyPupXyjX+YEoh5y49GxpJr2VLQ1dsn1JB5Qk2c";
@@ -22,6 +19,11 @@
       };
 
       settings = {
+        user = {
+          name = "Rumrobot";
+          email = "46647057+Rumrobot@users.noreply.github.com";
+        };
+
         init.defaultBranch = "main";
       };
     };
