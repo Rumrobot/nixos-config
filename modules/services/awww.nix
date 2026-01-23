@@ -8,8 +8,9 @@
 in delib.module {
   name = "services.awww";
 
-  options = {myconfig, ...}: {
-    services.awww = delib.singleEnableOption myconfig.wayland.enable;
+  options = {myconfig, ...}:
+  with delib; {
+    services.awww = boolOption myconfig.wayland.enable;
   };
 
   home.ifEnabled = {
