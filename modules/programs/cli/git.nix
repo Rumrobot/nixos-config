@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: delib.module {
-  name = "programs.development.git";
+  name = "programs.cli.git";
 
   options = delib.singleEnableOption true;
 
