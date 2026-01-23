@@ -10,10 +10,10 @@
 }: delib.module {
   name = "programs.desktop._1password";
 
-  options = {myconfig, ...}: {
+  options = {cfg, ...}: {
     programs.desktop._1password = with delib; {
       enable = boolOption host.guiFeatured;
-      gitSigning = boolOption myconfig.programs.cli.git.enable;
+      gitSigning = boolOption cfg.programs.cli.git.enable;
       sshAgent = boolOption true;
     };
   };
