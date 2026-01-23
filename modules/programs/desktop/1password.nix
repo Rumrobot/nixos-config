@@ -38,7 +38,7 @@
     };
 
     programs.git = lib.mkIf cfg.gitSigning {
-      extraConfig = {
+      settings = {
         gpg = {
           format = "ssh";
           ssh = {
