@@ -5,5 +5,7 @@ delib.host {
   rice = "25th-hour";
   type = "desktop";
 
-  features.vm.enable = true;
+  features = [
+    "vm"
+  ];
 }

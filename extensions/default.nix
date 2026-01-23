@@ -20,6 +20,7 @@
         "hacking"
         "powersave"
         "wireless"
+        "vm"
       ];
       defaultByHostType = {
         desktop = [
