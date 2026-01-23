@@ -1,7 +1,7 @@
 {
   delib,
-  homeManagerUser,
   host,
+  homeManagerUser,
   pkgs,
   lib,
   ...
@@ -13,9 +13,9 @@
     default = boolOption false;
   };
 
-  nixos.ifEnabled = {cfg, ...}:
-  lib.optionalAttrs cfg.default {
-    users.users.${homeManagerUser}.shell = pkgs.zsh;
+  nixos.ifEnabled = {cfg, ...}: {
+    users.users.${homeManagerUser}.shell =
+      lib.mkIf cfg.default pkgs.zsh;
   };
 
   home.ifEnabled = {myconfig, ...}: {
