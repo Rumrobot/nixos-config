@@ -2,7 +2,7 @@
 delib.module {
   name = "hardware.bluetooth";
 
-  options = singleEnableOption host.wirelessFeatured;
+  options = delib.singleEnableOption host.wirelessFeatured;
 
   nixos.ifEnabled = {
     hardware.bluetooth = {
