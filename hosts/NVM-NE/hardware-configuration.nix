@@ -12,7 +12,7 @@ delib.host {
   system = "x86_64-linux";
   home.home.stateVersion = "25.05";
   myconfig.boot = {
-    mode = "uefi";
+    loader = "grub";
     device = "/dev/vda";
   };
 
