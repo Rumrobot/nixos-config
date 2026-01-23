@@ -38,7 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
+    # wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
   };
 
   nixConfig = {

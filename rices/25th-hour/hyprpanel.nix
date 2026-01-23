@@ -11,16 +11,16 @@ delib.rice {
 
   nixos = {
     imports = [
-      inputs.wallpaper-daemon.nixosModules.${system}.default
+      # inputs.wallpaper-daemon.nixosModules.${system}.default
     ];
 
 
-    services.wallpaper-daemon = {
-      enable = true;
-      wallpaperDir = "/etc/nixos/users/${username}/wallpapers";
-      timezone = "Europe/Copenhagen";
-      tool = "swww"; # TODO: Fix code to use awww instead of swww
-    };
+    # services.wallpaper-daemon = {
+    #   enable = true;
+    #   wallpaperDir = "/etc/nixos/users/${username}/wallpapers";
+    #   timezone = "Europe/Copenhagen";
+    #   tool = "swww"; # TODO: Fix code to use awww instead of swww
+    # };
   };
 
   home = {}: let
