@@ -4,6 +4,7 @@
   lib,
   homeManagerUser,
   pkgs,
+  homeconfig,
   ...
 }: delib.module {
   name = "programs.desktop._1password";
@@ -16,7 +17,7 @@
     };
   };
 
-  home.ifEnabled = {myconfig, ...}: let
+  home.ifEnabled = {myconfig, cfg, ...}: let
     shell-plugins = []
       ++ lib.optionals myconfig.programs.cli.gh.enable [ pkgs.gh ];
   in {
@@ -31,7 +32,7 @@
       enable = true;
       extraConfig = ''
         Host *
-            IdentityAgent ${home}
+            IdentityAgent ${homeconfig.home.homeDirectory}/.1password/agent.sock
       '';
     };
 
