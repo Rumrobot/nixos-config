@@ -1,4 +1,4 @@
-{ delib, host, homeManagerUser, ...}:
+{ delib, host, ...}:
 delib.module {
   name = "features.docker";
 

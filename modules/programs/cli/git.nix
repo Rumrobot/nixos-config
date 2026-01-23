@@ -1,7 +1,6 @@
 {
   delib,
   pkgs,
-  lib,
   ...
 }: delib.module {
   name = "programs.development.git";
