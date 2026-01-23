@@ -1,6 +1,7 @@
 { delib }:
 (with delib.extensions; [
   args
+  (delib.callExtension ./rice-options.nix)
   (base.withConfig {
     args.enable = true;
 
@@ -31,5 +32,9 @@
       };
     };
   })
-  (delib.callExtension ./rice-options.nix)
+  (overlays.withConfig {
+    defaultTargets = [
+      "nixos"
+    ];
+  })
 ])
