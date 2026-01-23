@@ -1,5 +1,6 @@
 {
   delib,
+  host,
   ...
 }: delib.module {
   name = "programs.desktop.hyprland";
