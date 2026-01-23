@@ -1,23 +1,32 @@
 {
+  delib,
   inputs,
   system,
   username,
   pkgs,
   ...
-}: {
-  imports = [
-    inputs.wallpaper-daemon.nixosModules.${system}.default
-  ];
+}:
+delib.rice {
+  name = "25th-hour";
 
-  services.upower.enable = true;
-  services.wallpaper-daemon = {
-    enable = true;
-    wallpaperDir = "/etc/nixos/users/${username}/wallpapers";
-    timezone = "Europe/Copenhagen";
-    tool = "swww";
+  nixos = {
+    imports = [
+      inputs.wallpaper-daemon.nixosModules.${system}.default
+    ];
+
+
+    services.wallpaper-daemon = {
+      enable = true;
+      wallpaperDir = "/etc/nixos/users/${username}/wallpapers";
+      timezone = "Europe/Copenhagen";
+      tool = "swww"; # TODO: Fix code to use awww instead of swww
+    };
   };
 
-  home-manager.users.${username} = {
+  home = {}: let
+    wallpaperPath = ./wallpaper/1.jpg;
+    iconPath = ./icon.png;
+  in {
     home.packages = with pkgs; [
       hyprpicker
       wf-recorder
@@ -25,6 +34,7 @@
       grimblast
       btop
       matugen
+      nerd-fonts.mononoki
     ];
 
     programs.hyprpanel = {
@@ -42,7 +52,7 @@
         };
 
         # TODO: Fix wallpaper stuff
-        wallpaper.image = "/etc/nixos/users/${username}/wallpapers/25th_hour/1.jpg";
+        wallpaper.image = wallpaperPath;
 
         bar = {
           launcher.autoDetectIcon = true;
@@ -59,7 +69,7 @@
 
         menus = {
           dashboard = {
-            powermenu.avatar.image = "/etc/nixos/users/${username}/icon.png";
+            powermenu.avatar.image = iconPath;
             directories.enabled = false;
           };
 
@@ -70,7 +80,7 @@
             };
             weather = {
               unit = "metric";
-              location = "Copenhagen";
+              location = "Copenhagen"; # TODO: Config variable
               key = "";
             };
           };
