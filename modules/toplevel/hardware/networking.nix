@@ -1,4 +1,4 @@
-{ delib, host, ... }:
+{ delib, host, homeManagerUser, ... }:
 delib.module {
   name = "hardware.networking";
 
@@ -10,6 +10,6 @@ delib.module {
       networkmanager.enable = true;
     };
 
-    user.extraGroups = [ "networkmanager" ];
+    users.users.${homeManagerUser}.extraGroups = [ "networkmanager" ];
   };
 }

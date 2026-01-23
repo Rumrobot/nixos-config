@@ -1,4 +1,4 @@
-{ delib, host, ...}:
+{ delib, host, homeManagerUser, ...}:
 delib.module {
   name = "programs.desktop.wireshark";
 
@@ -7,6 +7,6 @@ delib.module {
   nixos.ifEnabled = {
     programs.wireshark.enable = true;
 
-    user.extraGroups = [ "wireshark" ];
+    users.users.${homeManagerUser}.extraGroups = [ "wireshark" ];
   };
 }
