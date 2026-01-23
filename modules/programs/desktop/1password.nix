@@ -1,5 +1,6 @@
 {
   delib,
+  host,
   inputs,
   lib,
   homeManagerUser,
