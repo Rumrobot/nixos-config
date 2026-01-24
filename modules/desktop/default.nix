@@ -11,7 +11,7 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    ungoogled-chromium
+    # ungoogled-chromium
     obsidian
   ];
 }

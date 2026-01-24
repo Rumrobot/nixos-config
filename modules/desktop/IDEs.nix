@@ -7,6 +7,7 @@
 
     # Others
     vscode
+    claude-code
     android-studio
   ];
 }
