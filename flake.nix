@@ -38,7 +38,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
+    wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
   };
 
   nixConfig = {
@@ -52,15 +52,13 @@
     ];
   };
 
-  outputs =
-    inputs @ {
-      denix,
-      nixpkgs,
-      nixpkgs-stable,
-      ...
-    }: let
-     mkConfigurations =
-      moduleSystem:
+  outputs = inputs @ {
+    denix,
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  }: let
+    mkConfigurations = moduleSystem:
       denix.lib.configurations rec {
         inherit moduleSystem;
         homeManagerUser = "ne";
@@ -72,7 +70,7 @@
           ./overlays
         ];
 
-        extensions = import ./extensions { delib = denix.lib; };
+        extensions = import ./extensions {delib = denix.lib;};
 
         specialArgs = {
           inherit
@@ -80,11 +78,10 @@
             moduleSystem
             homeManagerUser
             ;
-          };
         };
-    in
-    {
-      nixosConfigurations = mkConfigurations "nixos";
-      homeConfigurations = mkConfigurations "home";
-    };
+      };
+  in {
+    nixosConfigurations = mkConfigurations "nixos";
+    homeConfigurations = mkConfigurations "home";
+  };
 }
