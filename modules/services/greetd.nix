@@ -4,7 +4,8 @@
   pkgs,
   homeManagerUser,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "service.greetd";
 
   options = delib.singleEnableOption host.guiFeatured;
@@ -20,7 +21,7 @@
 
         default_session = {
           user = "greeter";
-          command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Hello, ${homeManagerUser}' --asterisks --remember --remember-user-session --time --cmd hyprland"; # TODO: Config variable
+          command = "${pkgs.tuigreet}/bin/tuigreet --greeting 'Hello, ${homeManagerUser}' --asterisks --remember --remember-user-session --time --cmd start-hyprland"; # TODO: Config variable
         };
       };
     };
