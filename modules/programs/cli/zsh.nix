@@ -5,15 +5,20 @@
   pkgs,
   lib,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.cli.zsh";
 
   options = with delib; {
-    enable = boolOption host.cliFeatured;
-    default = boolOption false;
+    programs.cli.zsh = {
+      enable = boolOption host.cliFeatured;
+      default = boolOption false;
+    };
   };
 
   nixos.ifEnabled = {cfg, ...}: {
+    programs.zsh.enable = true;
+
     users.users.${homeManagerUser}.shell =
       lib.mkIf cfg.default pkgs.zsh;
   };

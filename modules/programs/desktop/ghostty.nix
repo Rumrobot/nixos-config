@@ -1,10 +1,18 @@
-{ delib, host, pkgs, lib, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  lib,
+  ...
+}:
 delib.module {
   name = "programs.desktop.ghostty";
 
   options = with delib; {
-    enable = boolOption host.guiFeatured;
-    default = boolOption false;
+    programs.desktop.ghostty = {
+      enable = boolOption host.guiFeatured;
+      default = boolOption false;
+    };
   };
 
   nixos.ifEnabled = {cfg, ...}: {

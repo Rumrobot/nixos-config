@@ -1,14 +1,17 @@
-{ delib, host, ... }:
+{
+  delib,
+  host,
+  ...
+}:
 delib.module {
   name = "programs.cli.zoxide";
 
   options = delib.singleEnableOption host.cliFeatured;
 
-  home.ifEnabled =
-  {myconfig, ...}: {
+  home.ifEnabled = {myconfig, ...}: {
     programs.zoxide = {
       enable = true;
-      enableZshIntegration = myconfig.programs.cli.zsh.enabled;
+      enableZshIntegration = myconfig.programs.cli.zsh.enable;
     };
   };
 }

@@ -1,4 +1,8 @@
-{ delib, inputs, ...}:
+{
+  delib,
+  inputs,
+  ...
+}:
 delib.host {
   name = "T14-NE";
 
@@ -7,19 +11,31 @@ delib.host {
   features = [
     "powersave"
     "wireless"
+    "hacking"
   ];
 
   displays = [
-      {
-        name = "eDP-1"; # California Institute of Technology 0x1404
-        primary = true;
-        refreshRate = 60;
-        width = 1920;
-        height = 1200;
-        x = 0;
-        y = 0;
-      }
+    {
+      name = "eDP-1"; # California Institute of Technology 0x1404
+      primary = true;
+      refreshRate = 60;
+      width = 1920;
+      height = 1200;
+      x = 0;
+      y = 0;
+    }
   ];
+
+  myconfig = {
+    programs = {
+      cli = {
+        zsh = {
+          enable = true;
+          default = true;
+        };
+      };
+    };
+  };
 
   nixos = {
     imports = [
