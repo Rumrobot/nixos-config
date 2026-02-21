@@ -1,0 +1,35 @@
+{
+  delib,
+  host,
+  ...
+}: delib.module {
+  name = "programs.desktop.hyprland";
+
+  options = delib.singleEnableOption host.guiFeatured;
+
+  nixos.ifEnabled = {
+    # hardware.graphics = {
+    #   enable = true;
+    #   package = pkgs-unstable.mesa;
+    # };
+
+    programs.hyprland = {
+      enable = true;
+      xwayland.enable = true;
+    };
+  };
+
+  home.ifEnabled = {
+    home.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    services.hyprpolkitagent.enable = true;
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+
+      # Set the Hyprland and XDPH packages to null to use the ones from the NixOS module
+      package = null;
+      portalPackage = null;
+    };
+  };
+}
