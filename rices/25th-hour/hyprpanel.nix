@@ -17,7 +17,7 @@ in
 
       services.wallpaper-daemon = {
         enable = true;
-        wallpaperDir = "${ricePath}/wallpaper";
+        wallpaperDir = "${ricePath}";
         timezone = "Europe/Copenhagen";
         tool = "swww"; # TODO: Fix code to use awww instead of swww
       };

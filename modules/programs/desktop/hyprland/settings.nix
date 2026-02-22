@@ -1,4 +1,8 @@
-{ delib, host, ... }:
+{
+  delib,
+  host,
+  ...
+}:
 delib.module {
   name = "programs.desktop.hyprland";
 
@@ -8,14 +12,18 @@ delib.module {
         "GRIMBLAST_HIDE_CURSOR, 0"
       ];
 
-      monitor = map (
-        display:
-        let
-          resolution = "${toString display.width}x${toString display.height}@${toString display.refreshRate}";
-          position = "${toString display.x}x${toString display.y}";
-        in
-        "${display.name},${if display.enable then "${resolution},${position},1" else "disable"}"
-      ) host.displays;
+      monitor =
+        map (
+          display: let
+            resolution = "${toString display.width}x${toString display.height}@${toString display.refreshRate}";
+            position = "${toString display.x}x${toString display.y}";
+          in "${display.name},${
+            if display.enable
+            then "${resolution},${position},1"
+            else "disable"
+          }"
+        )
+        host.displays;
 
       exec-once = [
         "hyprpanel"
@@ -33,8 +41,8 @@ delib.module {
       };
 
       layerrule = [
-        "blur,vicinae"
-        "ignorealpha 0, vicinae"
+        "match:class vicinae, blur on"
+        "match:class vicinae, ignore_alpha 0"
         # "noanim, vicinae" # Disable fade for vicinae
       ];
 
