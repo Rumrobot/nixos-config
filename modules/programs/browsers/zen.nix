@@ -3,9 +3,11 @@
   host,
   inputs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.browsers.zen";
 
+  # TODO: Default browser option
   options = delib.singleEnableOption host.guiFeatured;
 
   home.ifEnabled = {
