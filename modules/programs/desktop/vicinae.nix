@@ -3,7 +3,8 @@
   host,
   inputs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.desktop.vicinae";
 
   options = delib.singleEnableOption host.guiFeatured;
@@ -15,6 +16,13 @@
 
     services.vicinae = {
       enable = true;
+      systemd = {
+        enable = true;
+        autoStart = true;
+        environment = {
+          USE_LAYER_SHELL = 1;
+        };
+      };
 
       # window = {
       #   csd = true;

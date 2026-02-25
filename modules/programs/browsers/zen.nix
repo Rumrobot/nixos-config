@@ -19,6 +19,8 @@ delib.module {
         DisableAppUpdate = true;
         DisableTelemetry = true;
       };
+
+      suppressXdgMigrationWarning = true;
     };
   };
 }
