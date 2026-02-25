@@ -33,10 +33,7 @@
 
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
 
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nvf.url = "github:notashelf/nvf";
 
     wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
   };

@@ -3,7 +3,8 @@
   host,
   inputs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.cli.neovim";
 
   options = delib.singleEnableOption host.cliFeatured;
@@ -28,6 +29,8 @@
 
           git.enable = true;
 
+          clipboard.enable = true;
+
           options = {
             tabstop = 2;
             shiftwidth = 2;
@@ -45,19 +48,12 @@
 
             nix = {
               enable = true;
-              lsp = {
-                server = "nixd";
-                options = {
-                  nixos.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${host.name}.options";
-                  home-manager.expr = "(builtins.getFlake (builtins.toString ./.)).nixosConfigurations.${host.name}.options.home-manager.users.type.getSubOptions []";
-                };
-              };
-              format.type = "alejandra";
+              lsp.servers = ["nixd"];
             };
 
             ts = {
               enable = true;
-              format.type = "prettierd";
+              format.type = ["prettierd"];
             };
 
             rust.enable = true;
