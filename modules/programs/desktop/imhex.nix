@@ -9,5 +9,5 @@ delib.module {
 
   options = delib.singleEnableOption host.hackingFeatured;
 
-  home.ifEnabled.home.packages = with pkgs; [imhex xxd];
+  home.ifEnabled.home.packages = with pkgs; [imhex];
 }

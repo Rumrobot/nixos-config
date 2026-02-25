@@ -1,4 +1,9 @@
-{ delib, host, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.hacking";
 
@@ -7,6 +12,8 @@ delib.module {
   home.ifEnabled = {
     home.packages = with pkgs; [
       nmap
+      xxd
+      jq
     ];
   };
 }
