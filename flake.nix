@@ -20,6 +20,11 @@
 
     awww.url = "git+https://codeberg.org/LGFae/awww";
 
+    silentSDDM = {
+      url = "github:uiriansan/SilentSDDM";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
 
     vicinae.url = "github:vicinaehq/vicinae";

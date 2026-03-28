@@ -10,6 +10,7 @@ delib.rice {
   nixos = {
     imports = [
       inputs.wallpaper-daemon.nixosModules.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.silentSDDM.nixosModules.default
     ];
   };
 

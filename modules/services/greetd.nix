@@ -1,6 +1,5 @@
 {
   delib,
-  host,
   pkgs,
   homeManagerUser,
   ...
@@ -8,7 +7,7 @@
 delib.module {
   name = "services.greetd";
 
-  options = delib.singleEnableOption host.guiFeatured;
+  options = delib.singleEnableOption false;
 
   nixos.ifEnabled = {
     services.greetd = {
