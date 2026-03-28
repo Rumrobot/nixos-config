@@ -5,7 +5,7 @@
 }: delib.module {
   name = "locale";
 
-  options.localization = with delib; {
+  options.locale = with delib; {
     enable = boolOption host.isDesktop;
 
     timeZone = strOption "Europe/Copenhagen";
