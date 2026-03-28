@@ -6,7 +6,7 @@
 delib.host {
   name = "T14-NE";
 
-  rice = "25th-hour";
+  rice = "hyprland";
   type = "desktop";
   features = [
     "powersave"

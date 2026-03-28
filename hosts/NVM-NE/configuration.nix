@@ -1,8 +1,8 @@
-{ delib, ...}:
+{delib, ...}:
 delib.host {
   name = "NVM-NE";
 
-  rice = "25th-hour";
+  rice = "hyprland";
   type = "desktop";
 
   features = [

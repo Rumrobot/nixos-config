@@ -5,10 +5,10 @@
   pkgs,
   ...
 }: let
-  ricePath = "/home/${homeManagerUser}/nixos-config/rices/25th-hour";
+  assetsPath = "/home/${homeManagerUser}/nixos-config/assets";
 in
   delib.rice {
-    name = "25th-hour";
+    name = "hyprland";
 
     nixos = {
       imports = [
@@ -17,7 +17,7 @@ in
 
       services.wallpaper-daemon = {
         enable = true;
-        wallpaperDir = "${ricePath}";
+        wallpaperDir = "${assetsPath}/wallpapers/25th-hour";
         timezone = "Europe/Copenhagen";
         tool = "swww"; # TODO: Fix code to use awww instead of swww
       };
@@ -49,7 +49,7 @@ in
           };
 
           # TODO: Fix wallpaper stuff
-          wallpaper.image = "${ricePath}/wallpaper/1.jpg";
+          wallpaper.image = "${assetsPath}/wallpapers/25th-hour/1.jpg";
 
           bar = {
             launcher.autoDetectIcon = true;
@@ -66,7 +66,7 @@ in
 
           menus = {
             dashboard = {
-              powermenu.avatar.image = "${ricePath}/icon.png";
+              powermenu.avatar.image = "${assetsPath}/icon.png";
               directories.enabled = false;
             };
 

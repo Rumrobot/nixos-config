@@ -1,6 +1,10 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  pkgs,
+  ...
+}:
 delib.rice {
-  name = "25th-hour";
+  name = "hyprland";
 
   fonts = {
     sans = {
