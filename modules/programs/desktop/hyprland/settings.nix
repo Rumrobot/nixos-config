@@ -48,7 +48,6 @@ delib.module {
 
       input = {
         kb_layout = "dk"; # TODO: Config variable
-        kb_options = "caps:escape"; # TODO: Config variable
 
         touchpad = {
           natural_scroll = true;

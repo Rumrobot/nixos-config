@@ -24,6 +24,11 @@
 
     console.keyMap = "dk";
 
+    services.xserver.xkb = {
+      layout = "dk";
+      options = "caps:escape";
+    };
+
     i18n = {
       defaultLocale = cfg.locale;
       extraLocaleSettings = {
