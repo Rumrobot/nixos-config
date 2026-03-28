@@ -1,4 +1,8 @@
-{ delib, pkgs, ... }:
+{
+  delib,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.packages";
   nixos.always = {
@@ -7,6 +11,8 @@ delib.module {
       gnumake
       coreutils-full
       unzip
+      p7zip
+      squashfsTools
 
       curl
       wget
