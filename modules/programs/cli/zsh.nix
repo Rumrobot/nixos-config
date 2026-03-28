@@ -4,6 +4,7 @@
   homeManagerUser,
   pkgs,
   lib,
+  homeconfig,
   ...
 }:
 delib.module {
@@ -26,6 +27,8 @@ delib.module {
   home.ifEnabled = {myconfig, ...}: {
     programs.zsh = {
       enable = true;
+      dotDir = "${homeconfig.xdg.configHome}/zsh";
+
       syntaxHighlighting.enable = true;
 
       shellAliases = lib.optionalAttrs myconfig.programs.cli.zoxide.enable {

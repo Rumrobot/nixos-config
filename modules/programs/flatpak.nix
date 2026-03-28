@@ -2,6 +2,7 @@
   delib,
   inputs,
   pkgs,
+  homeconfig,
   ...
 }:
 delib.module {
@@ -17,5 +18,10 @@ delib.module {
     services.flatpak = {
       enable = true;
     };
+
+    home.sessionVariables.XDG_DATA_DIRS = "${builtins.concatStringsSep ":" [
+      "/var/lib/flatpak/exports/share"
+      "${homeconfig.home.homeDirectory}/.local/share/flatpak/exports/share"
+    ]}:$XDG_DATA_DIRS";
   };
 }

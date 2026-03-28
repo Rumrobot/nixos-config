@@ -3,7 +3,8 @@
   host,
   homeconfig,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "xdg";
 
   options.xdg = with delib; {
@@ -20,14 +21,14 @@
       enable = true;
 
       userDirs = let
-        download = "${homeconfig.home.homeDirectory}/download";
-        media = category: "${homeconfig.home.homeDirectory}/media/${category}";
-        files = category: "${homeconfig.home.homeDirectory}/files/${category}";
+        home = path: "${homeconfig.home.homeDirectory}/${path}";
+        media = category: home "media/${category}";
+        files = category: home "files/${category}";
       in {
         enable = true;
         createDirectories = true;
 
-        download = download;
+        download = home "downloads";
         pictures = media "pictures";
         documents = files "documents";
         desktop = files "desktop";
