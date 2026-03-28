@@ -1,5 +1,4 @@
-{ delib }:
-(with delib.extensions; [
+{delib}: (with delib.extensions; [
   args
   (delib.callExtension ./rice-options.nix)
   (base.withConfig {
@@ -21,6 +20,7 @@
         "powersave"
         "wireless"
         "vm"
+        "llm"
       ];
       defaultByHostType = {
         desktop = [
@@ -29,7 +29,7 @@
           "development"
           "hacking"
         ];
-        server = [ ];
+        server = [];
       };
     };
   })

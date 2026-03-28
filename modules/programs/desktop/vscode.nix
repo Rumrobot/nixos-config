@@ -9,5 +9,5 @@ delib.module {
 
   options = delib.singleEnableOption (host.guiFeatured && host.developmentFeatured);
 
-  home.ifEnabled.home.packages = with pkgs; [vscode claude-code];
+  home.ifEnabled.home.packages = [pkgs.vscode];
 }

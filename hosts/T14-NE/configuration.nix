@@ -12,6 +12,7 @@ delib.host {
     "powersave"
     "wireless"
     "hacking"
+    "llm"
   ];
 
   displays = [
