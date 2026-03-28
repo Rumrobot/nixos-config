@@ -1,10 +1,23 @@
 {
   delib,
+  inputs,
   pkgs,
   ...
 }:
 delib.rice {
   name = "hyprland";
+
+  nixos = {
+    imports = [
+      inputs.wallpaper-daemon.nixosModules.${pkgs.stdenv.hostPlatform.system}.default
+    ];
+  };
+
+  cursor = {
+    name = "Posy_Cursor_Black";
+    package = pkgs.posy-cursors;
+    size = 24;
+  };
 
   fonts = {
     sans = {

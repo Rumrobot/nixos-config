@@ -35,7 +35,7 @@ in
             monospace = themeSizeOption;
             emoji = themeSizeOption;
           };
-          # cursor = themeSizeOption;
+          cursor = themeSizeOption;
           # icons = themeOption;
           # gtkThemeName = noDefault (strOption null);
           # wallpaper = noDefault (pathOption null);

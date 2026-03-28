@@ -1,6 +1,5 @@
 {
   delib,
-  inputs,
   homeManagerUser,
   pkgs,
   ...
@@ -11,10 +10,6 @@ in
     name = "hyprland";
 
     nixos = {
-      imports = [
-        inputs.wallpaper-daemon.nixosModules.${pkgs.stdenv.hostPlatform.system}.default
-      ];
-
       services.wallpaper-daemon = {
         enable = true;
         wallpaperDir = "${assetsPath}/wallpapers/25th-hour";
