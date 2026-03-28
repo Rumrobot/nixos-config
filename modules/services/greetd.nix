@@ -6,7 +6,7 @@
   ...
 }:
 delib.module {
-  name = "service.greetd";
+  name = "services.greetd";
 
   options = delib.singleEnableOption host.guiFeatured;
 

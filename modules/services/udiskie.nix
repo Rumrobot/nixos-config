@@ -1,6 +1,11 @@
-{ delib, host, pkgs, ... }:
+{
+  delib,
+  host,
+  pkgs,
+  ...
+}:
 delib.module {
-  name = "service.udiskie";
+  name = "services.udiskie";
 
   options = delib.singleEnableOption host.guiFeatured;
 
