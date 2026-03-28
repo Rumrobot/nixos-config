@@ -45,5 +45,6 @@ delib.host {
 
     services.printing.enable = true;
     services.upower.enable = true;
+    services.fprintd.enable = true;
   };
 }
