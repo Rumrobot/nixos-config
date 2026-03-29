@@ -7,11 +7,9 @@ delib.module {
   nixos.ifEnabled = {myconfig, ...}: {
     services.displayManager.sddm = {
       enable = true;
-      wayland = {
-        enable = true;
-        compositor = "kwin";
-      };
+      wayland.enable = true;
 
+      # TODO: Cursor not showing with weston compositor
       settings = {
         Theme = {
           CursorTheme = myconfig.rice.cursor.name;
