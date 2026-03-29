@@ -1,12 +1,8 @@
-{
-  delib,
-  host,
-  ...
-}:
+{delib, ...}:
 delib.module {
   name = "programs.desktop.hyprland";
 
-  options = delib.singleEnableOption host.guiFeatured;
+  options = delib.singleEnableOption false;
 
   nixos.ifEnabled = {
     # hardware.graphics = {

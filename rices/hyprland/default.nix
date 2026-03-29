@@ -41,4 +41,8 @@ delib.rice {
       size = 14;
     };
   };
+
+  myconfig = {
+    programs.desktop.hyprland.enable = true;
+  };
 }
