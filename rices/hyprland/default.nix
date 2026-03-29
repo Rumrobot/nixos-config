@@ -43,6 +43,6 @@ delib.rice {
   };
 
   myconfig = {
-    programs.desktop.hyprland.enable = true;
+    gui.hyprland.enable = true;
   };
 }

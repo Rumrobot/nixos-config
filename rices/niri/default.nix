@@ -36,6 +36,6 @@ delib.rice {
   };
 
   myconfig = {
-    programs.desktop.niri.enable = true;
+    gui.niri.enable = true;
   };
 }

@@ -4,8 +4,9 @@
   ...
 }:
 delib.module {
-  name = "programs.desktop.noctalia";
+  name = "gui.noctalia";
 
+  # TODO: Multi compositor support
   options = delib.singleEnableOption false;
 
   home.always = {

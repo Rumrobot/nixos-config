@@ -6,7 +6,7 @@
   assetsPath = "/home/${homeManagerUser}/nixos-config/assets";
 in
   delib.module {
-    name = "programs.desktop.noctalia";
+    name = "gui.noctalia";
 
     home.ifEnabled = {
       programs.noctalia-shell.settings = {

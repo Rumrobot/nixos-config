@@ -4,7 +4,7 @@
   ...
 }:
 delib.module {
-  name = "programs.desktop.niri";
+  name = "gui.niri";
 
   home.ifEnabled = {
     programs.niri.settings = {

@@ -1,13 +1,16 @@
 {
   delib,
   homeManagerUser,
-  pkgs,
   ...
 }: let
   assetsPath = "/home/${homeManagerUser}/nixos-config/assets";
 in
   delib.rice {
     name = "hyprland";
+
+    myconfig = {
+      gui.hyprpanel.enable = true;
+    };
 
     nixos = {
       services.wallpaper-daemon = {
@@ -19,19 +22,7 @@ in
     };
 
     home = {
-      home.packages = with pkgs; [
-        hyprpicker
-        wf-recorder
-        brightnessctl
-        grimblast
-        btop
-        matugen
-        nerd-fonts.mononoki
-      ];
-
       programs.hyprpanel = {
-        enable = true;
-        systemd.enable = false;
         settings = {
           layout = {
             bar.layouts = {

@@ -1,6 +1,6 @@
 {delib, ...}:
 delib.module {
-  name = "programs.desktop.hyprland";
+  name = "gui.hyprland";
 
   options = delib.singleEnableOption false;
 

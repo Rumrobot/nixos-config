@@ -1,6 +1,6 @@
 { delib, ... }:
 delib.module {
-  name = "programs.desktop.hyprland";
+  name = "gui.hyprland";
 
   home.ifEnabled.wayland.windowManager.hyprland.settings = {
     bind =

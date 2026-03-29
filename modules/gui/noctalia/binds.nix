@@ -11,7 +11,7 @@
   };
 in
   delib.module {
-    name = "programs.desktop.noctalia";
+    name = "gui.noctalia";
 
     home.ifEnabled.programs.niri.settings.binds = builtins.listToAttrs [
       # Core

@@ -9,7 +9,7 @@ in
     name = "niri";
 
     myconfig = {
-      programs.desktop.noctalia.enable = true;
+      gui.noctalia.enable = true;
     };
 
     home = {

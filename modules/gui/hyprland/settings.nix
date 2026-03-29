@@ -4,7 +4,7 @@
   ...
 }:
 delib.module {
-  name = "programs.desktop.hyprland";
+  name = "gui.hyprland";
 
   home.ifEnabled = {myconfig, ...}: {
     wayland.windowManager.hyprland.settings = {
@@ -24,10 +24,6 @@ delib.module {
           }"
         )
         host.displays;
-
-      exec-once = [
-        "hyprpanel"
-      ];
 
       gestures = {
         workspace_swipe_distance = 700;
