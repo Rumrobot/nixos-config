@@ -2,7 +2,8 @@
   delib,
   host,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.desktop.hyprland";
 
   options = delib.singleEnableOption host.guiFeatured;
@@ -30,6 +31,8 @@
       # Set the Hyprland and XDPH packages to null to use the ones from the NixOS module
       package = null;
       portalPackage = null;
+
+      systemd.variables = ["--all"];
     };
   };
 }
