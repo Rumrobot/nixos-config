@@ -13,6 +13,7 @@ delib.module {
       unzip
       p7zip
       squashfsTools
+      openssl
 
       curl
       wget
@@ -20,7 +21,7 @@ delib.module {
       nano
       screen
 
-      openssl
+      fastfetch
     ];
   };
 }
