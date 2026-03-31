@@ -20,6 +20,13 @@
 
     awww.url = "git+https://codeberg.org/LGFae/awww";
 
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    matugen.url = "github:/InioX/Matugen";
+
     silentSDDM = {
       url = "github:uiriansan/SilentSDDM";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +48,11 @@
       # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
       # to have it up-to-date or simply don't specify the nixpkgs input
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
     };
 
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
@@ -69,10 +81,12 @@
     nixpkgs-stable,
     ...
   }: let
-    mkConfigurations = moduleSystem:
-      denix.lib.configurations rec {
-        inherit moduleSystem;
-        homeManagerUser = "ne";
+    mkConfigurations = moduleSystem: let
+      homeManagerUser = "ne";
+      assetsPath = "${inputs.self}/assets";
+    in
+      denix.lib.configurations {
+        inherit moduleSystem homeManagerUser;
 
         paths = [
           ./hosts
@@ -88,6 +102,7 @@
             inputs
             moduleSystem
             homeManagerUser
+            assetsPath
             ;
         };
       };

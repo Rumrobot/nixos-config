@@ -1,12 +1,17 @@
 {
   delib,
   host,
-  pkgs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.desktop.obsidian";
 
   options = delib.singleEnableOption host.guiFeatured;
 
-  home.ifEnabled.home.packages = [pkgs.obsidian];
+  # TODO: LiveSync setup
+  home.ifEnabled = {
+    programs.obsidian = {
+      enable = true;
+    };
+  };
 }

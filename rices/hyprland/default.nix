@@ -7,6 +7,9 @@
 delib.rice {
   name = "hyprland";
 
+  polarity = "dark";
+  wallpaper = ../../assets/wallpapers/25th-hour/1.jpg;
+
   nixos = {
     imports = [
       inputs.wallpaper-daemon.nixosModules.${pkgs.stdenv.hostPlatform.system}.default

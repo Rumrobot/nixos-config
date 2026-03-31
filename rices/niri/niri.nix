@@ -5,15 +5,14 @@ delib.rice {
   home.programs.niri.settings = {
     layout = {
       gaps = 10;
-      focus-ring = {
-        width = 2;
-      };
+      focus-ring.width = 2;
+      border.width = 2;
     };
 
     window-rules = [
       {
         geometry-corner-radius = let
-          r = 10.0;
+          r = 16.0;
         in {
           bottom-left = r;
           bottom-right = r;

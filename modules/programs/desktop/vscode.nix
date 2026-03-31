@@ -1,7 +1,6 @@
 {
   delib,
   host,
-  pkgs,
   ...
 }:
 delib.module {
@@ -9,5 +8,9 @@ delib.module {
 
   options = delib.singleEnableOption (host.guiFeatured && host.developmentFeatured);
 
-  home.ifEnabled.home.packages = [pkgs.vscode];
+  home.ifEnabled = {
+    programs.vscode = {
+      enable = true;
+    };
+  };
 }

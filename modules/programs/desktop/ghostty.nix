@@ -1,7 +1,6 @@
 {
   delib,
   host,
-  pkgs,
   lib,
   ...
 }:
@@ -21,7 +20,14 @@ delib.module {
     };
   };
 
-  home.ifEnabled = {
-    home.packages = [pkgs.ghostty];
+  home.ifEnabled = {myconfig, ...}: {
+    programs.ghostty = {
+      enable = true;
+      enableZshIntegration = myconfig.programs.cli.zsh.enable;
+
+      settings = {
+        gtk-titlebar = false;
+      };
+    };
   };
 }

@@ -1,38 +1,37 @@
 {
   delib,
   inputs,
+  assetsPath,
   homeManagerUser,
   ...
-}: let
-  assetsPath = "/home/${homeManagerUser}/nixos-config/assets";
-in
-  delib.module {
-    name = "services.sddm";
+}:
+delib.module {
+  name = "services.sddm";
 
-    options = delib.singleEnableOption false;
+  options = delib.singleEnableOption false;
 
-    nixos.always = {
-      imports = [
-        inputs.silentSDDM.nixosModules.default
-      ];
-    };
+  nixos.always = {
+    imports = [
+      inputs.silentSDDM.nixosModules.default
+    ];
+  };
 
-    nixos.ifEnabled = {myconfig, ...}: {
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = true;
+  nixos.ifEnabled = {myconfig, ...}: {
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = true;
 
-        # TODO: Cursor not showing with weston compositor
-        settings = {
-          Theme = {
-            CursorTheme = myconfig.rice.cursor.name;
-            CursorSize = myconfig.rice.cursor.size;
-          };
+      # TODO: Cursor not showing with weston compositor
+      settings = {
+        Theme = {
+          CursorTheme = myconfig.rice.cursor.name;
+          CursorSize = myconfig.rice.cursor.size;
         };
       };
-
-      programs.silentSDDM = {
-        profileIcons.${homeManagerUser} = "${assetsPath}/icon.png";
-      };
     };
-  }
+
+    programs.silentSDDM = {
+      profileIcons.${homeManagerUser} = "${assetsPath}/icon.png";
+    };
+  };
+}

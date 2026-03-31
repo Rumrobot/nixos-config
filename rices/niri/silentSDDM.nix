@@ -2,18 +2,20 @@
 delib.rice {
   name = "niri";
 
+  # TODO: Try out https://github.com/Darkkal44/qylock#quickshell-setup
+
   myconfig = {
     services.sddm.enable = true;
   };
 
-  nixos = {
+  nixos = {cfg, ...}: {
     programs.silentSDDM = {
       enable = true;
       theme = "default";
-      backgrounds.sunset-birds = ../../assets/wallpapers/sunset-birds.png;
+      backgrounds.default = cfg.wallpaper;
       settings = {
-        "LoginScreen".background = "sunset-birds.png";
-        "LockScreen".background = "sunset-birds.png";
+        "LoginScreen".background = baseNameOf (toString cfg.wallpaper);
+        "LockScreen".background = baseNameOf (toString cfg.wallpaper);
       };
     };
   };

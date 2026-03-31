@@ -7,7 +7,7 @@
     strOption
     packageOption
     intOption
-    # pathOption
+    pathOption
     ;
 in
   delib.extension {
@@ -36,9 +36,10 @@ in
             emoji = themeSizeOption;
           };
           cursor = themeSizeOption;
+          wallpaper = noDefault (pathOption null);
+          polarity = noDefault (strOption null);
           # icons = themeOption;
           # gtkThemeName = noDefault (strOption null);
-          # wallpaper = noDefault (pathOption null);
         };
     };
   }

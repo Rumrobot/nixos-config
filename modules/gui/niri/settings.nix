@@ -37,6 +37,17 @@ delib.module {
         click-method = "clickfinger";
         scroll-factor = 0.5;
       };
+
+      window-rules = [
+        {
+          matches = [
+            {
+              app-id = "ghostty";
+            }
+          ];
+          draw-border-with-background = false;
+        }
+      ];
     };
   };
 }
