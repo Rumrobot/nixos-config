@@ -7,6 +7,8 @@
 delib.module {
   name = "programs.desktop.vicinae";
 
+  # TODO: Add binds after the binds options have been completed
+
   options = delib.singleEnableOption host.guiFeatured;
 
   home.ifEnabled = {
@@ -23,12 +25,6 @@ delib.module {
           USE_LAYER_SHELL = 1;
         };
       };
-
-      # window = {
-      #   csd = true;
-      #   opacity = 0.95;
-      #   rounding = 10;
-      # };
     };
   };
 }

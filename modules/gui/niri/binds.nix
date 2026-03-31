@@ -2,6 +2,8 @@
 delib.module {
   name = "gui.niri";
 
+  # TODO: Create global bind options to unify binds across WMs
+
   home.ifEnabled.programs.niri.settings.binds = let
     moveKey = "Shift";
     modifyKey = "Ctrl";

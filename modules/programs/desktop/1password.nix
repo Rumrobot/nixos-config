@@ -7,8 +7,12 @@
   pkgs,
   homeconfig,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.desktop._1password";
+
+  # TODO: Add binds after binds options have been completed
+  # TODO: Auto start minimized
 
   options = {myconfig, ...}: {
     programs.desktop._1password = with delib; {
@@ -18,9 +22,14 @@
     };
   };
 
-  home.ifEnabled = {myconfig, cfg, ...}: let
-    shell-plugins = []
-      ++ lib.optionals myconfig.programs.cli.gh.enable [ pkgs.gh ];
+  home.ifEnabled = {
+    myconfig,
+    cfg,
+    ...
+  }: let
+    shell-plugins =
+      []
+      ++ lib.optionals myconfig.programs.cli.gh.enable [pkgs.gh];
   in {
     imports = [inputs._1password-shell-plugins.hmModules.default];
 
@@ -57,7 +66,7 @@
       polkitPolicyOwners = [homeManagerUser];
     };
 
-     # TODO: Make the browsers list from config
+    # TODO: Make the browsers list from config
     environment.etc = {
       "1password/custom_allowed_browsers" = {
         text = ''

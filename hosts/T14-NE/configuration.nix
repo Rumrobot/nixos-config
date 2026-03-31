@@ -6,6 +6,8 @@
 delib.host {
   name = "T14-NE";
 
+  # TODO: Add power profile settings
+
   rice = "niri";
   type = "desktop";
   features = [
@@ -45,6 +47,8 @@ delib.host {
 
     services.printing.enable = true;
     services.upower.enable = true;
+
+    # TODO: Fix fingerprint scanner
     services.fprintd.enable = true;
   };
 }
