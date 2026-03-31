@@ -13,7 +13,7 @@ delib.module {
       enable = true;
 
       defaultFonts = {
-        serif = [myconfig.rice.fonts.sans.name];
+        serif = [myconfig.rice.fonts.serif.name];
         sansSerif = [myconfig.rice.fonts.sans.name];
         monospace = [myconfig.rice.fonts.monospace.name];
         emoji = [myconfig.rice.fonts.emoji.name];
@@ -26,12 +26,5 @@ delib.module {
       myconfig.rice.fonts.emoji.package
       myconfig.rice.cursor.package
     ];
-  };
-
-  home.ifEnabled = {myconfig, ...}: {
-    home.pointerCursor = {
-      inherit (myconfig.rice.cursor) name package size;
-      gtk.enable = true;
-    };
   };
 }
