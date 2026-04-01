@@ -25,5 +25,6 @@ delib.module {
 
   home.ifEnabled = {
     home.sessionVariables.NIXOS_OZONE_WL = "1";
+    home.packages = [pkgs.xwayland-satellite];
   };
 }
