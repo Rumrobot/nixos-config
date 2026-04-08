@@ -19,7 +19,6 @@ delib.module {
     networking.networkmanager.enable = true;
     hardware.bluetooth.enable = true;
     services.upower.enable = true;
-    # TODO: Enable power-profiles-daemon or tuned (conflicts with tlp)
   };
 
   home.ifEnabled = {

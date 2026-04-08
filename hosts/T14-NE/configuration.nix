@@ -49,6 +49,15 @@ delib.host {
     services.printing.enable = true;
     services.upower.enable = true;
 
+    networking.useDHCP = false;
+    networking.networkmanager.enable = true;
+
+    # TODO: Add power profile settings
+    services.tlp.pd.enable = true;
+    services.tlp.settings = {
+      RUNTIME_PM_DRIVER_DENYLIST = "mei_me nouveau radeon xhci_hcd r8169";
+    };
+
     # TODO: Fix fingerprint scanner
     services.fprintd.enable = true;
   };
