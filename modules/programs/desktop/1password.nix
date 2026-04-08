@@ -11,7 +11,6 @@
 delib.module {
   name = "programs.desktop._1password";
 
-  # TODO: Add binds after binds options have been completed
   # TODO: Auto start minimized
 
   options = {myconfig, ...}: {
@@ -20,6 +19,10 @@ delib.module {
       gitSigning = boolOption myconfig.programs.cli.git.enable;
       sshAgent = boolOption true;
     };
+  };
+
+  myconfig.ifEnabled = {
+    helpers.binds.actions.passwordManager = delib.mkBindProvider "_1password" ["1password" "--quick-access"];
   };
 
   home.ifEnabled = {

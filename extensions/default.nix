@@ -1,6 +1,7 @@
 {delib}: (with delib.extensions; [
   args
   (delib.callExtension ./rice-options.nix)
+  (delib.callExtension ./binds.nix)
   (base.withConfig {
     args.enable = true;
 

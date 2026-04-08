@@ -2,7 +2,8 @@
   delib,
   host,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "locale";
 
   options.locale = with delib; {
@@ -26,7 +27,6 @@
 
     services.xserver.xkb = {
       layout = "dk";
-      options = "caps:escape";
     };
 
     i18n = {

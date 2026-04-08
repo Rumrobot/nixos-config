@@ -1,6 +1,5 @@
 {
   delib,
-  host,
   inputs,
   pkgs,
   ...
@@ -8,7 +7,7 @@
 delib.module {
   name = "gui.niri";
 
-  options = delib.singleEnableOption host.guiFeatured;
+  options = delib.singleEnableOption false;
 
   nixos.always = {
     imports = [

@@ -29,7 +29,6 @@ delib.module {
 
       input.keyboard.xkb = {
         layout = "dk"; # TODO: Config variable
-        options = "caps:escape"; # TODO: Config variable
       };
 
       input.touchpad = {

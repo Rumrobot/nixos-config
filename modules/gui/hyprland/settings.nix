@@ -6,7 +6,7 @@
 delib.module {
   name = "gui.hyprland";
 
-  home.ifEnabled = {myconfig, ...}: {
+  home.ifEnabled = {
     wayland.windowManager.hyprland.settings = {
       env = [
         "GRIMBLAST_HIDE_CURSOR, 0"
@@ -36,15 +36,8 @@ delib.module {
         workspace_swipe_create_new = true;
       };
 
-      layerrule = [
-        "match:class vicinae, blur on"
-        "match:class vicinae, ignore_alpha 0"
-        # "noanim, vicinae" # Disable fade for vicinae
-      ];
-
       input = {
         kb_layout = "dk"; # TODO: Config variable
-        kb_options = "caps:escape"; # TODO: Config variable
 
         touchpad = {
           natural_scroll = true;

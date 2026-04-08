@@ -20,6 +20,10 @@ delib.module {
     };
   };
 
+  myconfig.ifEnabled = {
+    helpers.binds.actions.terminal = delib.mkBindProvider "ghostty" ["ghostty"];
+  };
+
   home.ifEnabled = {myconfig, ...}: {
     programs.ghostty = {
       enable = true;

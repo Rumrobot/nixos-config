@@ -1,30 +1,29 @@
 {
   delib,
-  pkgs,
+  lib,
   ...
-}: let
-  noctalia = key: cmd: {
-    name = key;
-    value.action.spawn =
-      ["noctalia-shell" "ipc" "call"]
-      ++ (pkgs.lib.splitString " " cmd);
-  };
-in
-  delib.module {
-    name = "gui.noctalia";
+}:
+delib.module {
+  name = "gui.noctalia";
 
-    home.ifEnabled.programs.niri.settings.binds = builtins.listToAttrs [
+  myconfig.ifEnabled = let
+    noctalia = cmd:
+      delib.mkDefaultBindProvider "noctalia"
+      (["noctalia-shell" "ipc" "call"] ++ (lib.splitString " " cmd));
+  in {
+    helpers.binds.actions = {
       # Core
-      (noctalia "Mod+S" "controlCenter toggle")
-      (noctalia "Mod+Comma" "settings toggle")
-      (noctalia "Mod+P" "sessionMenu toggle")
-      (noctalia "Mod+L" "lockScreen lock")
+      controlCenter = noctalia "controlCenter toggle";
+      settings = noctalia "settings toggle";
+      sessionMenu = noctalia "sessionMenu toggle";
+      lock = noctalia "lockScreen lock";
 
       # Audio & Brightness
-      (noctalia "XF86AudioRaiseVolume" "volume increase")
-      (noctalia "XF86AudioLowerVolume" "volume decrease")
-      (noctalia "XF86AudioMute" "volume muteOutput")
-      (noctalia "XF86MonBrightnessUp" "brightness increase")
-      (noctalia "XF86MonBrightnessDown" "brightness decrease")
-    ];
-  }
+      volumeUp = noctalia "volume increase";
+      volumeDown = noctalia "volume decrease";
+      volumeMute = noctalia "volume muteOutput";
+      brightnessUp = noctalia "brightness increase";
+      brightnessDown = noctalia "brightness decrease";
+    };
+  };
+}
