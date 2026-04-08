@@ -1,8 +1,15 @@
-{ delib, host, ...}:
+{
+  delib,
+  host,
+  ...
+}:
 delib.module {
   name = "features.docker";
 
-  options = delib.singleEnableOption host.developmentFeatured;
+  options = {myconfig, ...}:
+    with delib; {
+      features.docker = boolOption (host.developmentFeatured && !myconfig.features.podman.enable);
+    };
 
   nixos.ifEnabled.virtualisation.docker.rootless = {
     enable = true;

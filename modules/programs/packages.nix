@@ -17,6 +17,7 @@ delib.module {
 
       curl
       wget
+      lsof
 
       nano
       screen

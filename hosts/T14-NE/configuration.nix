@@ -6,8 +6,6 @@
 delib.host {
   name = "T14-NE";
 
-  # TODO: Add power profile settings
-
   rice = "niri";
   type = "desktop";
   features = [
@@ -30,6 +28,9 @@ delib.host {
   ];
 
   myconfig = {
+    features = {
+      podman.enable = true;
+    };
     programs = {
       cli = {
         zsh = {
