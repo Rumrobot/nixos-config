@@ -88,8 +88,6 @@ delib.module {
         };
       };
 
-      suppressXdgMigrationWarning = true;
-
       profiles.${homeManagerUser} = rec {
         id = 0;
         isDefault = true;
