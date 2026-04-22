@@ -36,6 +36,8 @@ delib.module {
         music = media "music";
         publicShare = files "publicshare";
         templates = files "templates";
+
+        setSessionVariables = false;
       };
 
       mimeApps = {

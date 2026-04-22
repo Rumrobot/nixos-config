@@ -51,7 +51,7 @@ delib.module {
               lsp.servers = ["nixd"];
             };
 
-            ts = {
+            typescript = {
               enable = true;
               format.type = ["prettierd"];
             };
