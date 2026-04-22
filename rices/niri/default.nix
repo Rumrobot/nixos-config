@@ -47,7 +47,7 @@ delib.rice {
       opacity = {
         terminal = 0.75;
         applications = 0.93;
-        popups = 0.85;
+        popups = 0.9;
         desktop = 0.6;
       };
     };
