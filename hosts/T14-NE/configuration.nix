@@ -25,6 +25,14 @@ delib.host {
       x = 0;
       y = 0;
     }
+    {
+      name = "NEC Corporation E222W 9Z307555NB";
+      refreshRate = 60;
+      width = 1680;
+      height = 1050;
+      x = -72;
+      y = -1050;
+    }
   ];
 
   myconfig = {
