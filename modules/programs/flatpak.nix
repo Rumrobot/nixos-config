@@ -17,6 +17,7 @@ delib.module {
 
     services.flatpak = {
       enable = true;
+      update.onActivation = true; # Update flatpaks on rebuild
     };
 
     home.sessionVariables.XDG_DATA_DIRS = "${builtins.concatStringsSep ":" [
