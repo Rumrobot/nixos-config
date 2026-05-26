@@ -1,8 +1,8 @@
-{ delib, host, pkgs, ... }:
+{delib, ...}:
 delib.module {
   name = "programs.desktop.thunar";
 
-  options = delib.singleEnableOption host.guiFeatured;
+  options = delib.singleEnableOption false;
 
   nixos.ifEnabled = {
     programs.thunar.enable = true;
