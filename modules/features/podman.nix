@@ -13,6 +13,8 @@ delib.module {
       enable = true;
       dockerCompat = true;
       autoPrune.enable = true;
+
+      defaultNetwork.settings.dns_enabled = true;
     };
 
     # Use slirp4netns for rootless networking (pasta has kernel 6.x bugs)
