@@ -6,7 +6,7 @@
 delib.module {
   name = "programs.desktop.wootility";
 
-  options = delib.singleEnableOption true;
+  options = delib.singleEnableOption false;
 
   home.ifEnabled = {
     home.packages = [pkgs.wootility];

@@ -42,6 +42,9 @@ delib.host {
           default = true;
         };
       };
+      desktop = {
+        wootility.enable = true;
+      };
     };
   };
 
