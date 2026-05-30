@@ -13,6 +13,6 @@ delib.module {
   };
 
   nixos.ifEnabled = {
-    environment.systemPackages = [pkgs.wooting-udev-rules];
+    services.udev.packages = [pkgs.wooting-udev-rules];
   };
 }
