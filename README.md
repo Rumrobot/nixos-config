@@ -12,3 +12,6 @@ This [NixOS](https://nixos.org/) configuration uses [Denix](https://github.com/y
 - latex
 - syncthing
 - fastfetch terminal setup + default terminal options
+- Niri: auto maximize certain apps like pycharm
+- Startup helper + startup apps
+- Star citizen
