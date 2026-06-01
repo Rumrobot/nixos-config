@@ -59,7 +59,8 @@
 
     nvf.url = "github:notashelf/nvf";
 
-    wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
+    # Local project
+    # wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
   };
 
   nixConfig = {
