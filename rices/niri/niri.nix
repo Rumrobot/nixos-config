@@ -23,4 +23,9 @@ delib.rice {
       }
     ];
   };
+
+  myconfig.helpers.binds.actions = {
+    consumeWindowLeft.bind = "Mod+aring";
+    consumeWindowRight.bind = "Mod+dead_diaeresis";
+  };
 }

@@ -1,6 +1,7 @@
 {
   delib,
   host,
+  lib,
   ...
 }:
 delib.module {
@@ -28,11 +29,13 @@ delib.module {
 
   myconfig.ifEnabled = let
     action = bind: description: {
-      inherit bind description;
+      bind = lib.mkDefault bind;
+      inherit description;
     };
 
     actionNoRepeat = bind: description: {
-      inherit bind description;
+      bind = lib.mkDefault bind;
+      inherit description;
       repeat = false;
     };
 
