@@ -32,6 +32,7 @@ delib.host {
   ];
 
   myconfig = {
+    hardware.nvidia.enable = true;
     features = {
       podman.enable = true;
     };

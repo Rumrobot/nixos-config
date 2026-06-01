@@ -23,6 +23,9 @@ delib.module {
       screen
 
       fastfetch
+      nvtopPackages.nvidia
+      nvtopPackages.amd
+      btop
     ];
   };
 }

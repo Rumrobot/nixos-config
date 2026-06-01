@@ -17,8 +17,6 @@ delib.module {
   };
 
   home.ifEnabled = {
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
-
     services.hyprpolkitagent.enable = true;
 
     wayland.windowManager.hyprland = {
