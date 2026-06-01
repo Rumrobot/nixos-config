@@ -32,6 +32,7 @@ delib.host {
   ];
 
   myconfig = {
+    boot.loader = "systemd-boot";
     hardware.nvidia.enable = true;
     features = {
       podman.enable = true;
@@ -50,6 +51,22 @@ delib.host {
   };
 
   nixos = {
+    # Windows support for bootloader
+    boot.loader.systemd-boot = {
+      windows = {
+        "windows" = let
+          boot-drive = "FS2";
+        in {
+          title = "Windows";
+          efiDeviceHandle = boot-drive;
+          sortKey = "y_windows";
+        };
+      };
+
+      edk2-uefi-shell.enable = true;
+      edk2-uefi-shell.sortKey = "z_edk2";
+    };
+
     services.printing.enable = true;
     services.upower.enable = true;
 
