@@ -1,4 +1,10 @@
-{delib, host, pkgs, homeManagerUser, ...}:
+{
+  delib,
+  host,
+  pkgs,
+  homeManagerUser,
+  ...
+}:
 delib.module {
   name = "programs.development.python";
 
@@ -10,5 +16,7 @@ delib.module {
     python3Packages.virtualenv
     python3Packages.build
     python3Packages.uv
+
+    ruff
   ];
 }
