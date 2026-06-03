@@ -9,8 +9,14 @@ delib.module {
 
   options = delib.singleEnableOption host.developmentFeatured;
 
-  home.ifEnabled.home.packages = with pkgs; [
-    go-task
-    direnv
-  ];
+  home.ifEnabled = {
+    home.packages = with pkgs; [
+      go-task
+    ];
+
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 }
