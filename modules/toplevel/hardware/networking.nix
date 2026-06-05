@@ -1,15 +1,36 @@
-{ delib, host, homeManagerUser, ... }:
+{
+  delib,
+  host,
+  homeManagerUser,
+  ...
+}:
 delib.module {
   name = "hardware.networking";
 
   nixos.always = {
     networking = {
       hostName = host.name;
-
-      firewall.enable = true;
       networkmanager.enable = true;
+
+      firewall = {
+        enable = true;
+
+        allowedUDPPorts = [
+          2021 # Bambu Lab SSDP discovery
+          5353 # mDNS (Avahi)
+        ];
+      };
     };
 
-    users.users.${homeManagerUser}.extraGroups = [ "networkmanager" ];
+    services.avahi = {
+      enable = true;
+      nssmdns4 = true;
+      publish = {
+        enable = true;
+        userServices = true;
+      };
+    };
+
+    users.users.${homeManagerUser}.extraGroups = ["networkmanager"];
   };
 }
