@@ -54,6 +54,13 @@ delib.host {
           default = true;
         };
       };
+      desktop.slicers = {
+        anycubic-slicernext.enable = true;
+        bambu-studio.enable = true;
+        crealityprint.enable = true;
+        cura.enable = true;
+        prusa-slicer.enable = true;
+      };
     };
   };
 

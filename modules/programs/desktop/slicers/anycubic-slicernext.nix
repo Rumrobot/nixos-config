@@ -1,13 +1,12 @@
 {
   delib,
-  host,
   pkgs,
   ...
 }:
 delib.module {
   name = "programs.desktop.slicers.anycubic-slicernext";
 
-  options = delib.singleEnableOption host.guiFeatured;
+  options = delib.singleEnableOption false;
 
   home.ifEnabled.services.flatpak.packages = [
     rec {

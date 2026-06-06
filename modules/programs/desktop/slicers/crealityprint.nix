@@ -1,8 +1,12 @@
-{ delib, host, pkgs, ...}:
+{
+  delib,
+  pkgs,
+  ...
+}:
 delib.module {
   name = "programs.desktop.slicers.crealityprint";
 
-  options = delib.singleEnableOption host.guiFeatured;
+  options = delib.singleEnableOption false;
 
   home.ifEnabled.services.flatpak.packages = [
     rec {
