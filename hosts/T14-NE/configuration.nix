@@ -47,6 +47,7 @@ delib.host {
     features = {
       podman.enable = true;
     };
+    services.kdeconnect.enable = true;
     programs = {
       cli = {
         zsh = {
@@ -80,8 +81,5 @@ delib.host {
     services.tlp.settings = {
       RUNTIME_PM_DRIVER_DENYLIST = "mei_me nouveau radeon xhci_hcd r8169";
     };
-
-    # TODO: Fix fingerprint scanner
-    services.fprintd.enable = true;
   };
 }

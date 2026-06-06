@@ -6,7 +6,7 @@
 delib.module {
   name = "gui.noctalia";
 
-  home.ifEnabled = {
+  home.ifEnabled = {myconfig, ...}: {
     programs.noctalia-shell.settings = {
       # Bar
       bar = {
@@ -56,6 +56,9 @@ delib.module {
           ];
           center = [
             {
+              id = "plugin:kde-connect";
+            }
+            {
               id = "Workspace";
               hideUnoccupied = false;
               showApplications = true;
@@ -68,6 +71,9 @@ delib.module {
               pillSize = 0.6;
               iconScale = 0.8;
               groupedBorderOpacity = 0.7;
+            }
+            {
+              id = "plugin:screen-toolkit";
             }
           ];
           right = [
