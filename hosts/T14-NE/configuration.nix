@@ -33,6 +33,14 @@ delib.host {
       x = -72;
       y = -1050;
     }
+    {
+      name = "PNP(AOC) 2460G4 GJXH9HA034303";
+      refreshRate = 60;
+      width = 1920;
+      height = 1080;
+      x = -192;
+      y = -1080;
+    }
   ];
 
   myconfig = {
