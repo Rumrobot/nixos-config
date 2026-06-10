@@ -13,7 +13,10 @@ delib.module {
       enable = true;
 
       settings = {
-        plugin = ["opencode-claude-auth"];
+        plugin = [
+          "opencode-claude-auth"
+          "superpowers@git+https://github.com/obra/superpowers.git"
+        ];
       };
     };
   };
