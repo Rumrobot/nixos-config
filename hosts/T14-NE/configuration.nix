@@ -44,6 +44,7 @@ delib.host {
   ];
 
   myconfig = {
+    hardware.fingerprint.enable = true;
     features = {
       podman.enable = true;
     };

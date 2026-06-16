@@ -114,8 +114,8 @@ delib.module {
       # General
       general = {
         avatarImage = "${assetsPath}/icon.png";
-        autoStartAuth = true;
-        allowPasswordWithFprintd = true;
+        autoStartAuth = myconfig.hardware.fingerprint.enable;
+        allowPasswordWithFprintd = myconfig.hardware.fingerprint.enable;
         lockScreenAnimations = true;
       };
 
