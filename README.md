@@ -15,3 +15,5 @@ This [NixOS](https://nixos.org/) configuration uses [Denix](https://github.com/y
 - Niri: auto maximize certain apps like pycharm
 - Startup helper + startup apps
 - Star citizen
+- opnix + .npmrc github PAT
+    - 1password cli only option that opnix can enable
