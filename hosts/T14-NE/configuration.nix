@@ -62,6 +62,7 @@ delib.host {
         crealityprint.enable = true;
         cura.enable = true;
         prusa-slicer.enable = true;
+        qidi-studio.enable = true;
       };
     };
   };
