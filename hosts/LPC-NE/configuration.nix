@@ -35,7 +35,6 @@ delib.host {
     boot.loader = "systemd-boot";
     hardware.nvidia = {
       enable = true;
-      legacy = true; # 1070ti needs this
     };
     features = {
       podman.enable = true;
