@@ -13,5 +13,7 @@ delib.module {
       enable = true;
       remotePlay.openFirewall = true;
     };
+
+    programs.gamescope.enable = true;
   };
 }
