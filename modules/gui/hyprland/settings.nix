@@ -15,7 +15,8 @@ delib.module {
       monitor =
         map (
           display: let
-            resolution = "${toString display.width}x${toString display.height}@${toString display.refreshRate}";
+            refreshRate = builtins.floor (display.refreshRate + 0.5);
+            resolution = "${toString display.width}x${toString display.height}@${toString refreshRate}";
             position = "${toString display.x}x${toString display.y}";
           in "${display.name},${
             if display.enable

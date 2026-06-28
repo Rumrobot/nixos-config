@@ -15,7 +15,7 @@ delib.host {
     {
       name = "ASUSTek COMPUTER INC VG27A M9LMQS085761";
       primary = true;
-      refreshRate = 165;
+      refreshRate = 164.999;
       width = 2560;
       height = 1440;
       x = 0;
@@ -23,7 +23,7 @@ delib.host {
     }
     {
       name = "Samsung Electric Company S24R65x H4TN100177";
-      refreshRate = 75;
+      refreshRate = 74.973;
       width = 1920;
       height = 1080;
       x = -1920;
