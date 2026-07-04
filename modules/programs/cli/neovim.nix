@@ -53,7 +53,7 @@ delib.module {
 
             typescript = {
               enable = true;
-              format.type = ["prettierd"];
+              format.type = ["prettier"];
             };
 
             rust.enable = true;
