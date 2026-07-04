@@ -41,13 +41,8 @@ delib.module {
       plugins = shell-plugins;
     };
 
-    programs.ssh = lib.mkIf cfg.sshAgent {
-      enable = true;
-      extraConfig = ''
-        Host *
-            IdentityAgent ${homeconfig.home.homeDirectory}/.1password/agent.sock
-      '';
-    };
+    programs.ssh.settings."*".IdentityAgent =
+      lib.mkIf cfg.sshAgent "${homeconfig.home.homeDirectory}/.1password/agent.sock";
 
     programs.git = lib.mkIf cfg.gitSigning {
       settings = {
