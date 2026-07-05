@@ -13,6 +13,7 @@ delib.host {
     "wireless"
     "hacking"
     "llm"
+    "gaming"
   ];
 
   displays = [
