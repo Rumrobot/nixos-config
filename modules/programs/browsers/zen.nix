@@ -6,6 +6,7 @@
   delib,
   host,
   inputs,
+  lib,
   homeManagerUser,
   ...
 }:
@@ -14,7 +15,7 @@ delib.module {
 
   options = delib.singleEnableOption host.guiFeatured;
 
-  home.ifEnabled = {
+  home.ifEnabled = {myconfig, ...}: {
     imports = [inputs.zen-browser.homeModules.beta]; # beta / twilight / twilight-official
 
     # Use legacy profile mode to avoid needing machine-specific Install identifier
@@ -104,6 +105,7 @@ delib.module {
           "zen.theme.gradient" = false;
           "zen.theme.color-prefs" = "";
           "zen.themes.updated-value-observer" = false;
+          "widget.dmabuf.force-enabled" = myconfig.gui.niri.enable;
         };
 
         # Betterfox: comprehensive Firefox hardening + performance tuning
