@@ -50,6 +50,7 @@ delib.host {
         wootility.enable = true;
         coolercontrol.enable = true;
       };
+      development.godot.enable = true;
     };
   };
 
