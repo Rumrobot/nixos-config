@@ -3,7 +3,6 @@
   host,
   lib,
   pkgs,
-  homeconfig,
   ...
 }:
 delib.module {
@@ -14,7 +13,6 @@ delib.module {
   home.ifEnabled =
     { myconfig, ... }:
     let
-      flake = "${homeconfig.home.homeDirectory}/nixos-config";
       llm = myconfig.programs.llm;
       dev = myconfig.programs.development;
       sftpExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
