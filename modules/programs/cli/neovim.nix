@@ -9,13 +9,8 @@ delib.module {
 
   options = delib.singleEnableOption host.cliFeatured;
 
-  nixos.ifEnabled = {
-    # Needed for nixd
-    nix.nixPath = ["nixpkgs=${inputs.nixpkgs}"];
-  };
-
   home.ifEnabled = {
-    imports = [inputs.nvf.homeManagerModules.default];
+    imports = [ inputs.nvf.homeManagerModules.default ];
 
     programs.nvf = {
       enable = true;
@@ -48,12 +43,11 @@ delib.module {
 
             nix = {
               enable = true;
-              lsp.servers = ["nixd"];
             };
 
             typescript = {
               enable = true;
-              format.type = ["prettier"];
+              format.type = [ "prettier" ];
             };
 
             rust.enable = true;
