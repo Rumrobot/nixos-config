@@ -1,4 +1,4 @@
-{delib, ...}:
+{ delib, ... }:
 delib.host {
   name = "LPC-NE";
 
@@ -58,13 +58,15 @@ delib.host {
     # Windows support for bootloader
     boot.loader.systemd-boot = {
       windows = {
-        "windows" = let
-          boot-drive = "FS2";
-        in {
-          title = "Windows";
-          efiDeviceHandle = boot-drive;
-          sortKey = "y_windows";
-        };
+        "windows" =
+          let
+            boot-drive = "FS2";
+          in
+          {
+            title = "Windows";
+            efiDeviceHandle = boot-drive;
+            sortKey = "y_windows";
+          };
       };
 
       edk2-uefi-shell.enable = true;
