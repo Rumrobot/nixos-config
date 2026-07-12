@@ -60,6 +60,8 @@
 
     nvf.url = "github:notashelf/nvf";
 
+    elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
+
     # Local project
     # wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
   };
@@ -77,39 +79,44 @@
     ];
   };
 
-  outputs = inputs @ {
-    denix,
-    nixpkgs,
-    nixpkgs-stable,
-    ...
-  }: let
-    mkConfigurations = moduleSystem: let
-      homeManagerUser = "ne";
-      assetsPath = "${inputs.self}/assets";
-    in
-      denix.lib.configurations {
-        inherit moduleSystem homeManagerUser;
+  outputs =
+    inputs@{
+      denix,
+      nixpkgs,
+      nixpkgs-stable,
+      ...
+    }:
+    let
+      mkConfigurations =
+        moduleSystem:
+        let
+          homeManagerUser = "ne";
+          assetsPath = "${inputs.self}/assets";
+        in
+        denix.lib.configurations {
+          inherit moduleSystem homeManagerUser;
 
-        paths = [
-          ./hosts
-          ./modules
-          ./rices
-          ./overlays
-        ];
+          paths = [
+            ./hosts
+            ./modules
+            ./rices
+            ./overlays
+          ];
 
-        extensions = import ./extensions {delib = denix.lib;};
+          extensions = import ./extensions { delib = denix.lib; };
 
-        specialArgs = {
-          inherit
-            inputs
-            moduleSystem
-            homeManagerUser
-            assetsPath
-            ;
+          specialArgs = {
+            inherit
+              inputs
+              moduleSystem
+              homeManagerUser
+              assetsPath
+              ;
+          };
         };
-      };
-  in {
-    nixosConfigurations = mkConfigurations "nixos";
-    homeConfigurations = mkConfigurations "home";
-  };
+    in
+    {
+      nixosConfigurations = mkConfigurations "nixos";
+      homeConfigurations = mkConfigurations "home";
+    };
 }

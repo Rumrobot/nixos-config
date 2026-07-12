@@ -63,6 +63,7 @@ delib.host {
         cura.enable = true;
         prusa-slicer.enable = true;
         qidi-studio.enable = true;
+        elegoo-slicer.enable = true;
       };
     };
   };
