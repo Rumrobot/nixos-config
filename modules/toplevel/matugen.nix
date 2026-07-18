@@ -9,13 +9,14 @@ delib.module {
 
   # TODO: Fix matugen base16 color generation
 
-  options.matugen = with delib; {
-    enable = boolOption host.guiFeatured;
-    type = strOption "scheme-tonal-spot";
-    contrast = numberOption 0.0;
-    lightness = numberOption 0.0;
-    source_color_index = intOption 0;
-  };
+  options = with delib;
+    moduleOptions {
+      enable = boolOption host.guiFeatured;
+      type = strOption "scheme-tonal-spot";
+      contrast = numberOption 0.0;
+      lightness = numberOption 0.0;
+      source_color_index = intOption 0;
+    };
 
   home.always = {
     imports = [inputs.matugen.nixosModules.default];

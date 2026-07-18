@@ -6,14 +6,15 @@
 delib.module {
   name = "locale";
 
-  options.locale = with delib; {
-    enable = boolOption host.isDesktop;
+  options = with delib;
+    moduleOptions {
+      enable = boolOption host.isDesktop;
 
-    timeZone = strOption "Europe/Copenhagen";
+      timeZone = strOption "Europe/Copenhagen";
 
-    locale = strOption "en_US.UTF-8";
-    extraLocale = strOption "da_DK.UTF-8";
-  };
+      locale = strOption "en_US.UTF-8";
+      extraLocale = strOption "da_DK.UTF-8";
+    };
 
   nixos.ifEnabled = {cfg, ...}: {
     location.provider = "geoclue2";

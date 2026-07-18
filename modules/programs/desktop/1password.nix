@@ -13,13 +13,12 @@ delib.module {
 
   # TODO: Auto start minimized
 
-  options = {myconfig, ...}: {
-    programs.desktop._1password = with delib; {
+  options = with delib;
+    moduleOptions ({myconfig, ...}: {
       enable = boolOption host.guiFeatured;
       gitSigning = boolOption myconfig.programs.cli.git.enable;
       sshAgent = boolOption true;
-    };
-  };
+    });
 
   myconfig.ifEnabled = {
     helpers.binds.actions.passwordManager = delib.mkBindProvider "_1password" ["1password" "--quick-access"];

@@ -7,12 +7,11 @@
 delib.module {
   name = "programs.desktop.ghostty";
 
-  options = with delib; {
-    programs.desktop.ghostty = {
+  options = with delib;
+    moduleOptions {
       enable = boolOption host.guiFeatured;
       default = boolOption false;
     };
-  };
 
   nixos.ifEnabled = {cfg, ...}: {
     environment.sessionVariables = lib.optionalAttrs cfg.default {

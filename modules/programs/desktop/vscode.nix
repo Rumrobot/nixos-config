@@ -53,7 +53,7 @@ delib.module {
             wakatime.vscode-wakatime # TODO: WakaTime secret
           ]
           # --- Dev tools ---
-          ++ (lib.optionals myconfig.features.docker [
+          ++ (lib.optionals myconfig.features.docker.enable [
             ms-azuretools.vscode-containers
           ])
           # --- Languages ---

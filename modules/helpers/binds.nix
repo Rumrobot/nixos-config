@@ -7,7 +7,7 @@
 delib.module {
   name = "helpers.binds";
 
-  options.helpers.binds = with delib; let
+  options = with delib; let
     actionSubmodule = submodule {
       options = {
         bind = strOption "";
@@ -17,15 +17,16 @@ delib.module {
         providers = attrsOfOption anything {};
       };
     };
-  in {
-    enable = boolOption host.guiFeatured;
+  in
+    moduleOptions {
+      enable = boolOption host.guiFeatured;
 
-    keyboard = {
-      options = strOption "caps:escape";
+      keyboard = {
+        options = strOption "caps:escape";
+      };
+
+      actions = attrsOfOption actionSubmodule {};
     };
-
-    actions = attrsOfOption actionSubmodule {};
-  };
 
   myconfig.ifEnabled = let
     action = bind: description: {

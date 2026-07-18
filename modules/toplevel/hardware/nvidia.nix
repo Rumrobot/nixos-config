@@ -7,11 +7,12 @@
 delib.module {
   name = "hardware.nvidia";
 
-  options.hardware.nvidia = with delib; {
-    enable = boolOption false;
-    open = boolOption false;
-    legacy = boolOption false;
-  };
+  options = with delib;
+    moduleOptions {
+      enable = boolOption false;
+      open = boolOption false;
+      legacy = boolOption false;
+    };
 
   nixos.ifEnabled = {
     cfg,

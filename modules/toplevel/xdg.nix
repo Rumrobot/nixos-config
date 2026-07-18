@@ -7,14 +7,15 @@
 delib.module {
   name = "xdg";
 
-  options.xdg = with delib; {
-    enable = boolOption host.isDesktop;
-    mime = {
-      recommended = attrsOfOption (listOf str) {};
-      associations = attrsOfOption (listOf str) {};
-      removed = attrsOfOption (listOf str) {};
+  options = with delib;
+    moduleOptions {
+      enable = boolOption host.isDesktop;
+      mime = {
+        recommended = attrsOfOption (listOf str) {};
+        associations = attrsOfOption (listOf str) {};
+        removed = attrsOfOption (listOf str) {};
+      };
     };
-  };
 
   home.ifEnabled = {cfg, ...}: {
     xdg = {

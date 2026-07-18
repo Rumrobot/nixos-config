@@ -10,12 +10,11 @@
 delib.module {
   name = "programs.cli.zsh";
 
-  options = with delib; {
-    programs.cli.zsh = {
+  options = with delib;
+    moduleOptions {
       enable = boolOption host.cliFeatured;
       default = boolOption false;
     };
-  };
 
   nixos.ifEnabled = {cfg, ...}: {
     programs.zsh.enable = true;

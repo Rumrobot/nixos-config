@@ -7,8 +7,8 @@
 }: delib.module {
   name = "boot";
 
-  options = {cfg, ...}: {
-    boot = with delib; {
+  options = with delib;
+    moduleOptions ({cfg, ...}: {
       enable = boolOption true;
 
       loader = enumOption ["grub" "systemd-boot"] (
@@ -26,8 +26,7 @@
       # plymouth = {
       #   enable = boolOption host.isDesktop;
       # };
-    };
-  };
+    });
 
   nixos.ifEnabled = {cfg, ...}: {
     boot = {
