@@ -4,7 +4,7 @@ delib.module {
 
   options = {myconfig, ...}:
     with delib; {
-      gui.wayland.enable = boolOption (myconfig.gui.hyprland.enable or myconfig.gui.niri.enable);
+      gui.wayland.enable = boolOption (myconfig.gui.hyprland.enable || myconfig.gui.niri.enable);
     };
 
   home.ifEnabled = {

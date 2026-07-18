@@ -22,6 +22,8 @@ delib.module {
   in {
     programs.vscode = {
       enable = true;
+      # Needed for non-GNOME/KDE WM's
+      package = pkgs.vscode.override {commandLineArgs = "--password-store=gnome-libsecret";};
       profiles.default = {
         enableUpdateCheck = false;
 
