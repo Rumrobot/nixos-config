@@ -21,6 +21,7 @@ delib.module {
 
       nano
       screen
+      tmux
 
       fastfetch
       nvtopPackages.nvidia
