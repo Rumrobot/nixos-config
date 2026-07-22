@@ -13,5 +13,9 @@ delib.module {
       enable = true;
       enableZshIntegration = myconfig.programs.cli.zsh.enable;
     };
+
+    home.shellAliases = {
+      cd = "z";
+    };
   };
 }

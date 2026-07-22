@@ -30,10 +30,6 @@ delib.module {
 
       syntaxHighlighting.enable = true;
 
-      shellAliases = lib.optionalAttrs myconfig.programs.cli.zoxide.enable {
-        cd = "z";
-      };
-
       oh-my-zsh = {
         enable = true;
         plugins = lib.optionals myconfig.programs.cli.git.enable ["git"];
