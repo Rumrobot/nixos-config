@@ -69,54 +69,45 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
-      "https://vicinae.cachix.org"
-      "https://noctalia.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     ];
   };
 
-  outputs =
-    inputs@{
-      denix,
-      nixpkgs,
-      nixpkgs-stable,
-      ...
-    }:
-    let
-      mkConfigurations =
-        moduleSystem:
-        let
-          homeManagerUser = "ne";
-          assetsPath = "${inputs.self}/assets";
-        in
-        denix.lib.configurations {
-          inherit moduleSystem homeManagerUser;
-
-          paths = [
-            ./hosts
-            ./modules
-            ./rices
-            ./overlays
-          ];
-
-          extensions = import ./extensions { delib = denix.lib; };
-
-          specialArgs = {
-            inherit
-              inputs
-              moduleSystem
-              homeManagerUser
-              assetsPath
-              ;
-          };
-        };
+  outputs = inputs @ {
+    denix,
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  }: let
+    mkConfigurations = moduleSystem: let
+      homeManagerUser = "ne";
+      assetsPath = "${inputs.self}/assets";
     in
-    {
-      nixosConfigurations = mkConfigurations "nixos";
-      homeConfigurations = mkConfigurations "home";
-    };
+      denix.lib.configurations {
+        inherit moduleSystem homeManagerUser;
+
+        paths = [
+          ./hosts
+          ./modules
+          ./rices
+          ./overlays
+        ];
+
+        extensions = import ./extensions {delib = denix.lib;};
+
+        specialArgs = {
+          inherit
+            inputs
+            moduleSystem
+            homeManagerUser
+            assetsPath
+            ;
+        };
+      };
+  in {
+    nixosConfigurations = mkConfigurations "nixos";
+    homeConfigurations = mkConfigurations "home";
+  };
 }
