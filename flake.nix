@@ -106,8 +106,11 @@
             ;
         };
       };
+  in let
+    systems = nixpkgs.lib.systems.flakeExposed;
   in {
     nixosConfigurations = mkConfigurations "nixos";
     homeConfigurations = mkConfigurations "home";
+    formatter = nixpkgs.lib.genAttrs systems (system: nixpkgs.legacyPackages.${system}.alejandra);
   };
 }
