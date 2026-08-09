@@ -53,19 +53,42 @@ delib.module {
   };
 
   home.ifEnabled = {myconfig, ...}: {
-    stylix.base16Scheme = lib.mkIf myconfig.matugen.enable (let
-      themeJson =
-        builtins.fromJSON (builtins.readFile
-          "${homeconfig.programs.matugen.theme.files}/theme.json");
-      b = themeJson.base16;
-    in
-      {
-        scheme = "Matugen";
-        author = "Matugen";
-      }
-      // builtins.listToAttrs (map (n: {
-        name = "base0${lib.toUpper n}";
-        value = b."base0${n}".default.color;
-      }) ["0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f"]));
+    stylix.base16Scheme = lib.mkIf myconfig.matugen.enable (
+      let
+        themeJson = builtins.fromJSON (
+          builtins.readFile "${homeconfig.programs.matugen.theme.files}/theme.json"
+        );
+        b = themeJson.base16;
+      in
+        {
+          scheme = "Matugen";
+          author = "Matugen";
+        }
+        // builtins.listToAttrs (
+          map
+          (n: {
+            name = "base0${lib.toUpper n}";
+            value = b."base0${n}".default.color;
+          })
+          [
+            "0"
+            "1"
+            "2"
+            "3"
+            "4"
+            "5"
+            "6"
+            "7"
+            "8"
+            "9"
+            "a"
+            "b"
+            "c"
+            "d"
+            "e"
+            "f"
+          ]
+        )
+    );
   };
 }

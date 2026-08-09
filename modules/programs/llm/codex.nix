@@ -28,7 +28,10 @@ in
       programs.codex = {
         enable = true;
 
-        plugins = [superpowers ponytail];
+        plugins = [
+          superpowers
+          ponytail
+        ];
 
         settings.approvals_reviewer = "auto_review";
       };

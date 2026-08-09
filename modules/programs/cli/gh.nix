@@ -3,7 +3,8 @@
   host,
   pkgs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.cli.gh";
 
   options = delib.singleEnableOption host.cliFeatured;

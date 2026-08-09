@@ -2,7 +2,8 @@
   delib,
   pkgs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.cli.git";
 
   options = delib.singleEnableOption true;

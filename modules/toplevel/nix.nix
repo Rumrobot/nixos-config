@@ -10,14 +10,17 @@
         "nix-command"
         "flakes"
       ];
-      trusted-users = ["root" "@wheel"];
+      trusted-users = [
+        "root"
+        "@wheel"
+      ];
       warn-dirty = false;
     };
   };
 in
-delib.module {
-  name = "nix";
+  delib.module {
+    name = "nix";
 
-  nixos.always = shared;
-  home.always = shared;
-}
+    nixos.always = shared;
+    home.always = shared;
+  }

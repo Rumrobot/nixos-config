@@ -3,7 +3,8 @@
   homeconfig,
   host,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "programs.cli.nh";
 
   options = delib.singleEnableOption host.cliFeatured;

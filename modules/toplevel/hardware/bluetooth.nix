@@ -1,4 +1,8 @@
-{ delib, host, ... }:
+{
+  delib,
+  host,
+  ...
+}:
 delib.module {
   name = "hardware.bluetooth";
 

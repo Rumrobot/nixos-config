@@ -8,8 +8,14 @@ delib.module {
 
   myconfig.ifEnabled = let
     noctalia = cmd:
-      delib.mkDefaultBindProvider "noctalia"
-      (["noctalia-shell" "ipc" "call"] ++ (lib.splitString " " cmd));
+      delib.mkDefaultBindProvider "noctalia" (
+        [
+          "noctalia-shell"
+          "ipc"
+          "call"
+        ]
+        ++ (lib.splitString " " cmd)
+      );
   in {
     helpers.binds.actions = {
       # Core

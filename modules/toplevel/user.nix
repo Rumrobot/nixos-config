@@ -1,4 +1,8 @@
-{ delib, homeManagerUser, ... }:
+{
+  delib,
+  homeManagerUser,
+  ...
+}:
 delib.module {
   name = "user";
 
@@ -8,7 +12,7 @@ delib.module {
       users.${homeManagerUser} = {
         isNormalUser = true;
         initialPassword = homeManagerUser;
-        extraGroups = [ "wheel" ];
+        extraGroups = ["wheel"];
       };
     };
   };

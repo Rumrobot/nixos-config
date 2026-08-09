@@ -35,7 +35,10 @@ in
             order = config.security.pam.services.${svc}.rules.auth.fprintd.order - 10;
             control = "[success=ignore default=1]";
             modulePath = "${pkgs.pam}/lib/security/pam_exec.so";
-            args = ["quiet" "${lidCheck}"];
+            args = [
+              "quiet"
+              "${lidCheck}"
+            ];
           };
         };
       in {

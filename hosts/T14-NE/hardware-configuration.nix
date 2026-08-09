@@ -20,7 +20,12 @@ delib.host {
       (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-    boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "sd_mod"];
+    boot.initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "usb_storage"
+      "sd_mod"
+    ];
     boot.initrd.kernelModules = [];
     boot.kernelModules = ["kvm-amd"];
     boot.extraModulePackages = [];
@@ -33,7 +38,10 @@ delib.host {
     fileSystems."/boot" = {
       device = "/dev/disk/by-uuid/92C3-AF9C";
       fsType = "vfat";
-      options = ["fmask=0077" "dmask=0077"];
+      options = [
+        "fmask=0077"
+        "dmask=0077"
+      ];
     };
 
     swapDevices = [

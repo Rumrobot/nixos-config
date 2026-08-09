@@ -9,5 +9,8 @@ delib.module {
 
   options = delib.singleEnableOption host.guiFeatured;
 
-  home.ifEnabled.home.packages = with pkgs; [yaak httptoolkit];
+  home.ifEnabled.home.packages = with pkgs; [
+    yaak
+    httptoolkit
+  ];
 }

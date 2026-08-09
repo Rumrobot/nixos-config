@@ -11,7 +11,10 @@ delib.module {
   options = delib.singleEnableOption host.guiFeatured;
 
   myconfig.ifEnabled = {
-    helpers.binds.actions.launcher = delib.mkBindProvider "vicinae" ["vicinae" "toggle"];
+    helpers.binds.actions.launcher = delib.mkBindProvider "vicinae" [
+      "vicinae"
+      "toggle"
+    ];
   };
 
   home.ifEnabled = {myconfig, ...}: {

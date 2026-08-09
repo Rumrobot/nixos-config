@@ -40,19 +40,25 @@ delib.module {
       repeat = false;
     };
 
-    workspaceActions = builtins.listToAttrs (builtins.concatLists (builtins.genList (i: let
-        ws = i + 1;
-      in [
-        {
-          name = "workspace${toString ws}";
-          value = action "Mod+${toString ws}" "Focus workspace ${toString ws}";
-        }
-        {
-          name = "moveToWorkspace${toString ws}";
-          value = action "Mod+Shift+${toString ws}" "Move window to workspace ${toString ws}";
-        }
-      ])
-      9));
+    workspaceActions = builtins.listToAttrs (
+      builtins.concatLists (
+        builtins.genList (
+          i: let
+            ws = i + 1;
+          in [
+            {
+              name = "workspace${toString ws}";
+              value = action "Mod+${toString ws}" "Focus workspace ${toString ws}";
+            }
+            {
+              name = "moveToWorkspace${toString ws}";
+              value = action "Mod+Shift+${toString ws}" "Move window to workspace ${toString ws}";
+            }
+          ]
+        )
+        9
+      )
+    );
   in {
     helpers.binds.actions =
       workspaceActions

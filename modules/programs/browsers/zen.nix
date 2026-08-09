@@ -162,7 +162,10 @@ delib.module {
                   ];
                 }
               ];
-              definedAliases = ["p" "np"];
+              definedAliases = [
+                "p"
+                "np"
+              ];
             };
 
             "nix-options" = {
@@ -181,7 +184,10 @@ delib.module {
                   ];
                 }
               ];
-              definedAliases = ["o" "no"];
+              definedAliases = [
+                "o"
+                "no"
+              ];
             };
 
             "hm-options" = {
@@ -200,7 +206,10 @@ delib.module {
                   ];
                 }
               ];
-              definedAliases = ["hm" "hmo"];
+              definedAliases = [
+                "hm"
+                "hmo"
+              ];
             };
 
             "maps" = {

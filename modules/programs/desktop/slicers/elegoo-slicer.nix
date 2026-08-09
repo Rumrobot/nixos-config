@@ -3,25 +3,24 @@
   inputs,
   pkgs,
   ...
-}:
-let
+}: let
   elegoo-slicer = inputs.elegoo-slicer.packages.${pkgs.stdenv.hostPlatform.system}.default;
 in
-delib.module {
-  name = "programs.desktop.slicers.elegoo-slicer";
+  delib.module {
+    name = "programs.desktop.slicers.elegoo-slicer";
 
-  options = delib.singleEnableOption false;
+    options = delib.singleEnableOption false;
 
-  home.ifEnabled = { myconfig, ... }: {
-    home.packages = [
-      (
-        if myconfig.hardware.nvidia.enable then
-          elegoo-slicer.override {
-            withNvidiaGLWorkaround = true;
-          }
-        else
-          elegoo-slicer
-      )
-    ];
-  };
-}
+    home.ifEnabled = {myconfig, ...}: {
+      home.packages = [
+        (
+          if myconfig.hardware.nvidia.enable
+          then
+            elegoo-slicer.override {
+              withNvidiaGLWorkaround = true;
+            }
+          else elegoo-slicer
+        )
+      ];
+    };
+  }

@@ -14,14 +14,19 @@ delib.module {
   # TODO: Auto start minimized
 
   options = with delib;
-    moduleOptions ({myconfig, ...}: {
-      enable = boolOption host.guiFeatured;
-      gitSigning = boolOption myconfig.programs.cli.git.enable;
-      sshAgent = boolOption true;
-    });
+    moduleOptions (
+      {myconfig, ...}: {
+        enable = boolOption host.guiFeatured;
+        gitSigning = boolOption myconfig.programs.cli.git.enable;
+        sshAgent = boolOption true;
+      }
+    );
 
   myconfig.ifEnabled = {
-    helpers.binds.actions.passwordManager = delib.mkBindProvider "_1password" ["1password" "--quick-access"];
+    helpers.binds.actions.passwordManager = delib.mkBindProvider "_1password" [
+      "1password"
+      "--quick-access"
+    ];
   };
 
   home.ifEnabled = {
@@ -29,9 +34,7 @@ delib.module {
     cfg,
     ...
   }: let
-    shell-plugins =
-      []
-      ++ lib.optionals myconfig.programs.cli.gh.enable [pkgs.gh];
+    shell-plugins = [] ++ lib.optionals myconfig.programs.cli.gh.enable [pkgs.gh];
   in {
     imports = [inputs._1password-shell-plugins.hmModules.default];
 

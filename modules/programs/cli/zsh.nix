@@ -19,8 +19,7 @@ delib.module {
   nixos.ifEnabled = {cfg, ...}: {
     programs.zsh.enable = true;
 
-    users.users.${homeManagerUser}.shell =
-      lib.mkIf cfg.default pkgs.zsh;
+    users.users.${homeManagerUser}.shell = lib.mkIf cfg.default pkgs.zsh;
   };
 
   home.ifEnabled = {myconfig, ...}: {

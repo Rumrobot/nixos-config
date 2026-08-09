@@ -19,7 +19,11 @@ in
 
     home.ifEnabled = {
       home.packages = with pkgs;
-        [fvm jdk21 android-tools]
+        [
+          fvm
+          jdk21
+          android-tools
+        ]
         ++ lib.optional host.guiFeatured android-studio;
 
       home.shellAliases = {

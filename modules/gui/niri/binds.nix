@@ -7,8 +7,7 @@ delib.module {
   name = "gui.niri";
 
   myconfig.ifEnabled = let
-    niri = action: args:
-      delib.mkDefaultBindProvider "niri" {inherit action args;};
+    niri = action: args: delib.mkDefaultBindProvider "niri" {inherit action args;};
   in {
     helpers.binds.actions =
       {
@@ -48,19 +47,25 @@ delib.module {
         screenshotScreen = niri "screenshot-screen" [];
         screenshotWindow = niri "screenshot-window" [];
       }
-      // builtins.listToAttrs (builtins.concatLists (builtins.genList (i: let
-          ws = i + 1;
-        in [
-          {
-            name = "workspace${toString ws}";
-            value = niri "focus-workspace" ws;
-          }
-          {
-            name = "moveToWorkspace${toString ws}";
-            value = niri "move-column-to-workspace" ws;
-          }
-        ])
-        9));
+      // builtins.listToAttrs (
+        builtins.concatLists (
+          builtins.genList (
+            i: let
+              ws = i + 1;
+            in [
+              {
+                name = "workspace${toString ws}";
+                value = niri "focus-workspace" ws;
+              }
+              {
+                name = "moveToWorkspace${toString ws}";
+                value = niri "move-column-to-workspace" ws;
+              }
+            ]
+          )
+          9
+        )
+      );
   };
 
   home.ifEnabled = {myconfig, ...}: let
@@ -82,10 +87,12 @@ delib.module {
           if isCommand
           then {action.spawn = providerData;}
           else let
-            extraKeys = removeAttrs providerData ["action" "args"];
+            extraKeys = removeAttrs providerData [
+              "action"
+              "args"
+            ];
           in
-            {action.${providerData.action} = providerData.args;}
-            // extraKeys;
+            {action.${providerData.action} = providerData.args;} // extraKeys;
 
         repeatAttr =
           if !action.repeat

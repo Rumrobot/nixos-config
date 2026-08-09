@@ -10,7 +10,7 @@ delib.module {
   options = delib.singleEnableOption host.cliFeatured;
 
   home.ifEnabled = {
-    imports = [ inputs.nvf.homeManagerModules.default ];
+    imports = [inputs.nvf.homeManagerModules.default];
 
     programs.nvf = {
       enable = true;
@@ -47,7 +47,7 @@ delib.module {
 
             typescript = {
               enable = true;
-              format.type = [ "prettier" ];
+              format.type = ["prettier"];
             };
 
             rust.enable = true;

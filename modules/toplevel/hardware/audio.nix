@@ -4,7 +4,8 @@
   lib,
   pkgs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "hardware.audio";
 
   options = delib.singleEnableOption host.isDesktop;
@@ -13,10 +14,11 @@
     security.rtkit.enable = true;
     services.pulseaudio.enable = false;
 
-    environment.systemPackages =
-      lib.optionals host.guiFeatured (with pkgs; [
+    environment.systemPackages = lib.optionals host.guiFeatured (
+      with pkgs; [
         pavucontrol
-      ]);
+      ]
+    );
 
     services.pipewire = {
       enable = true;

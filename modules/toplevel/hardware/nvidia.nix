@@ -22,9 +22,7 @@ delib.module {
     hardware.graphics.enable = true;
     services.xserver.videoDrivers = ["nvidia"];
     hardware.nvidia = {
-      package =
-        lib.mkIf cfg.legacy
-        config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      package = lib.mkIf cfg.legacy config.boot.kernelPackages.nvidiaPackages.legacy_580;
 
       open = cfg.open && !cfg.legacy;
       modesetting = lib.mkIf myconfig.gui.wayland.enable {

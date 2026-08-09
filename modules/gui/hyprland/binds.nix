@@ -7,8 +7,7 @@ delib.module {
   name = "gui.hyprland";
 
   myconfig.ifEnabled = let
-    hypr = dispatcher: args:
-      delib.mkDefaultBindProvider "hyprland" {inherit dispatcher args;};
+    hypr = dispatcher: args: delib.mkDefaultBindProvider "hyprland" {inherit dispatcher args;};
   in {
     helpers.binds.actions =
       {
@@ -44,19 +43,25 @@ delib.module {
         center = hypr "centerwindow" "";
         toggleFloating = hypr "togglefloating" "";
       }
-      // builtins.listToAttrs (builtins.concatLists (builtins.genList (i: let
-          ws = i + 1;
-        in [
-          {
-            name = "workspace${toString ws}";
-            value = hypr "workspace" (toString ws);
-          }
-          {
-            name = "moveToWorkspace${toString ws}";
-            value = hypr "movetoworkspace" (toString ws);
-          }
-        ])
-        9));
+      // builtins.listToAttrs (
+        builtins.concatLists (
+          builtins.genList (
+            i: let
+              ws = i + 1;
+            in [
+              {
+                name = "workspace${toString ws}";
+                value = hypr "workspace" (toString ws);
+              }
+              {
+                name = "moveToWorkspace${toString ws}";
+                value = hypr "movetoworkspace" (toString ws);
+              }
+            ]
+          )
+          9
+        )
+      );
   };
 
   home.ifEnabled = {myconfig, ...}: let
@@ -108,12 +113,18 @@ delib.module {
     cycleParsed = parseHyprlandBind cycleAction.bind;
     cycleBinds =
       if hasCycle && builtins.isList cycleData
-      then map (entry: "${cycleParsed.mods}, ${cycleParsed.key}, ${entry.dispatcher}, ${entry.args or ""}") cycleData
+      then
+        map (
+          entry: "${cycleParsed.mods}, ${cycleParsed.key}, ${entry.dispatcher}, ${entry.args or ""}"
+        )
+        cycleData
       else [];
 
     # Other actions
     otherActions = removeAttrs actions ["cycleWindows"];
-    otherBinds = builtins.filter (v: v != null) (builtins.attrValues (builtins.mapAttrs mkHyprlandBind otherActions));
+    otherBinds = builtins.filter (v: v != null) (
+      builtins.attrValues (builtins.mapAttrs mkHyprlandBind otherActions)
+    );
   in {
     wayland.windowManager.hyprland.settings.input.kb_options = myconfig.helpers.binds.keyboard.options;
     wayland.windowManager.hyprland.settings.bind = otherBinds ++ cycleBinds;

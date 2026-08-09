@@ -4,29 +4,32 @@
   host,
   pkgs,
   ...
-}: delib.module {
+}:
+delib.module {
   name = "boot";
 
   options = with delib;
-    moduleOptions ({cfg, ...}: {
-      enable = boolOption true;
+    moduleOptions (
+      {cfg, ...}: {
+        enable = boolOption true;
 
-      loader = enumOption ["grub" "systemd-boot"] (
-        if cfg.mode == "uefi"
-        then "systemd-boot"
-        else "grub"
-      );
-      mode = enumOption ["uefi" "legacy"] (
-        if builtins.pathExists /sys/firmware/efi/efivars
-        then "uefi"
-        else "legacy"
-      );
-      device = strOption "nodev";
+        loader = enumOption ["grub" "systemd-boot"] (
+          if cfg.mode == "uefi"
+          then "systemd-boot"
+          else "grub"
+        );
+        mode = enumOption ["uefi" "legacy"] (
+          if builtins.pathExists /sys/firmware/efi/efivars
+          then "uefi"
+          else "legacy"
+        );
+        device = strOption "nodev";
 
-      # plymouth = {
-      #   enable = boolOption host.isDesktop;
-      # };
-    });
+        # plymouth = {
+        #   enable = boolOption host.isDesktop;
+        # };
+      }
+    );
 
   nixos.ifEnabled = {cfg, ...}: {
     boot = {

@@ -9,5 +9,9 @@ delib.module {
 
   options = delib.singleEnableOption host.guiFeatured;
 
-  home.ifEnabled.home.packages = with pkgs; [mqtt-explorer mqttx mqttx-cli];
+  home.ifEnabled.home.packages = with pkgs; [
+    mqtt-explorer
+    mqttx
+    mqttx-cli
+  ];
 }
