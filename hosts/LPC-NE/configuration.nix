@@ -49,6 +49,7 @@ delib.host {
       desktop = {
         wootility.enable = true;
         coolercontrol.enable = true;
+        plezy.enable = true;
       };
       development.godot.enable = true;
     };
