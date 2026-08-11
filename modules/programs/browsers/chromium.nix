@@ -10,5 +10,9 @@ delib.module {
   options = delib.singleEnableOption host.guiFeatured;
 
   # TODO: Enable programs.chromium in NixOS to support stylix
-  home.ifEnabled.home.packages = [pkgs.ungoogled-chromium];
+  home.ifEnabled.home.packages = [
+    (pkgs.ungoogled-chromium.override {
+      commandLineArgs = "--enable-features=WebBluetooth";
+    })
+  ];
 }
