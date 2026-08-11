@@ -1,6 +1,7 @@
 {
   delib,
   host,
+  lib,
   pkgs,
   ...
 }: let
@@ -18,6 +19,16 @@
     rev = "45f7d2f83fb430a65fd512a98ad7b14d79e06636";
     hash = "sha256-BAwav7tf6RuHZ/A7TF/1k1TXWhYAdshlsYB3LbdgUD8=";
   };
+  settings = {
+    approvals_reviewer = "auto_review";
+
+    features.plugins = true;
+
+    plugins = {
+      "ponytail@home-manager".enabled = true;
+      "superpowers@home-manager".enabled = true;
+    };
+  };
 in
   delib.module {
     name = "programs.llm.codex";
@@ -32,8 +43,15 @@ in
           superpowers
           ponytail
         ];
-
-        settings.approvals_reviewer = "auto_review";
       };
+
+      home.file.".codex/config.toml".enable = lib.mkForce false;
+    };
+
+    nixos.ifEnabled = {
+      # https://github.com/nix-community/home-manager/issues/9397
+      # https://github.com/openai/codex/issues/14601
+      environment.etc."codex/config.toml".source =
+        (pkgs.formats.toml {}).generate "codex-config.toml" settings;
     };
   }
