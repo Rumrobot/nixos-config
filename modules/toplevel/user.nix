@@ -12,7 +12,7 @@ delib.module {
       users.${homeManagerUser} = {
         isNormalUser = true;
         initialPassword = homeManagerUser;
-        extraGroups = ["wheel"];
+        extraGroups = ["wheel" "dialout"];
       };
     };
   };
