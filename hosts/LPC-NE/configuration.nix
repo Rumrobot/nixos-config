@@ -50,6 +50,7 @@ delib.host {
         wootility.enable = true;
         coolercontrol.enable = true;
         plezy.enable = true;
+        slicers.bambu-studio.enable = true;
       };
       development.godot.enable = true;
     };
