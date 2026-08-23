@@ -3,6 +3,7 @@
   host,
   homeconfig,
   pkgs,
+  lib,
   ...
 }:
 delib.module {
@@ -10,14 +11,23 @@ delib.module {
 
   options = delib.singleEnableOption host.guiFeatured;
 
-  nixos.ifEnabled = {
-    environment.systemPackages = [pkgs.nautilus];
+  myconfig.ifEnabled = {
+    overlays.nautilus-gstreamer.enable = true;
+    services.udiskie.enable = true;
+  };
+
+  nixos.ifEnabled = {myconfig, ...}: {
+    # libheif + share/thumbnailers is needed for HEIC image previews
+    environment.systemPackages = with pkgs; [nautilus libheif libheif.out];
+    environment.pathsToLink = ["share/thumbnailers"];
 
     # Portal for the GTK file picker (fixes file dialogs on Hyprland/Wayland)
-    xdg.portal = {
+    xdg.portal = lib.mkIf myconfig.gui.wayland.enable {
       enable = true;
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
     };
+
+    services.gvfs.enable = true;
   };
 
   home.ifEnabled = let
