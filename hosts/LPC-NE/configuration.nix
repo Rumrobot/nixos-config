@@ -36,6 +36,7 @@ delib.host {
     hardware.nvidia = {
       enable = true;
     };
+    hardware.logitech-g502.enable = true;
     features = {
       podman.enable = true;
     };
