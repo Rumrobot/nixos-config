@@ -19,6 +19,18 @@ delib.module {
       version = "1.16.3";
       sha256 = "17p8x2pwvh126b3vhrfsx3za98alvb8kf7njjp9wg0hvfa4cy9qy";
     };
+    playwrightExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+      name = "playwright";
+      publisher = "ms-playwright";
+      version = "1.1.19";
+      sha256 = "1xppas4qla2bsppb89ks4mnrby2g3gra4irabnimkcmaz4m3wr9p";
+    };
+    twigExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+      name = "twig-language-2";
+      publisher = "mblode";
+      version = "0.10.0";
+      sha256 = "1ndaspy9391pnxxi0cgwamr9j41h3qyinp83n8wrm1r686xcqp8b";
+    };
   in {
     programs.vscode = {
       enable = true;
@@ -51,10 +63,17 @@ delib.module {
             ms-vsliveshare.vsliveshare
 
             wakatime.vscode-wakatime # TODO: WakaTime secret
+
+            editorconfig.editorconfig
+            playwrightExtension
+
+            # SP
+            twigExtension
           ]
           # --- Dev tools ---
-          ++ (lib.optionals myconfig.features.docker.enable [
+          ++ (lib.optionals (myconfig.features.docker.enable || myconfig.features.podman.enable) [
             ms-azuretools.vscode-containers
+            ms-vscode-remote.remote-containers
           ])
           # --- Languages ---
           ++ (lib.optionals dev.python.enable [
