@@ -61,6 +61,7 @@
     nvf.url = "github:notashelf/nvf";
 
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
+    flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
 
     # Local project
     # wallpaper-daemon.url = "path:/home/ne/Github/wallpaper-daemon";
