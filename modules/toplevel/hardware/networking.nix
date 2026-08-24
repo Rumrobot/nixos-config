@@ -2,13 +2,19 @@
   delib,
   host,
   homeManagerUser,
+  lib,
   pkgs,
   ...
 }:
 delib.module {
   name = "hardware.networking";
 
-  nixos.always = {
+  options = with delib;
+    moduleOptions {
+      ssdp = boolOption false;
+    };
+
+  nixos.always = {cfg, ...}: {
     networking = {
       hostName = host.name;
       networkmanager.enable = true;
@@ -16,14 +22,10 @@ delib.module {
       firewall = {
         enable = true;
 
-        allowedUDPPorts = [
-          2021 # Bambu Lab SSDP discovery
-          5353 # mDNS (Avahi)
-        ];
+        checkReversePath = "loose";
 
-        # Multicast SSDP UDP
-        extraPackages = [pkgs.ipset];
-        extraCommands = ''
+        extraPackages = lib.optionals cfg.ssdp [pkgs.ipset];
+        extraCommands = lib.optionalString cfg.ssdp ''
           if ! ipset --quiet list upnp; then
             ipset create upnp hash:ip,port timeout 3
           fi
