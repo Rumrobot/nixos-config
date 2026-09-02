@@ -3,7 +3,8 @@
   pkgs,
   ...
 }: let
-  jdkWithFX = pkgs.openjdk.override {
+  # openjdk or zulu
+  jdkWithFX = pkgs.zulu.override {
     enableJavaFX = true; # for JavaFX
     # include following line if JavaFX with Webkit is needed
     # openjfx_jdk = pkgs.openjfx.override { withWebKit = true; };
