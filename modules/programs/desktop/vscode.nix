@@ -13,6 +13,13 @@ delib.module {
   home.ifEnabled = {myconfig, ...}: let
     llm = myconfig.programs.llm;
     dev = myconfig.programs.development;
+    javaJdk = pkgs.zulu25.override {enableJavaFX = true;};
+    javaDebuggerExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+      name = "vscode-java-debug";
+      publisher = "vscjava";
+      version = "0.58.1";
+      sha256 = "sha256-S+kNAaYBjVxAuYlMbpQUM9DyTW76yRvokTzl+32pUgc=";
+    };
     sftpExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
       name = "sftp";
       publisher = "Natizyskunk";
@@ -30,12 +37,6 @@ delib.module {
       publisher = "mblode";
       version = "0.10.0";
       sha256 = "1ndaspy9391pnxxi0cgwamr9j41h3qyinp83n8wrm1r686xcqp8b";
-    };
-    extensionsForJava = pkgs.vscode-utils.extensionFromVscodeMarketplace {
-      name = "vscode-java-pack";
-      publisher = "vscjava";
-      version = "0.31.1";
-      sha256 = "0nhm569grfi4z9cz0iihffqgjnz45bnnbanwn3njlhzfdqpyryj9";
     };
   in {
     programs.vscode = {
@@ -98,36 +99,52 @@ delib.module {
             dart-code.flutter
           ])
           ++ (lib.optionals dev.java.enable [
-            extensionsForJava
+            vscjava.vscode-java-pack
+            # Extension pack members must be installed explicitly.
+            redhat.java
+            redhat.vscode-xml
+            javaDebuggerExtension
+            vscjava.vscode-java-test
+            vscjava.vscode-java-dependency
+            vscjava.vscode-gradle
           ])
           # --- LLM ---
           ++ (lib.optionals llm.claude-code.enable [
             anthropic.claude-code
           ]);
 
-        userSettings = with lib; {
-          "keyboard.dispatch" = "keyCode";
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        userSettings = with lib;
+          {
+            "keyboard.dispatch" = "keyCode";
+            "editor.defaultFormatter" = "esbenp.prettier-vscode";
 
-          "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "nil";
-          "nix.serverSettings" = {
-            "nil" = {
-              "formatting" = {
-                "command" = ["nixfmt"];
+            "nix.enableLanguageServer" = true;
+            "nix.serverPath" = "nil";
+            "nix.serverSettings" = {
+              "nil" = {
+                "formatting" = {
+                  "command" = ["nixfmt"];
+                };
               };
             };
-          };
-          "[nix]" = {
-            "editor.defaultFormatter" = "jnoortheen.nix-ide";
-          };
+            "[nix]" = {
+              "editor.defaultFormatter" = "jnoortheen.nix-ide";
+            };
 
-          "[python]" = mkIf dev.python.enable {
-            "editor.defaultFormatter" = "charliermarsh.ruff";
-          };
+            "[python]" = mkIf dev.python.enable {
+              "editor.defaultFormatter" = "charliermarsh.ruff";
+            };
 
-          "claudeCode.claudeProcessWrapper" = mkIf llm.claude-code.enable "${pkgs.claude-code}/bin/claude";
-        };
+            "claudeCode.claudeProcessWrapper" = mkIf llm.claude-code.enable "${pkgs.claude-code}/bin/claude";
+          }
+          // optionalAttrs dev.java.enable {
+            "[java]" = {
+              "editor.defaultFormatter" = "redhat.java";
+            };
+
+            "java.jdt.ls.java.home" = "${javaJdk}";
+            "redhat.telemetry.enabled" = false;
+          };
       };
     };
   };
