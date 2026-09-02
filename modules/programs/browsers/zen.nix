@@ -132,7 +132,7 @@ delib.module {
         ];
 
         # Keyboard shortcuts
-        keyboardShortcutsVersion = 19; # Pin to detect regressions on zen updates
+        keyboardShortcutsVersion = 20; # Pin to detect regressions on zen updates
         keyboardShortcuts = [
           {
             id = "key_quitApplication";
