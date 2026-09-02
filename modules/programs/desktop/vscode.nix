@@ -13,6 +13,7 @@ delib.module {
   home.ifEnabled = {myconfig, ...}: let
     llm = myconfig.programs.llm;
     dev = myconfig.programs.development;
+    latex = myconfig.programs.latex;
     javaJdk = pkgs.zulu25.override {enableJavaFX = true;};
     javaDebuggerExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
       name = "vscode-java-debug";
@@ -108,6 +109,9 @@ delib.module {
             vscjava.vscode-java-dependency
             vscjava.vscode-gradle
           ])
+          ++ (lib.optionals latex.enable [
+            james-yu.latex-workshop
+          ])
           # --- LLM ---
           ++ (lib.optionals llm.claude-code.enable [
             anthropic.claude-code
@@ -136,6 +140,34 @@ delib.module {
             };
 
             "claudeCode.claudeProcessWrapper" = mkIf llm.claude-code.enable "${pkgs.claude-code}/bin/claude";
+          }
+          // optionalAttrs latex.enable {
+            "[latex]" = {
+              "editor.defaultFormatter" = "James-Yu.latex-workshop";
+            };
+
+            "latex-workshop.formatting.latex" = "tex-fmt";
+            "latex-workshop.formatting.tex-fmt.path" = "${pkgs.tex-fmt}/bin/tex-fmt";
+            "latex-workshop.latex.recipes" = [
+              {
+                name = "tectonic";
+                tools = ["tectonic"];
+              }
+            ];
+            "latex-workshop.latex.tools" = [
+              {
+                name = "tectonic";
+                command = "${pkgs.tectonic}/bin/tectonic";
+                args = [
+                  "--synctex"
+                  "--keep-logs"
+                  "--print"
+                  "%DOC%.tex"
+                ];
+                env = {};
+              }
+            ];
+            "latex-workshop.latex.clean.method" = "glob";
           }
           // optionalAttrs dev.java.enable {
             "[java]" = {
