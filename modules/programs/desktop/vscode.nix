@@ -31,6 +31,12 @@ delib.module {
       version = "0.10.0";
       sha256 = "1ndaspy9391pnxxi0cgwamr9j41h3qyinp83n8wrm1r686xcqp8b";
     };
+    extensionsForJava = pkgs.vscode-utils.extensionFromVscodeMarketplace {
+      name = "vscode-java-pack";
+      publisher = "vscjava";
+      version = "0.31.1";
+      sha256 = "0nhm569grfi4z9cz0iihffqgjnz45bnnbanwn3njlhzfdqpyryj9";
+    };
   in {
     programs.vscode = {
       enable = true;
@@ -90,6 +96,9 @@ delib.module {
           ++ (lib.optionals dev.android.enable [
             dart-code.dart-code
             dart-code.flutter
+          ])
+          ++ (lib.optionals dev.java.enable [
+            extensionsForJava
           ])
           # --- LLM ---
           ++ (lib.optionals llm.claude-code.enable [

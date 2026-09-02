@@ -56,6 +56,7 @@ delib.host {
           default = true;
         };
       };
+      development.java.enable = true;
       desktop.slicers = {
         anycubic-slicernext.enable = true;
         bambu-studio.enable = true;
