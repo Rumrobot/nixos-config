@@ -116,6 +116,8 @@ delib.module {
           ${builtins.readFile "${inputs.betterfox}/Securefox.js"}
           ${builtins.readFile "${inputs.betterfox}/Peskyfox.js"}
 
+          user_pref("permissions.default.geo", 0);
+
           // Keep Firefox Sync enabled (Betterfox disables it by default)
           user_pref("identity.fxaccounts.enabled", true);
         '';
