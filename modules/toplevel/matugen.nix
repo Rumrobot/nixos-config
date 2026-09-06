@@ -1,7 +1,6 @@
 {
   delib,
   inputs,
-  host,
   ...
 }:
 delib.module {
@@ -11,7 +10,7 @@ delib.module {
 
   options = with delib;
     moduleOptions {
-      enable = boolOption host.guiFeatured;
+      enable = boolOption false;
       type = strOption "scheme-tonal-spot";
       contrast = numberOption 0.0;
       lightness = numberOption 0.0;
