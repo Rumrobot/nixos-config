@@ -32,7 +32,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    niri-flake.url = "github:sodiboo/niri-flake";
+    niri-flake.url = "github:epireyn/niri-flake";
 
     noctalia = {
       url = "github:noctalia-dev/noctalia";
