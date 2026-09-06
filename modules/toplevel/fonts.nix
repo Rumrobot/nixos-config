@@ -20,11 +20,13 @@ delib.module {
       };
     };
 
-    environment.systemPackages = [
-      myconfig.rice.fonts.monospace.package
+    fonts.packages = [
+      myconfig.rice.fonts.serif.package
       myconfig.rice.fonts.sans.package
+      myconfig.rice.fonts.monospace.package
       myconfig.rice.fonts.emoji.package
-      myconfig.rice.cursor.package
     ];
+
+    environment.systemPackages = [myconfig.rice.cursor.package];
   };
 }
