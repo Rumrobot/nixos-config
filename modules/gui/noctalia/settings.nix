@@ -19,15 +19,31 @@ delib.module {
           "bluetooth"
           "volume"
           "spacer-large"
-          "media"
-          "audio_visualizer"
+          "group:g1"
+        ];
+        capsule_group = [
+          {
+            accordion = false;
+            accordion_direction = "end";
+            border = "";
+            enabled = true;
+            fill = "surface_variant";
+            id = "g1";
+            members = [
+              "media"
+              "audio_visualizer"
+            ];
+            opacity = 0.0;
+            padding = 0.0;
+            widget_spacing = 2;
+          }
         ];
         center =
-          [
+          lib.optional myconfig.services.kdeconnect.enable "icefish/phone-connect:bar"
+          ++ [
             "workspaces"
             "alexander/screen-toolkit:widget"
-          ]
-          ++ lib.optional myconfig.services.kdeconnect.enable "icefish/phone-connect:bar";
+          ];
         end = [
           "tray"
           "notifications"
