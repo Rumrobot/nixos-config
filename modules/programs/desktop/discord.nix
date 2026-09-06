@@ -11,6 +11,7 @@ delib.module {
   home.ifEnabled = {
     programs.vesktop = {
       enable = true;
+      settings.customTitleBar = true;
 
       vencord.settings = {
         autoUpdate = true;
