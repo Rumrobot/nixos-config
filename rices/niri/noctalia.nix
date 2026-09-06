@@ -1,4 +1,8 @@
-{delib, ...}:
+{
+  delib,
+  lib,
+  ...
+}:
 delib.rice {
   name = "niri";
 
@@ -8,7 +12,21 @@ delib.rice {
     gui.noctalia.enable = true;
   };
 
-  home = {
+  home = {myconfig, ...}: let
+    optionalGui = name: lib.optionals myconfig.gui.${name}.enable [name];
+    optionalDesktop = name: lib.optionals myconfig.programs.desktop.${name}.enable [name];
+    optionalBrowser = moduleName: templateName: lib.optionals myconfig.programs.browsers.${moduleName}.enable [templateName];
+    optionalGaming = name: lib.optionals myconfig.programs.gaming.${name}.enable [name];
+    optionalCli = name: lib.optionals myconfig.programs.cli.${name}.enable [name];
+    optionalLlm = name: lib.optionals myconfig.programs.llm.${name}.enable [name];
+  in {
+    programs.ghostty.settings = lib.mkIf myconfig.programs.desktop.ghostty.enable {
+      background-opacity = 0.75;
+      theme = "noctalia";
+    };
+    programs.vesktop.vencord.settings.enabledThemes =
+      lib.mkIf myconfig.programs.desktop.discord.enable ["noctalia.theme.css"];
+
     # Noctalia theming
     programs.noctalia.settings = {
       # General theming
@@ -25,7 +43,7 @@ delib.rice {
 
       # Bar theming
       bar.main = {
-        background_opacity = 0.5;
+        background_opacity = 0.6;
         border = "secondary";
         capsule_thickness = 0.8;
         icon_color = "primary";
@@ -52,14 +70,54 @@ delib.rice {
       };
       lockscreen.blurred_desktop = true;
       notification = {
-        border = false;
+        border = true;
+        background_opacity = 0.6;
       };
       osd = {
-        border = false;
+        border = true;
+        background_opacity = 0.6;
       };
-      theme.templates = {
-        enable_builtin_templates = false;
-        enable_community_templates = false;
+      theme = {
+        source = "wallpaper";
+        wallpaper_scheme = "m3-tonal-spot";
+
+        templates = {
+          enable_builtin_templates = true;
+          enable_community_templates = true;
+
+          builtin_ids =
+            [
+              "btop"
+              "gtk3"
+              "gtk4"
+              "qt"
+              # "starship" # TODO: add starship module
+            ]
+            ++ optionalGui "hyprland"
+            ++ optionalGui "niri"
+            ++ optionalDesktop "ghostty";
+          community_ids =
+            [
+              "fastfetch"
+              "hyprtoolkit"
+              "tmux"
+              "blender"
+              # "darktable"
+              # "prismlauncher"
+            ]
+            ++ optionalBrowser "zen" "zen-browser"
+            ++ optionalBrowser "chromium" "ungoogled-chromium"
+            ++ optionalDesktop "vicinae"
+            ++ optionalDesktop "discord"
+            ++ optionalDesktop "obsidian"
+            ++ optionalDesktop "vscode"
+            ++ optionalDesktop "gimp"
+            ++ optionalGaming "steam"
+            ++ optionalCli "neovim"
+            ++ optionalLlm "opencode"
+            ++ optionalLlm "claude-code"
+            ++ optionalLlm "codex";
+        };
       };
 
       wallpaper = {
@@ -69,7 +127,14 @@ delib.rice {
 
       # Widget theming
       widget = {
-        audio_visualizer.mirrored = false;
+        audio_visualizer = {
+          bands = 32;
+          centered = false;
+          color_2 = "error";
+          show_when_idle = true;
+          width = 100;
+        };
+        media.art_size = 24;
         battery = {
           display_mode = "graphic";
           show_label = false;
@@ -80,12 +145,20 @@ delib.rice {
           glyph = "NixOS";
           scale = 1.35;
         };
-        cpu.show_value = false;
-        ram.show_value = false;
+        cpu = {
+          show_value = false;
+          visualization = "gauge";
+        };
+        ram = {
+          show_value = false;
+          visualization = "gauge";
+        };
+        spacer-large.length = 20;
         workspaces = {
           active_pill_size = 1.9;
           anchor = true;
           capsule_opacity = 0.4;
+          font_weight = 500;
           pill_scale = 0.8;
         };
       };
@@ -96,6 +169,19 @@ delib.rice {
         {
           matches = [{namespace = "^noctalia-wallpaper*";}];
           place-within-backdrop = true;
+        }
+        {
+          matches = [
+            {namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$";}
+          ];
+          background-effect.xray = false;
+        }
+        {
+          matches = [{namespace = "noctalia-window-switcher";}];
+          background-effect = {
+            blur = true;
+            xray = false;
+          };
         }
       ];
 
