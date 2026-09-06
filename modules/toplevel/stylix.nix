@@ -52,6 +52,8 @@ delib.module {
     };
   };
 
+  home.always.imports = [inputs.stylix.homeModules.stylix];
+
   home.ifEnabled = {myconfig, ...}: {
     stylix.base16Scheme = lib.mkIf myconfig.matugen.enable (
       let

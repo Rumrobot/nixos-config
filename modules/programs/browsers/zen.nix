@@ -89,7 +89,7 @@ delib.module {
         };
       };
 
-      profiles.${homeManagerUser} = rec {
+      profiles.${homeManagerUser} = {
         id = 0;
         isDefault = true;
 
@@ -287,7 +287,8 @@ delib.module {
       associations.added = associations;
       defaultApplications = associations;
     };
-
-    stylix.targets.zen-browser.profileNames = [homeManagerUser];
+    stylix = lib.mkIf myconfig.stylix.enable {
+      targets.zen-browser.profileNames = [homeManagerUser];
+    };
   };
 }
