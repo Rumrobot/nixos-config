@@ -35,8 +35,7 @@
     niri-flake.url = "github:sodiboo/niri-flake";
 
     noctalia = {
-      # TODO: migrate Noctalia config to v5
-      url = "github:noctalia-dev/noctalia-shell/b16dc50250af05d5048ac454dbf4e898d1adcac0";
+      url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -1,234 +1,155 @@
 {
   delib,
   assetsPath,
+  lib,
+  pkgs,
   ...
 }:
 delib.module {
   name = "gui.noctalia";
 
   home.ifEnabled = {myconfig, ...}: {
-    programs.noctalia-shell.settings = {
+    programs.noctalia.settings = {
       # Bar
-      bar = {
-        barType = "floating";
-        # backgroundOpacity = 0;
-        useSeparateOpacity = true;
-
-        widgets = {
-          left = [
-            {
-              id = "ControlCenter";
-              useDistroLogo = true;
-              icon = "noctalia";
-            }
-            {
-              id = "Spacer";
-              width = 2;
-            }
-            {
-              id = "Network";
-              displayMode = "onhover";
-            }
-            {
-              id = "Bluetooth";
-              displayMode = "onhover";
-            }
-            {
-              id = "Volume";
-              displayMode = "onhover";
-            }
-            {
-              id = "Spacer";
-              width = 10;
-            }
-            {
-              id = "MediaMini";
-              compactMode = true;
-              scrollingMode = "hover";
-              showArtistFirst = true;
-              maxWidth = 175;
-              hideMode = "transparent";
-              panelShowAlbumArt = true;
-              showAlbumArt = true;
-              showProgressRing = true;
-              showVisualizer = true;
-            }
-          ];
-          center = [
-            {
-              id = "plugin:kde-connect";
-            }
-            {
-              id = "Workspace";
-              hideUnoccupied = false;
-              showApplications = true;
-              showApplicationsHover = true;
-              showBadge = true;
-              showLabelsOnlyWhenOccupied = true;
-              characterCount = 2;
-              labelMode = "index";
-              fontWeight = "bold";
-              pillSize = 0.6;
-              iconScale = 0.8;
-              groupedBorderOpacity = 0.7;
-            }
-            {
-              id = "plugin:screen-toolkit";
-            }
-          ];
-          right = [
-            {
-              id = "Tray";
-              blacklist = ["udiskie"];
-              drawerEnabled = true;
-            }
-            {
-              id = "NotificationHistory";
-              showUnreadBadge = true;
-            }
-            {
-              id = "SystemMonitor";
-              compactMode = true;
-              useMonospaceFont = true;
-              showCpuUsage = true;
-              showMemoryUsage = true;
-              showCpuTemp = false;
-            }
-            {
-              id = "Battery";
-              displayMode = "graphic";
-              hideIfNotDetected = true;
-              showNoctaliaPerformance = true;
-              showPowerProfiles = true;
-            }
-            {
-              id = "Clock";
-              formatHorizontal = "HH:mm";
-              formatVertical = "HH mm";
-              tooltipFormat = "HH:mm - ddd, dd MMM";
-            }
-          ];
-        };
+      bar.main = {
+        margin_edge = 10;
+        start = [
+          "control-center"
+          "network"
+          "bluetooth"
+          "volume"
+          "spacer-large"
+          "media"
+          "audio_visualizer"
+        ];
+        center =
+          [
+            "workspaces"
+            "alexander/screen-toolkit:widget"
+          ]
+          ++ lib.optional myconfig.services.kdeconnect.enable "icefish/phone-connect:bar";
+        end = [
+          "tray"
+          "notifications"
+          "cpu"
+          "ram"
+          "battery"
+          "clock"
+        ];
       };
 
       # General
-      general = {
-        avatarImage = "${assetsPath}/icon.png";
-        autoStartAuth = myconfig.hardware.fingerprint.enable;
-        allowPasswordWithFprintd = myconfig.hardware.fingerprint.enable;
-        lockScreenAnimations = true;
+      shell = {
+        avatar_path = "${assetsPath}/icon.png";
+        clipboard_enabled = false;
+        screen_time_enabled = true;
+        screen_corners.enabled = true;
+        screenshot.remember_last_region = true;
       };
-
-      # UI
-      ui = {
-        scrollbarAlwaysVisible = false;
+      lockscreen = {
+        fingerprint = myconfig.hardware.fingerprint.enable;
       };
 
       # Location
-      location = {
-        showWeekNumberInCalendar = true;
-      };
+      control_center.calendar.show_week_numbers = true;
+      location.auto_locate = true;
 
       # Wallpaper
-      wallpaper = {
-        directory = "${assetsPath}/wallpapers";
-        transitionType = [
-          "pixelate"
-          "honeycomb"
-        ];
-      };
+      wallpaper.directory = "${assetsPath}/wallpapers";
 
       # Control Center
-      controlCenter = {
-        shortcuts = {
-          left = [
-            {id = "Network";}
-            {id = "Bluetooth";}
-            {id = "AirplaneMode";}
-            {id = "PowerProfile";}
-          ];
-          right = [
-            {id = "Notifications";}
-            {id = "KeepAwake";}
-            {id = "NightLight";}
-            {id = "WallpaperSelector";}
-          ];
-        };
-        cards = [
-          {
-            enabled = true;
-            id = "profile-card";
-          }
-          {
-            enabled = true;
-            id = "shortcuts-card";
-          }
-          {
-            enabled = true;
-            id = "audio-card";
-          }
-          {
-            enabled = true;
-            id = "brightness-card";
-          }
-          {
-            enabled = true;
-            id = "weather-card";
-          }
-          {
-            enabled = true;
-            id = "media-sysmon-card";
-          }
-        ];
+      control_center = {
+        shortcuts =
+          [
+            {type = "wifi";}
+            {type = "bluetooth";}
+            {type = "power_profile";}
+            {type = "notification";}
+            {type = "nightlight";}
+          ]
+          ++ lib.optional myconfig.services.kdeconnect.enable {type = "icefish/phone-connect:tile";};
       };
 
       # Dock
       dock = {
-        groupApps = true;
+        enabled = true;
+        reserve_space = false;
+        smart_auto_hide = true;
       };
 
       # Session Menu
-      sessionMenu = {
-        largeButtonsLayout = "grid";
-        powerOptions = [
+      shell.session = {
+        grid = true;
+        actions = [
           {
             action = "logout";
             enabled = true;
-            keybind = "1";
+            shortcut = "1";
+            countdown_seconds = 5;
           }
           {
             action = "suspend";
             enabled = true;
-            keybind = "2";
+            shortcut = "2";
           }
           {
             action = "reboot";
             enabled = true;
-            keybind = "3";
-            countdownEnabled = true;
+            shortcut = "3";
+            countdown_seconds = 10;
           }
           {
             action = "shutdown";
             enabled = true;
-            keybind = "4";
-            countdownEnabled = true;
+            shortcut = "4";
+            countdown_seconds = 10;
           }
         ];
       };
 
-      # Notifications
-      notifications = {
-        density = "compact";
-      };
-
       # OSD
       osd = {
-        location = "right";
+        position = "center_right";
+        kinds.lock_keys = false;
       };
 
+      # Notifications
+      notification.history_retention_hours = 48;
+
+      # Battery
+      battery.warning_threshold = 20;
+
       # Audio
-      audio = {
-        volumeOverdrive = true;
+      audio.enable_overdrive = true;
+
+      widget = {
+        control-center.custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        network.show_label = false;
+        volume.show_label = false;
+        spacer-large.type = "spacer";
+        media = {
+          artist_first = true;
+          max_length = 175;
+          title_scroll = "on_hover";
+          show_progress = true;
+        };
+        workspaces = {
+          hide_when_empty = false;
+          show_labels = true;
+          labels_only_when_occupied = true;
+          max_label_chars = 2;
+          label_source = "id";
+        };
+        tray = {
+          hidden = ["udiskie"];
+          drawer = true;
+        };
+        notifications.hide_when_no_unread = false;
+        clock = {
+          format = "{:%H:%M}";
+          vertical_format = "{:%H %M}";
+          tooltip_format = "{:%H:%M:%S - %a, %d/%m}";
+        };
       };
     };
   };

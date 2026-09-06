@@ -22,10 +22,11 @@ delib.module {
   };
 
   home.ifEnabled = {
-    programs.noctalia-shell.enable = true;
-    # TODO: fix bar reloading for non-systemd start
-    #       or switch to noctalia v5
-    programs.noctalia-shell.systemd.enable = true;
+    programs.noctalia = {
+      enable = true;
+      systemd.enable = true;
+      settings.shell.launch_apps_as_systemd_services = true;
+    };
 
     programs.niri.settings = {
       debug.honor-xdg-activation-with-invalid-serial = true;

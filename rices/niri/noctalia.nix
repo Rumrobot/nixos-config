@@ -10,40 +10,86 @@ delib.rice {
 
   home = {
     # Noctalia theming
-    programs.noctalia-shell.settings = {
+    programs.noctalia.settings = {
       # General theming
-      general = {
-        showScreenCorners = true;
-        forceBlackScreenCorners = true;
-        scaleRatio = 0.95;
-        radiusRatio = 0.6;
-        screenRadiusRatio = 0.5;
-        clockFormat = "HH\nmm ";
+      shell = {
+        button_borders = false;
+        card_borders = false;
+        corner_radius_scale = 0.75;
+        input_borders = false;
+        popup_borders = false;
+        screen_corners.size = 20;
+        session.grid_columns = 2;
+        shadow.alpha = 0.45;
+      };
+
+      # Bar theming
+      bar.main = {
+        background_opacity = 0.5;
+        border = "secondary";
+        capsule_thickness = 0.8;
+        icon_color = "primary";
+        margin_ends = 25;
+        padding = 12;
+        widget_spacing = 12;
       };
 
       # UI theming
-      ui = {
-        translucentWidgets = true;
-        panelsAttachedToBar = false;
-        settingsPanelMode = "centered";
+      shell.panel = {
+        transparency_mode = "soft";
+        session_position = "center";
+        wallpaper_placement = "floating";
+        session_placement = "floating";
       };
 
-      # Notification theming
-      # notifications.backgroundOpacity = 0.65;
+      # Panel theming
+      control_center.width = 730;
+      dock = {
+        icon_size = 42;
+        item_spacing = 2;
+        show_dots = true;
+        show_instance_count = false;
+      };
+      lockscreen.blurred_desktop = true;
+      notification = {
+        border = false;
+      };
+      osd = {
+        border = false;
+      };
+      theme.templates = {
+        enable_builtin_templates = false;
+        enable_community_templates = false;
+      };
 
-      # Stationary wallpaper in overview
-      wallpaper.overviewEnabled = false;
+      wallpaper = {
+        transition = ["honeycomb"];
+        transition_on_startup = true;
+      };
 
-      # Dock theming
-      # dock.backgroundOpacity = 0.75;
-
-      # OSD theming
-      # osd.backgroundOpacity = 0.25;
-
-      # Audio theming
-      audio.spectrumMirrored = false;
+      # Widget theming
+      widget = {
+        audio_visualizer.mirrored = false;
+        battery = {
+          display_mode = "graphic";
+          show_label = false;
+        };
+        control-center = {
+          capsule_fill = "outline";
+          capsule_padding = 2;
+          glyph = "NixOS";
+          scale = 1.35;
+        };
+        cpu.show_value = false;
+        ram.show_value = false;
+        workspaces = {
+          active_pill_size = 1.9;
+          anchor = true;
+          capsule_opacity = 0.4;
+          pill_scale = 0.8;
+        };
+      };
     };
-
     # Stationary wallpaper in overview
     programs.niri.settings = {
       layer-rules = [

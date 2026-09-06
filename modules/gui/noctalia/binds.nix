@@ -10,26 +10,25 @@ delib.module {
     noctalia = cmd:
       delib.mkDefaultBindProvider "noctalia" (
         [
-          "noctalia-shell"
-          "ipc"
-          "call"
+          "noctalia"
+          "msg"
         ]
         ++ (lib.splitString " " cmd)
       );
   in {
     helpers.binds.actions = {
       # Core
-      controlCenter = noctalia "controlCenter toggle";
-      settings = noctalia "settings toggle";
-      sessionMenu = noctalia "sessionMenu toggle";
-      lock = noctalia "lockScreen lock";
+      controlCenter = noctalia "panel-toggle control-center";
+      settings = noctalia "settings-toggle";
+      sessionMenu = noctalia "panel-toggle session";
+      lock = noctalia "session lock";
 
       # Audio & Brightness
-      volumeUp = noctalia "volume increase";
-      volumeDown = noctalia "volume decrease";
-      volumeMute = noctalia "volume muteOutput";
-      brightnessUp = noctalia "brightness increase";
-      brightnessDown = noctalia "brightness decrease";
+      volumeUp = noctalia "volume-up";
+      volumeDown = noctalia "volume-down";
+      volumeMute = noctalia "volume-mute";
+      brightnessUp = noctalia "brightness-up";
+      brightnessDown = noctalia "brightness-down";
     };
   };
 }

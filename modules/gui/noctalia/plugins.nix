@@ -1,5 +1,6 @@
 {
   delib,
+  homeconfig,
   pkgs,
   ...
 }:
@@ -8,46 +9,45 @@ delib.module {
 
   home.ifEnabled = {myconfig, ...}: {
     # screen-toolkit dependencies
-    home.packages = with pkgs; [
-      grim # screenshots
-      slurp # region selection
-      hyprpicker
-      wl-clipboard
-      tesseract
-      imagemagick
-      zbar # QR/barcode scanning
-      curl
-      translate-shell
-      wl-screenrec
-      ffmpeg
-      gifski # high-quality GIF encoding
-      jq
+    home.packages = with pkgs;
+      [
+        grim # screenshots
+        slurp # region selection
+        hyprpicker
+        wl-clipboard
+        tesseract
+        imagemagick
+        zbar # QR/barcode scanning
+        curl
+        translate-shell
+        wl-screenrec
+        wf-recorder
+        gpu-screen-recorder
+        ffmpeg
+        gifski # high-quality GIF encoding
+        jq
+        bc
+        swappy
+        satty
+        mpv
+        gimp
+        xdg-utils
+      ]
+      ++ pkgs.lib.optional myconfig.services.kdeconnect.enable sshfs;
 
-      # File picker support
-      python3
-      python3Packages.pygobject3
-      xdg-desktop-portal
-    ];
+    programs.noctalia.settings.plugins = {
+      enabled =
+        ["alexander/screen-toolkit"]
+        ++ pkgs.lib.optional myconfig.services.kdeconnect.enable "icefish/phone-connect";
+    };
 
-    programs.noctalia-shell.plugins = {
-      sources = [
-        {
-          enabled = true;
-          name = "Official Noctalia Plugins";
-          url = "https://github.com/noctalia-dev/noctalia-plugins";
-        }
-      ];
-      states = {
-        kde-connect = {
-          enabled = myconfig.services.kdeconnect.enable;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
-        screen-toolkit = {
-          enabled = true;
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        };
+    programs.noctalia.settings.plugin_settings = {
+      "alexander/screen-toolkit" = {
+        "record-audio-out" = true;
+        "screenshot-path" = homeconfig.xdg.userDirs.pictures;
+        "selected-ocr-lang" = "eng+dan";
+        "video-path" = homeconfig.xdg.userDirs.videos;
       };
-      version = 2;
     };
   };
 }
