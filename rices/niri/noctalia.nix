@@ -130,6 +130,7 @@ delib.rice {
         audio_visualizer = {
           bands = 32;
           centered = false;
+          mirrored = false;
           color_2 = "error";
           show_when_idle = true;
           width = 100;

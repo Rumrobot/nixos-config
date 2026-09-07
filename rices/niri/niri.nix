@@ -1,4 +1,4 @@
-{ delib, ... }:
+{delib, ...}:
 delib.rice {
   name = "niri";
 
@@ -18,16 +18,14 @@ delib.rice {
 
     window-rules = [
       {
-        geometry-corner-radius =
-          let
-            r = 16.0;
-          in
-          {
-            bottom-left = r;
-            bottom-right = r;
-            top-left = r;
-            top-right = r;
-          };
+        geometry-corner-radius = let
+          r = 16.0;
+        in {
+          bottom-left = r;
+          bottom-right = r;
+          top-left = r;
+          top-right = r;
+        };
         clip-to-geometry = true;
       }
 
@@ -55,7 +53,6 @@ delib.rice {
         };
       }
     ];
-
   };
 
   myconfig.helpers.binds.actions = {
