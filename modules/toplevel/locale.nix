@@ -14,6 +14,7 @@ delib.module {
 
       locale = strOption "en_US.UTF-8";
       extraLocale = strOption "da_DK.UTF-8";
+      keyboardLayout = strOption "dk";
     };
 
   nixos.ifEnabled = {cfg, ...}: {
@@ -24,10 +25,10 @@ delib.module {
     time.hardwareClockInLocalTime = false;
     services.timesyncd.enable = true;
 
-    console.keyMap = "dk";
+    console.keyMap = cfg.keyboardLayout;
 
     services.xserver.xkb = {
-      layout = "dk";
+      layout = cfg.keyboardLayout;
     };
 
     i18n = {
