@@ -29,4 +29,13 @@ delib.module {
 
     environment.systemPackages = [myconfig.rice.cursor.package];
   };
+
+  home.ifEnabled = {myconfig, ...}: {
+    home.pointerCursor = {
+      inherit (myconfig.rice.cursor) name package size;
+      enable = true;
+      gtk.enable = true;
+      x11.enable = true;
+    };
+  };
 }
