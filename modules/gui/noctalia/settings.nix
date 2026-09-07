@@ -35,7 +35,7 @@ delib.module {
             ];
             opacity = 0.0;
             padding = 0.0;
-            widget_spacing = 2;
+            widget_spacing = 5;
           }
         ];
         center =
