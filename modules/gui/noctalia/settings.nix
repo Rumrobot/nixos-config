@@ -61,6 +61,9 @@ delib.module {
         screen_time_enabled = true;
         screen_corners.enabled = true;
         screenshot.remember_last_region = true;
+        greeter_sync = lib.mkIf myconfig.services.noctalia-greeter.enable {
+          auto_sync = true;
+        };
       };
       lockscreen = {
         fingerprint = myconfig.hardware.fingerprint.enable;

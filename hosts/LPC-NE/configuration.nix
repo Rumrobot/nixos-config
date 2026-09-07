@@ -37,9 +37,16 @@ delib.host {
       enable = true;
     };
     hardware.logitech-g502.enable = true;
+
+    services = {
+      greetd.enable = false;
+      noctalia-greeter.enable = true;
+    };
+
     features = {
       podman.enable = true;
     };
+
     programs = {
       cli = {
         zsh = {

@@ -45,10 +45,17 @@ delib.host {
 
   myconfig = {
     hardware.fingerprint.enable = true;
+
+    services = {
+      greetd.enable = false;
+      noctalia-greeter.enable = true;
+      kdeconnect.enable = true;
+    };
+
     features = {
       podman.enable = true;
     };
-    services.kdeconnect.enable = true;
+
     programs = {
       cli = {
         zsh = {
