@@ -26,9 +26,7 @@ in
   delib.module {
     name = "programs.llm.synara";
 
-    options = delib.singleEnableOption (
-      host.llmFeatured && host.developmentFeatured && host.guiFeatured
-    );
+    options = delib.singleEnableOption false;
 
     home.ifEnabled.home.packages = [synara];
   }
