@@ -1,5 +1,4 @@
 {delib, ...}: let
-  # TODO: /root/.config/nixpkgs/config.nix
   files."nixpkgs/config.nix".text = ''
     {
       allowUnfree = true;

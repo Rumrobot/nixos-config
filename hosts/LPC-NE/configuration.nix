@@ -33,9 +33,6 @@ delib.host {
 
   myconfig = {
     boot.loader = "systemd-boot";
-    hardware.nvidia = {
-      enable = true;
-    };
     hardware.logitech-g502.enable = true;
 
     services = {
@@ -65,6 +62,8 @@ delib.host {
   };
 
   nixos = {
+    hardware.enableRedistributableFirmware = true;
+
     # Windows support for bootloader
     boot.loader.systemd-boot = {
       windows = {

@@ -24,8 +24,6 @@ delib.module {
       tmux
 
       fastfetch
-      nvtopPackages.nvidia
-      nvtopPackages.amd
       btop
     ];
   };

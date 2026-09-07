@@ -2,6 +2,7 @@
   delib,
   inputs,
   pkgs,
+  config,
   ...
 }: let
   elegoo-slicer = inputs.elegoo-slicer.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -11,10 +12,10 @@ in
 
     options = delib.singleEnableOption false;
 
-    home.ifEnabled = {myconfig, ...}: {
+    home.ifEnabled = {
       home.packages = [
         (
-          if myconfig.hardware.nvidia.enable
+          if config.hardware.nvidia.enable
           then
             elegoo-slicer.override {
               withNvidiaGLWorkaround = true;

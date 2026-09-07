@@ -3,6 +3,7 @@
   host,
   pkgs,
   lib,
+  config,
   ...
 }:
 delib.module {
@@ -10,14 +11,14 @@ delib.module {
 
   options = delib.singleEnableOption host.gamingFeatured;
 
-  nixos.ifEnabled = {myconfig, ...}: {
+  nixos.ifEnabled = {
     services.wivrn = {
       enable = true;
       openFirewall = true;
 
       autoStart = true;
 
-      package = lib.mkIf myconfig.hardware.nvidia.enable (pkgs.wivrn.override {cudaSupport = true;});
+      package = lib.mkIf config.hardware.nvidia.enabled (pkgs.wivrn.override {cudaSupport = true;});
     };
   };
 }

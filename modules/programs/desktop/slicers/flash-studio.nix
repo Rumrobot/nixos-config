@@ -2,6 +2,7 @@
   delib,
   inputs,
   pkgs,
+  config,
   ...
 }: let
   flash-studio = inputs.flash-studio.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -13,10 +14,10 @@ in
 
     myconfig.ifEnabled.hardware.networking.ssdp = true;
 
-    home.ifEnabled = {myconfig, ...}: {
+    home.ifEnabled = {
       home.packages = [
         (
-          if myconfig.hardware.nvidia.enable
+          if config.hardware.nvidia.enable
           then
             flash-studio.override {
               withNvidiaGLWorkaround = true;
