@@ -17,7 +17,7 @@ in
     home.ifEnabled = {
       home.packages = [
         (
-          if config.hardware.nvidia.enable
+          if config.hardware.nvidia.enabled
           then
             flash-studio.override {
               withNvidiaGLWorkaround = true;
