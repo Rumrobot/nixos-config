@@ -18,6 +18,7 @@ delib.host {
   displays = [
     {
       name = "eDP-1"; # California Institute of Technology 0x1404
+      portName = "eDP-1";
       primary = true;
       refreshRate = 60;
       width = 1920;

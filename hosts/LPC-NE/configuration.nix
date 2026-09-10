@@ -14,6 +14,7 @@ delib.host {
   displays = [
     {
       name = "ASUSTek COMPUTER INC VG27A M9LMQS085761";
+      portName = "DP-2";
       primary = true;
       refreshRate = 164.999;
       width = 2560;
@@ -23,6 +24,7 @@ delib.host {
     }
     {
       name = "Samsung Electric Company S24R65x H4TN100177";
+      portName = "HDMI-A-2";
       refreshRate = 74.973;
       width = 1920;
       height = 1080;

@@ -42,6 +42,7 @@
             enable = delib.boolOption true;
 
             name = delib.noDefault (delib.strOption null);
+            portName = delib.noDefault (delib.strOption null);
             primary = delib.boolOption (builtins.length config.displays == 1);
             touchscreen = delib.boolOption false;
 
