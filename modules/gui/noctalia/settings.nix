@@ -181,7 +181,7 @@ delib.module {
         };
         notifications.hide_when_no_unread = false;
         clock = {
-          format = "{:%H:%M}";
+          format = "{:%d %b, %H:%M}";
           vertical_format = "{:%H %M}";
           tooltip_format = "{:%H:%M:%S - %a, %d/%m}";
         };
