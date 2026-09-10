@@ -40,11 +40,11 @@ delib.module {
       "file://${dirs.videos}"
       "file://${dirs.music}"
     ];
-  };
 
-  myconfig.ifEnabled = {
-    xdg.mime.recommended = {
+    xdg.mimeApps.defaultApplications = {
       "inode/directory" = ["org.gnome.Nautilus.desktop"];
+      "inode/mount-point" = ["org.gnome.Nautilus.desktop"];
+      "application/x-gnome-saved-search" = ["org.gnome.Nautilus.desktop"];
     };
   };
 }
