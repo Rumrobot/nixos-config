@@ -35,7 +35,6 @@ delib.module {
             ];
             opacity = 0.0;
             padding = 0.0;
-            widget_spacing = 10;
           }
           {
             enabled = true;
@@ -52,6 +51,20 @@ delib.module {
             padding = 0.0;
             widget_spacing = 5;
           }
+          {
+            enabled = true;
+            accordion = true;
+            accordion_direction = "start";
+            border = "";
+            fill = "surface_variant";
+            id = "drive_group";
+            members = [
+              "aristides/udiskie:status"
+              "gustav0ar/drive-health:summary"
+            ];
+            opacity = 0.0;
+            padding = 0.0;
+          }
         ];
         center =
           lib.optional myconfig.services.kdeconnect.enable "icefish/phone-connect:bar"
@@ -61,8 +74,7 @@ delib.module {
           ];
         end = [
           "tray"
-          "aristides/udiskie:status"
-          "gustav0ar/drive-health:summary"
+          "group:drive_group"
           "cpu"
           "ram"
           "battery"
