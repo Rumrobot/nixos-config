@@ -15,20 +15,35 @@ delib.module {
         margin_edge = 10;
         start = [
           "control-center"
-          "network"
+          "group:network_group"
           "bluetooth"
           "volume"
           "spacer-large"
-          "group:g1"
+          "group:media_group"
         ];
         capsule_group = [
           {
+            enabled = true;
+            accordion = true;
+            accordion_direction = "end";
+            border = "";
+            fill = "surface_variant";
+            id = "network_group";
+            members = [
+              "network"
+              "nilsonlinux/speedtest-meter:speedtest-widget"
+            ];
+            opacity = 0.0;
+            padding = 0.0;
+            widget_spacing = 10;
+          }
+          {
+            enabled = true;
             accordion = false;
             accordion_direction = "end";
             border = "";
-            enabled = true;
             fill = "surface_variant";
-            id = "g1";
+            id = "media_group";
             members = [
               "media"
               "audio_visualizer"
@@ -46,10 +61,12 @@ delib.module {
           ];
         end = [
           "tray"
-          "notifications"
+          "aristides/udiskie:status"
+          "gustav0ar/drive-health:summary"
           "cpu"
           "ram"
           "battery"
+          "notifications"
           "clock"
         ];
       };
@@ -160,7 +177,6 @@ delib.module {
           label_source = "id";
         };
         tray = {
-          hidden = ["udiskie"];
           drawer = true;
         };
         notifications.hide_when_no_unread = false;
