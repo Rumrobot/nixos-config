@@ -5,10 +5,11 @@
   (base.withConfig {
     args.enable = true;
 
-    # hosts.type.types = [
-    #   "desktop"
-    #   "server"
-    # ];
+    hosts.type.types = [
+      "desktop"
+      "laptop"
+      "server"
+    ];
 
     hosts.features = {
       # cli: Enables non-essential cli programs
@@ -27,8 +28,12 @@
         desktop = [
           "cli"
           "gui"
-          "development"
-          "hacking"
+        ];
+        laptop = [
+          "cli"
+          "gui"
+          "powersave"
+          "wireless"
         ];
         server = [];
       };

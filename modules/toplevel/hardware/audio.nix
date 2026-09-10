@@ -8,7 +8,7 @@
 delib.module {
   name = "hardware.audio";
 
-  options = delib.singleEnableOption host.isDesktop;
+  options = delib.singleEnableOption (host.isDesktop || host.isLaptop);
 
   nixos.ifEnabled = {
     security.rtkit.enable = true;

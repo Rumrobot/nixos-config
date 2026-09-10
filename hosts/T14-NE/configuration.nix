@@ -7,10 +7,10 @@ delib.host {
   name = "T14-NE";
 
   rice = "niri";
-  type = "desktop";
+  type = "laptop";
   features = [
     "powersave"
-    "wireless"
+    "development"
     "hacking"
     "llm"
   ];

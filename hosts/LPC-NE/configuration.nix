@@ -6,6 +6,7 @@ delib.host {
   type = "desktop";
   features = [
     "wireless"
+    "development"
     "hacking"
     "llm"
     "gaming"

@@ -8,7 +8,7 @@ delib.module {
 
   options = with delib;
     moduleOptions {
-      enable = boolOption host.isDesktop;
+      enable = boolOption true;
 
       timeZone = strOption "Europe/Copenhagen";
 

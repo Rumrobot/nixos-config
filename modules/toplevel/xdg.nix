@@ -9,7 +9,7 @@ delib.module {
 
   options = with delib;
     moduleOptions {
-      enable = boolOption host.isDesktop;
+      enable = boolOption (host.isDesktop || host.isLaptop);
       mime = {
         recommended = attrsOfOption (listOf str) {};
         associations = attrsOfOption (listOf str) {};

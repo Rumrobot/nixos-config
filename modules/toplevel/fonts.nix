@@ -6,7 +6,7 @@
 delib.module {
   name = "fonts";
 
-  options = delib.singleEnableOption host.isDesktop;
+  options = delib.singleEnableOption (host.isDesktop || host.isLaptop);
 
   nixos.ifEnabled = {myconfig, ...}: {
     fonts.fontconfig = {

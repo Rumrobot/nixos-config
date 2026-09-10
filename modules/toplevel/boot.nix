@@ -26,7 +26,7 @@ delib.module {
         device = strOption "nodev";
 
         # plymouth = {
-        #   enable = boolOption host.isDesktop;
+        #   enable = boolOption (host.isDesktop || host.isLaptop);
         # };
       }
     );
