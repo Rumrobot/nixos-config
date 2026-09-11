@@ -17,7 +17,7 @@ delib.host {
 
   displays = [
     {
-      name = "eDP-1"; # California Institute of Technology 0x1404
+      name = "Lenovo Group Limited 0x403A Unknown"; # California Institute of Technology 0x1404
       portName = "eDP-1";
       primary = true;
       refreshRate = 60;
@@ -28,6 +28,7 @@ delib.host {
     }
     {
       name = "NEC Corporation E222W 9Z307555NB";
+      portName = "temp"; # TODO: figure out real port name
       refreshRate = 60;
       width = 1680;
       height = 1050;
@@ -36,6 +37,7 @@ delib.host {
     }
     {
       name = "PNP(AOC) 2460G4 GJXH9HA034303";
+      portName = "temp2"; # TODO: figure out real port name
       refreshRate = 60;
       width = 1920;
       height = 1080;
@@ -79,6 +81,8 @@ delib.host {
   };
 
   nixos = {
+    hardware.enableRedistributableFirmware = true;
+
     imports = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen3
     ];
