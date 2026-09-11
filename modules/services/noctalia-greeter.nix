@@ -25,8 +25,8 @@ delib.module {
   in {
     programs.noctalia-greeter = {
       enable = true;
+      passwordless-sync-users = [homeManagerUser];
       settings = {
-        passwordless-sync-users = [homeManagerUser];
         output = {
           name = primaryOutputName;
           layout = outputLayout;
@@ -40,6 +40,7 @@ delib.module {
           size = cursor.size;
           path = "${cursor.package}/share/icons";
         };
+        auth.allow_empty_password = myconfig.hardware.fingerprint.enable;
       };
     };
   };
