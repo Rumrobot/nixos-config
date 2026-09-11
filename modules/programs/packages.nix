@@ -18,6 +18,7 @@ delib.module {
       curl
       wget
       lsof
+      usbutils
 
       nano
       screen
