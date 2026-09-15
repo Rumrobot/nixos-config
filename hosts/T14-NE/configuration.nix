@@ -47,7 +47,7 @@ delib.host {
   ];
 
   myconfig = {
-    hardware.fingerprint.enable = true;
+    hardware.fingerprint.enable = false; # TODO: fix fingerprint module on T14-NE
 
     services = {
       greetd.enable = false;
@@ -66,7 +66,11 @@ delib.host {
           default = true;
         };
       };
+
+      # DTU
+      dtu.enable = true;
       development.java.enable = true;
+
       desktop.slicers = {
         anycubic-slicernext.enable = true;
         bambu-studio.enable = true;

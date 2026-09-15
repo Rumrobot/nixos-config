@@ -54,6 +54,10 @@ delib.host {
           default = true;
         };
       };
+
+      # DTU
+      dtu.enable = true;
+
       desktop = {
         wootility.enable = true;
         coolercontrol.enable = true;
