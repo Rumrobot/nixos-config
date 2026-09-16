@@ -11,6 +11,7 @@ delib.module {
   home.ifEnabled = {
     home.packages = with pkgs; [
       ltspice # Electronics simulator
+      logisim # Digital electronics simulator
     ];
   };
 }
