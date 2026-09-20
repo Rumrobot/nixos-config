@@ -109,6 +109,10 @@ delib.module {
             vscjava.vscode-java-dependency
             vscjava.vscode-gradle
           ])
+          ++ (lib.optionals dev.rust.enable [
+            rust-lang.rust-analyzer
+            tamasfe.even-better-toml
+          ])
           ++ (lib.optionals latex.enable [
             james-yu.latex-workshop
           ])
