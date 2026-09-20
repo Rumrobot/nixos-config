@@ -59,6 +59,7 @@ delib.module {
         # --- Default ---
           [
             jnoortheen.nix-ide
+            arrterian.nix-env-selector
             ms-vscode.cpptools
             ms-vscode.cmake-tools
             esbenp.prettier-vscode
