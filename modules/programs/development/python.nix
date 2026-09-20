@@ -2,7 +2,6 @@
   delib,
   host,
   pkgs,
-  homeManagerUser,
   ...
 }:
 delib.module {
