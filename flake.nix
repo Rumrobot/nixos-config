@@ -64,6 +64,8 @@
 
     nvf.url = "github:notashelf/nvf";
 
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
     flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
 

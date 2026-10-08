@@ -10,35 +10,15 @@ delib.module {
 
   options = delib.singleEnableOption (host.guiFeatured && host.developmentFeatured);
 
+  myconfig.ifEnabled = {myconfig, ...}: {
+    overlays.nix-vscode-extensions.enable = true;
+  };
+
   home.ifEnabled = {myconfig, ...}: let
     llm = myconfig.programs.llm;
     dev = myconfig.programs.development;
     latex = myconfig.programs.latex;
     javaJdk = pkgs.zulu25.override {enableJavaFX = true;};
-    javaDebuggerExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
-      name = "vscode-java-debug";
-      publisher = "vscjava";
-      version = "0.58.1";
-      sha256 = "sha256-S+kNAaYBjVxAuYlMbpQUM9DyTW76yRvokTzl+32pUgc=";
-    };
-    sftpExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
-      name = "sftp";
-      publisher = "Natizyskunk";
-      version = "1.16.3";
-      sha256 = "17p8x2pwvh126b3vhrfsx3za98alvb8kf7njjp9wg0hvfa4cy9qy";
-    };
-    playwrightExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
-      name = "playwright";
-      publisher = "ms-playwright";
-      version = "1.1.19";
-      sha256 = "1xppas4qla2bsppb89ks4mnrby2g3gra4irabnimkcmaz4m3wr9p";
-    };
-    twigExtension = pkgs.vscode-utils.extensionFromVscodeMarketplace {
-      name = "twig-language-2";
-      publisher = "mblode";
-      version = "0.10.0";
-      sha256 = "1ndaspy9391pnxxi0cgwamr9j41h3qyinp83n8wrm1r686xcqp8b";
-    };
   in {
     programs.vscode = {
       enable = true;
@@ -55,7 +35,7 @@ delib.module {
           }
         ];
 
-        extensions = with pkgs.vscode-extensions;
+        extensions = with pkgs.nix-vscode-extensions.vscode-marketplace;
         # --- Default ---
           [
             jnoortheen.nix-ide
@@ -68,16 +48,16 @@ delib.module {
             github.vscode-github-actions
 
             ms-vscode-remote.remote-ssh
-            sftpExtension
+            natizyskunk.sftp
             ms-vsliveshare.vsliveshare
 
             wakatime.vscode-wakatime # TODO: WakaTime secret
 
             editorconfig.editorconfig
-            playwrightExtension
+            ms-playwright.playwright
 
             # SP
-            twigExtension
+            mblode.twig-language-2
           ]
           # --- Dev tools ---
           ++ (lib.optionals (myconfig.features.docker.enable || myconfig.features.podman.enable) [
@@ -105,7 +85,7 @@ delib.module {
             # Extension pack members must be installed explicitly.
             redhat.java
             redhat.vscode-xml
-            javaDebuggerExtension
+            vscjava.vscode-java-debug
             vscjava.vscode-java-test
             vscjava.vscode-java-dependency
             vscjava.vscode-gradle
