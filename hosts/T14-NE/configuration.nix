@@ -12,7 +12,6 @@ delib.host {
     "powersave"
     "development"
     "hacking"
-    "llm"
   ];
 
   displays = [
@@ -57,6 +56,7 @@ delib.host {
 
     features = {
       podman.enable = true;
+      llm.enable = true;
     };
 
     programs = {

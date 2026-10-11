@@ -22,7 +22,6 @@
         "powersave"
         "wireless"
         "vm"
-        "llm"
       ];
       defaultByHostType = {
         desktop = [

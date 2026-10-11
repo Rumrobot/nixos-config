@@ -14,7 +14,10 @@ in
   delib.module {
     name = "programs.llm.claude-code";
 
-    options = delib.singleEnableOption (host.llmFeatured && host.developmentFeatured);
+    options = with delib;
+      moduleOptions ({myconfig, ...}: {
+        enable = boolOption (myconfig.features.llm.enable && host.developmentFeatured);
+      });
 
     home.ifEnabled = {
       programs.claude-code = {

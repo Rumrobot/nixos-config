@@ -8,7 +8,6 @@ delib.host {
     "wireless"
     "development"
     "hacking"
-    "llm"
     "gaming"
   ];
 
@@ -45,6 +44,7 @@ delib.host {
 
     features = {
       podman.enable = true;
+      llm.enable = true;
     };
 
     programs = {
@@ -64,7 +64,12 @@ delib.host {
         plezy.enable = true;
         slicers.bambu-studio.enable = true;
       };
-      development.godot.enable = true;
+
+      development = {
+        godot.enable = true;
+      };
+
+      llm.ollama.enable = true;
     };
   };
 
