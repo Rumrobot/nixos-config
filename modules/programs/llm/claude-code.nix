@@ -23,25 +23,29 @@ in
       programs.claude-code = {
         enable = true;
 
-        plugins = [
-          (pkgs.fetchFromGitHub {
-            owner = "obra";
-            repo = "superpowers";
-            rev = "6fd4507659784c351abbd2bc264c7162cfd386dc";
-            hash = "sha256-P/FD8HTQO+QzvMe3A/B2v2vjs8T6ZmIYH3MPp79dSzo=";
-          })
+        plugins = {
+          superpowers = (
+            pkgs.fetchFromGitHub {
+              owner = "obra";
+              repo = "superpowers";
+              rev = "6fd4507659784c351abbd2bc264c7162cfd386dc";
+              hash = "sha256-P/FD8HTQO+QzvMe3A/B2v2vjs8T6ZmIYH3MPp79dSzo=";
+            }
+          );
 
-          (pkgs.fetchFromGitHub {
-            owner = "DietrichGebert";
-            repo = "ponytail";
-            rev = "45f7d2f83fb430a65fd512a98ad7b14d79e06636";
-            hash = "sha256-BAwav7tf6RuHZ/A7TF/1k1TXWhYAdshlsYB3LbdgUD8=";
-          })
+          ponytail = (
+            pkgs.fetchFromGitHub {
+              owner = "DietrichGebert";
+              repo = "ponytail";
+              rev = "45f7d2f83fb430a65fd512a98ad7b14d79e06636";
+              hash = "sha256-BAwav7tf6RuHZ/A7TF/1k1TXWhYAdshlsYB3LbdgUD8=";
+            }
+          );
 
-          "${claudeCode}/plugins/code-review"
+          code-review = "${claudeCode}/plugins/code-review";
 
-          "${claudeCode}/plugins/frontend-design"
-        ];
+          frontend-design = "${claudeCode}/plugins/frontend-design";
+        };
       };
     };
   }
