@@ -9,10 +9,6 @@
 delib.module {
   name = "stylix";
 
-  # TODO: Dynamic colors that update without relogging.
-  #   Would ideally be able to be selected/generated while
-  #   running without needing to switch config
-
   options = delib.singleEnableOption host.guiFeatured;
 
   nixos.always = {
