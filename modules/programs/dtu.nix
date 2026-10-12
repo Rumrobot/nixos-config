@@ -8,6 +8,13 @@ delib.module {
 
   options = delib.singleEnableOption false;
 
+  myconfig.ifEnabled = {
+    programs.development = {
+      java.enable = true;
+      python.enable = true;
+    };
+  };
+
   home.ifEnabled = {
     home.packages = with pkgs; [
       ltspice # Electronics simulator

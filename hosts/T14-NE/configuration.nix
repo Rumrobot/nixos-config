@@ -69,7 +69,6 @@ delib.host {
 
       # DTU
       dtu.enable = true;
-      development.java.enable = true;
 
       desktop.slicers = {
         anycubic-slicernext.enable = true;
