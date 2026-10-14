@@ -1,5 +1,6 @@
 {
   delib,
+  inputs,
   pkgs,
   host,
   ...
@@ -10,8 +11,8 @@ delib.module {
   options = delib.singleEnableOption host.guiFeatured;
 
   home.ifEnabled = {
-    home.packages = with pkgs; [
-      spotify
+    home.packages = [
+      inputs.spotifast.packages."${pkgs.stdenv.hostPlatform.system}".default
     ];
   };
 }

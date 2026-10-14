@@ -13,7 +13,6 @@ delib.rice {
   };
 
   home = {myconfig, ...}: let
-    optionalGui = name: lib.optionals myconfig.gui.${name}.enable [name];
     optionalDesktop = name: lib.optionals myconfig.programs.desktop.${name}.enable [name];
     optionalBrowser = moduleName: templateName: lib.optionals myconfig.programs.browsers.${moduleName}.enable [templateName];
     optionalGaming = name: lib.optionals myconfig.programs.gaming.${name}.enable [name];
@@ -91,10 +90,10 @@ delib.rice {
               "gtk3"
               "gtk4"
               "qt"
+              "hyprland"
+              "niri"
               # "starship" # TODO: add starship module
             ]
-            ++ optionalGui "hyprland"
-            ++ optionalGui "niri"
             ++ optionalDesktop "ghostty";
           community_ids =
             [
@@ -112,6 +111,7 @@ delib.rice {
             ++ optionalDesktop "obsidian"
             ++ optionalDesktop "vscode"
             ++ optionalDesktop "gimp"
+            ++ lib.optionals myconfig.programs.desktop.music-players.enable ["spotifast"]
             ++ optionalGaming "steam"
             ++ optionalCli "neovim"
             ++ optionalLlm "opencode"

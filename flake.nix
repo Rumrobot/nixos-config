@@ -71,6 +71,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spotifast = {
+      url = "github:crmne/spotifast";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # sonora.url = "github:sonorahq/sonora";
+
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
     flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
 
