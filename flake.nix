@@ -66,6 +66,11 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
+    negpy = {
+      url = "github:marcinz606/NegPy";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
     flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
 

@@ -11,6 +11,8 @@ delib.host {
       nvtopPackages.nvidia
     ];
 
+    environment.sessionVariables.VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json";
+
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
