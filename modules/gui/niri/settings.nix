@@ -6,7 +6,7 @@
 delib.module {
   name = "gui.niri";
 
-  home.ifEnabled = {
+  home.ifEnabled = {myconfig, ...}: {
     programs.niri.settings = {
       outputs = builtins.listToAttrs (
         map (display: {
@@ -28,7 +28,7 @@ delib.module {
       );
 
       input.keyboard.xkb = {
-        layout = "dk"; # TODO: Config variable
+        layout = myconfig.locale.keyboardLayout;
       };
 
       input.touchpad = {
