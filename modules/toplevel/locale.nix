@@ -1,8 +1,4 @@
-{
-  delib,
-  host,
-  ...
-}:
+{delib, ...}:
 delib.module {
   name = "locale";
 
@@ -50,6 +46,11 @@ delib.module {
         "${cfg.locale}/UTF-8"
         "${cfg.extraLocale}/UTF-8"
       ];
+
+      inputMethod = {
+        enable = true;
+        type = "ibus";
+      };
     };
 
     networking.timeServers = [
