@@ -63,7 +63,9 @@ delib.host {
         coolercontrol.enable = true;
         plezy.enable = true;
         slicers.bambu-studio.enable = true;
-        negpy.enable = true;
+
+        negpy.enable = true; # TODO: media editor feature or photo AND video editor features
+        digikam.enable = true;
       };
 
       development = {
