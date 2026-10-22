@@ -40,6 +40,7 @@ delib.host {
     services = {
       greetd.enable = false;
       noctalia-greeter.enable = true;
+      kdeconnect.enable = true;
     };
 
     features = {
