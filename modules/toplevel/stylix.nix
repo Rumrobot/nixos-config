@@ -4,6 +4,7 @@
   host,
   lib,
   homeconfig,
+  moduleSystem,
   ...
 }:
 delib.module {
@@ -48,7 +49,10 @@ delib.module {
     };
   };
 
-  home.always.imports = [inputs.stylix.homeModules.stylix];
+  home.always = {
+    imports = [inputs.stylix.homeModules.stylix];
+    stylix.overlays.enable = moduleSystem == "home";
+  };
 
   home.ifEnabled = {myconfig, ...}: {
     stylix.base16Scheme = lib.mkIf myconfig.matugen.enable (

@@ -23,7 +23,7 @@ delib.module {
       )
     );
   in {
-    programs.noctalia-greeter = {
+    services.displayManager.noctalia-greeter = {
       enable = true;
       passwordless-sync-users = [homeManagerUser];
       settings = {
