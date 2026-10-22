@@ -72,8 +72,6 @@ delib.host {
       development = {
         godot.enable = true;
       };
-
-      llm.ollama.enable = true;
     };
   };
 
