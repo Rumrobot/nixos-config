@@ -98,5 +98,9 @@ delib.host {
     services.upower.enable = true;
 
     networking.networkmanager.enable = true;
+
+    services.udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="7392", ATTR{idProduct}=="c611", ATTR{power/control}="on"
+    '';
   };
 }
