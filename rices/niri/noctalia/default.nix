@@ -67,7 +67,11 @@ delib.rice {
         show_dots = true;
         show_instance_count = false;
       };
-      lockscreen.blurred_desktop = true;
+      lockscreen = {
+        blurred_desktop = true;
+        transition = ["fade"];
+        transition_duration = 1000;
+      };
       notification = {
         border = true;
         background_opacity = 0.6;
