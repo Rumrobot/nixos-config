@@ -27,13 +27,13 @@ in
         HandleLidSwitchDocked = "ignore";
       };
 
-      # Skip fingerprint PAM step when the lid is closed
+      # Skip fingerprint when the reader is inaccessible behind a closed lid.
       security.pam.services = let
         lidGated = svc: {
           fprintAuth = true;
           rules.auth.fingerprint-check = {
             order = config.security.pam.services.${svc}.rules.auth.fprintd.order - 10;
-            control = "[success=ignore default=1]";
+            control = "[success=ignore ignore=ignore default=1]";
             modulePath = "${pkgs.pam}/lib/security/pam_exec.so";
             args = [
               "quiet"
@@ -44,7 +44,8 @@ in
       in {
         sudo = lidGated "sudo";
         polkit-1 = lidGated "polkit-1";
-        login = lidGated "login";
+        # Use a password to unlock the keyring.
+        login.fprintAuth = false;
       };
     };
   }

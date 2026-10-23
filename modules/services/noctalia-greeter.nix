@@ -40,7 +40,6 @@ delib.module {
           size = cursor.size;
           path = "${cursor.package}/share/icons";
         };
-        auth.allow_empty_password = myconfig.hardware.fingerprint.enable;
       };
     };
   };

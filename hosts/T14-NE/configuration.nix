@@ -46,7 +46,7 @@ delib.host {
   ];
 
   myconfig = {
-    hardware.fingerprint.enable = false; # TODO: fix fingerprint module on T14-NE
+    hardware.fingerprint.enable = true;
 
     services = {
       greetd.enable = false;
