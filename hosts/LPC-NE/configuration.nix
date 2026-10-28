@@ -82,6 +82,16 @@ delib.host {
   };
 
   nixos = {
+    # mbwol
+    boot.loader.grub.extraConfig = ''
+      insmod net
+      insmod efinet
+      insmod tftp
+      if net_bootp; then
+        source (tftp,192.168.1.233)/config
+      fi
+    '';
+
     hardware.enableRedistributableFirmware = true;
 
     services.printing.enable = true;
