@@ -31,7 +31,7 @@ delib.module {
     programs = {
       git.includes = [
         {
-          condition = "hasconfig:remote.*.url:git@gitlab.gbar.dtu.dk:**";
+          condition = "hasconfig:remote.*.url:git@gitlab.gbar.dtu.dk:*/**";
           contents = {
             user = {
               name = "s265172";
