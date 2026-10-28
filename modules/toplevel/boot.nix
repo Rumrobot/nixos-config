@@ -25,6 +25,11 @@ delib.module {
         );
         device = strOption "nodev";
 
+        windows = {
+          enable = boolOption false;
+          boot-drive = strOption "FS0";
+        };
+
         # plymouth = {
         #   enable = boolOption (host.isDesktop || host.isLaptop);
         # };
@@ -41,12 +46,26 @@ delib.module {
           efiSupport = cfg.mode == "uefi";
           devices = [cfg.device];
           configurationLimit = 10;
+          useOSProber = cfg.windows.enable;
         };
 
         systemd-boot = lib.mkIf (cfg.loader == "systemd-boot") {
           enable = true;
           configurationLimit = 10;
           consoleMode = "max";
+
+          windows = lib.mkIf cfg.windows.enable {
+            windows = {
+              title = "Windows";
+              efiDeviceHandle = cfg.windows.boot-drive;
+              sortKey = "y_windows";
+            };
+          };
+
+          edk2-uefi-shell = lib.mkIf cfg.windows.enable {
+            enable = true;
+            sortKey = "z_edk2";
+          };
         };
 
         timeout = 5;
