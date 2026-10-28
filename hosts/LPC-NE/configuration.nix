@@ -35,7 +35,7 @@ delib.host {
 
   myconfig = {
     boot = {
-      loader = "systemd-boot";
+      loader = "grub";
       windows = {
         enable = true;
         boot-drive = "FS2";
