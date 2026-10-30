@@ -25,7 +25,7 @@ delib.module {
           hash = "sha256-SF2r0tfYKT3nM6OZcZ9lOO/aSlS0ixgaFOBycRhphNM=";
         };
       })
-      logisim # Digital electronics simulator
+      logisim-evolution # Digital electronics simulator
     ];
 
     programs = {
