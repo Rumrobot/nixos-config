@@ -9,7 +9,9 @@ delib.module {
 
   options = delib.singleEnableOption host.cliFeatured;
 
-  home.ifEnabled = {
+  home.ifEnabled = {myconfig, ...}: let
+    devConfig = myconfig.programs.development;
+  in {
     imports = [inputs.nvf.homeManagerModules.default];
 
     programs.nvf = {
@@ -41,16 +43,14 @@ delib.module {
             enableTreesitter = true;
             enableFormat = true;
 
-            nix = {
-              enable = true;
-            };
+            nix.enable = devConfig.nix.enable;
 
             typescript = {
-              enable = true;
+              enable = devConfig.nodejs.enable;
               format.type = ["prettier"];
             };
 
-            rust.enable = true;
+            rust.enable = devConfig.rust.enable;
           };
         };
       };
