@@ -23,6 +23,7 @@ in
       ollamaEnabled = llmPrograms.ollama.enable;
       dev = myconfig.programs.development;
       latex = myconfig.programs.latex;
+      typst = myconfig.programs.typst;
       javaJdk = pkgs.zulu25.override {enableJavaFX = true;};
     in {
       programs.vscode = {
@@ -102,6 +103,9 @@ in
             ++ (lib.optionals latex.enable [
               james-yu.latex-workshop
             ])
+            ++ (lib.optionals typst.enable [
+              myriad-dreamin.tinymist
+            ])
             # --- LLM ---
             ++ (lib.optionals llmPrograms.claude-code.enable [
               anthropic.claude-code
@@ -161,6 +165,13 @@ in
                 }
               ];
               "latex-workshop.latex.clean.method" = "glob";
+            }
+            // optionalAttrs typst.enable {
+              "[typst]" = {
+                "editor.defaultFormatter" = "myriad-dreamin.tinymist";
+              };
+              "tinymist.serverPath" = "${pkgs.tinymist}/bin/tinymist";
+              "tinymist.formatterMode" = "typstyle";
             }
             // optionalAttrs dev.java.enable {
               "[java]" = {

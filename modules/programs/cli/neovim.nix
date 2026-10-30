@@ -51,6 +51,7 @@ delib.module {
             };
 
             rust.enable = devConfig.rust.enable;
+            typst.enable = myconfig.programs.typst.enable;
           };
         };
       };
