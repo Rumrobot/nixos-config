@@ -1,4 +1,9 @@
-{delib, ...}:
+{
+  delib,
+  pkgs,
+  homeManagerUser,
+  ...
+}:
 delib.host {
   name = "LPC-NE";
 
@@ -82,6 +87,8 @@ delib.host {
   };
 
   nixos = {
+    hardware.enableRedistributableFirmware = true;
+
     # mbwol
     boot.loader.grub.extraConfig = ''
       insmod net
@@ -92,10 +99,13 @@ delib.host {
       fi
     '';
 
-    hardware.enableRedistributableFirmware = true;
-
-    services.printing.enable = true;
     services.upower.enable = true;
+
+    # Printing and scanning
+    services.printing.enable = true;
+    hardware.sane.enable = true;
+    hardware.sane.extraBackends = [pkgs.hplipWithPlugin];
+    users.users.${homeManagerUser}.extraGroups = ["scanner" "lp"];
 
     networking = {
       networkmanager.enable = true;
