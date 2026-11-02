@@ -83,6 +83,10 @@ delib.host {
       development = {
         godot.enable = true;
       };
+
+      gaming = {
+        elitedangerous.enable = true;
+      };
     };
   };
 
