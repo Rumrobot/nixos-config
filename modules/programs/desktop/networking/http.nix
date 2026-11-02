@@ -10,7 +10,8 @@ delib.module {
   options = delib.singleEnableOption host.guiFeatured;
 
   home.ifEnabled.home.packages = with pkgs; [
-    yaak
+    # TODO: update flake when yaak CA certs are fixed; https://github.com/NixOS/nixpkgs/issues/576544
+    # yaak
     httptoolkit
   ];
 }

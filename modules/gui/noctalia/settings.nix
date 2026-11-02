@@ -27,7 +27,7 @@ delib.module {
             accordion = true;
             accordion_direction = "end";
             border = "";
-            fill = "surface_variant";
+            fill = "surface_container";
             id = "network_group";
             members = [
               "network"
@@ -41,7 +41,7 @@ delib.module {
             accordion = false;
             accordion_direction = "end";
             border = "";
-            fill = "surface_variant";
+            fill = "surface_container";
             id = "media_group";
             members = [
               "media"
@@ -56,7 +56,7 @@ delib.module {
             accordion = true;
             accordion_direction = "start";
             border = "";
-            fill = "surface_variant";
+            fill = "surface_container";
             id = "drive_group";
             members = [
               "aristides/udiskie:status"

@@ -17,14 +17,7 @@ delib.module {
 
   home.ifEnabled = {
     home.packages = with pkgs; [
-      # The 26.1.1 installer returns 404 upstream.
-      (ltspice.overrideAttrs {
-        version = "26.0.2";
-        src = fetchurl {
-          url = "https://ltspice.analog.com/download/26.0.2/LTspice64.msi";
-          hash = "sha256-SF2r0tfYKT3nM6OZcZ9lOO/aSlS0ixgaFOBycRhphNM=";
-        };
-      })
+      ltspice # Circuit simulation software
       logisim-evolution # Digital electronics simulator
     ];
 
