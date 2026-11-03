@@ -5,8 +5,11 @@ delib.rice {
   home.programs.niri.settings = {
     layout = {
       gaps = 10;
-      focus-ring.width = 1.5;
-      border.width = 1.5;
+      focus-ring.enable = false;
+      border = {
+        enable = true;
+        width = 1.5;
+      };
     };
 
     blur = {
