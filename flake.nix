@@ -5,10 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
 
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     denix = {
       url = "github:yunfachi/denix";
@@ -20,45 +18,33 @@
 
     awww.url = "git+https://codeberg.org/LGFae/awww";
 
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    stylix.url = "github:nix-community/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     matugen.url = "github:/InioX/Matugen";
 
-    silentSDDM = {
-      url = "github:uiriansan/SilentSDDM";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    silentSDDM.url = "github:uiriansan/SilentSDDM";
+    silentSDDM.inputs.nixpkgs.follows = "nixpkgs";
 
     niri-flake.url = "github:epireyn/niri-flake";
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
+    noctalia-greeter.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=v0.7.0";
 
     vicinae.url = "github:vicinaehq/vicinae";
 
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
-      # to have it up-to-date or simply don't specify the nixpkgs input
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+    # to have it up-to-date or simply don't specify the nixpkgs input
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    betterfox = {
-      url = "github:yokoffing/Betterfox";
-      flake = false;
-    };
+    betterfox.url = "github:yokoffing/Betterfox";
+    betterfox.flake = false;
 
     _1password-shell-plugins.url = "github:1Password/shell-plugins";
 
@@ -66,15 +52,11 @@
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
-    negpy = {
-      url = "github:marcinz606/NegPy";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    negpy.url = "github:marcinz606/NegPy";
+    negpy.inputs.nixpkgs.follows = "nixpkgs";
 
-    spotifast = {
-      url = "github:crmne/spotifast";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    spotifast.url = "github:crmne/spotifast";
+    spotifast.inputs.nixpkgs.follows = "nixpkgs";
     # sonora.url = "github:sonorahq/sonora";
 
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
