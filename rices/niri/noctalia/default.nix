@@ -145,7 +145,7 @@ delib.rice {
           show_label = false;
         };
         control-center = {
-          capsule_fill = "outline";
+          capsule_fill = "outline_variant";
           capsule_padding = 2;
           glyph = "NixOS";
           scale = 1.35;
@@ -170,6 +170,8 @@ delib.rice {
     };
     # Stationary wallpaper in overview
     programs.niri.settings = {
+      includes = ["noctalia.kdl"];
+
       layer-rules = [
         {
           matches = [{namespace = "^noctalia-wallpaper*";}];

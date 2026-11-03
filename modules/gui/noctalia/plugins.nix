@@ -54,6 +54,8 @@ delib.module {
       ++ pkgs.lib.optional myconfig.services.kdeconnect.enable sshfs;
 
     programs.noctalia.settings = {
+      shell.screenshot.directory = homeconfig.xdg.userDirs.pictures;
+
       plugins.enabled =
         [
           "alexander/screen-toolkit"
@@ -67,7 +69,6 @@ delib.module {
       plugin_settings = {
         "alexander/screen-toolkit" = {
           "record-audio-out" = true;
-          "screenshot-path" = homeconfig.xdg.userDirs.pictures;
           "selected-ocr-lang" = "eng+dan";
           "video-path" = homeconfig.xdg.userDirs.videos;
         };
