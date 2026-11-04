@@ -58,5 +58,15 @@ delib.rice {
       extensions = [pkgs.nix-vscode-extensions.vscode-marketplace.noctalia.noctaliatheme];
       userSettings."workbench.colorTheme" = "NoctaliaTheme";
     };
+
+    # neovim
+    programs.nvf.settings.vim.extraPlugins.noctalia = lib.mkIf myconfig.programs.cli.neovim.enable {
+      package = pkgs.vimPlugins.base16-nvim;
+      setup = ''
+        vim.opt.runtimepath:append(vim.env.XDG_CONFIG_HOME .. '/nvim')
+        local ok, matugen = pcall(require, 'matugen')
+        if ok then matugen.setup() end
+      '';
+    };
   };
 }
