@@ -122,6 +122,7 @@ in
               "nix.enableLanguageServer" = true;
               "nix.serverPath" = "nil";
               "nix.serverSettings" = {
+                "autoArchive" = true;
                 "nil" = {
                   "formatting" = {
                     "command" = ["nixfmt"];
