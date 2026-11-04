@@ -1,5 +1,6 @@
 {
   delib,
+  inputs,
   lib,
   pkgs,
   ...
@@ -13,6 +14,7 @@ delib.rice {
     optionalGaming = name: lib.optionals myconfig.programs.gaming.${name}.enable [name];
     optionalCli = name: lib.optionals myconfig.programs.cli.${name}.enable [name];
     optionalLlm = name: lib.optionals myconfig.programs.llm.${name}.enable [name];
+    hmLib = import "${inputs.home-manager}/modules/lib/stdlib-extended.nix" lib;
   in {
     programs.noctalia.settings.theme.templates = {
       enable_builtin_templates = true;
@@ -52,6 +54,13 @@ delib.rice {
         ++ optionalLlm "claude-code"
         ++ optionalLlm "codex";
     };
+
+    # Noctalia merges colors into this file, so it must stay writable
+    home.activation.noctaliaFastfetch = hmLib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -e "$XDG_CONFIG_HOME/fastfetch/config.jsonc" ]; then
+        run ${pkgs.fastfetch}/bin/fastfetch --gen-config "$XDG_CONFIG_HOME/fastfetch/config.jsonc"
+      fi
+    '';
 
     # vscode
     programs.vscode.profiles.default = lib.mkIf myconfig.programs.desktop.vscode.enable {
