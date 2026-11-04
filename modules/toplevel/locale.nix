@@ -47,6 +47,7 @@ delib.module {
         "${cfg.extraLocale}/UTF-8"
       ];
 
+      environment.variables.GTK_IM_MODULE = "ibus";
       inputMethod = {
         enable = true;
         type = "ibus";
