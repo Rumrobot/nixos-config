@@ -1,6 +1,7 @@
 {
   delib,
   lib,
+  pkgs,
   ...
 }:
 delib.rice {
@@ -50,6 +51,12 @@ delib.rice {
         ++ optionalLlm "opencode"
         ++ optionalLlm "claude-code"
         ++ optionalLlm "codex";
+    };
+
+    # vscode
+    programs.vscode.profiles.default = lib.mkIf myconfig.programs.desktop.vscode.enable {
+      extensions = [pkgs.nix-vscode-extensions.vscode-marketplace.noctalia.noctaliatheme];
+      userSettings."workbench.colorTheme" = "NoctaliaTheme";
     };
   };
 }
