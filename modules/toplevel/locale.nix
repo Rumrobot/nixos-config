@@ -18,6 +18,7 @@ delib.module {
 
     time.timeZone = cfg.timeZone;
     environment.variables.TZ = cfg.timeZone;
+    environment.variables.GTK_IM_MODULE = "ibus";
     time.hardwareClockInLocalTime = false;
     services.timesyncd.enable = true;
 
@@ -47,7 +48,6 @@ delib.module {
         "${cfg.extraLocale}/UTF-8"
       ];
 
-      environment.variables.GTK_IM_MODULE = "ibus";
       inputMethod = {
         enable = true;
         type = "ibus";
