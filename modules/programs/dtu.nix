@@ -64,6 +64,8 @@ in
     };
 
     nixos.ifEnabled = {
+      programs.java.package = pkgs.zulu25.override {enableJavaFX = true;};
+
       environment.systemPackages = with pkgs; [
         openconnect
       ];

@@ -24,7 +24,7 @@ in
       dev = myconfig.programs.development;
       latex = myconfig.programs.latex;
       typst = myconfig.programs.typst;
-      javaJdk = pkgs.zulu25.override {enableJavaFX = true;};
+      javaJdk = config.programs.java.package;
     in {
       programs.vscode = {
         enable = true;

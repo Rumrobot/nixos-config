@@ -15,13 +15,14 @@ in
 
     options = delib.singleEnableOption host.developmentFeatured;
 
+    myconfig.ifEnabled.programs.development.java.enable = true;
+
     nixos.ifEnabled.users.users.${homeManagerUser}.extraGroups = ["kvm"];
 
     home.ifEnabled = {
       home.packages = with pkgs;
         [
           fvm
-          jdk21
           android-tools
         ]
         ++ lib.optional host.guiFeatured android-studio;
@@ -36,7 +37,6 @@ in
       home.sessionVariables = {
         ANDROID_HOME = sdkRoot;
         ANDROID_SDK_ROOT = sdkRoot;
-        JAVA_HOME = "${pkgs.jdk21}";
         FLUTTER_SUPPRESS_ANALYTICS = "true"; # dart needs `dart --disable-analytics` once
         FVM_CACHE_PATH = fvmCache;
       };
