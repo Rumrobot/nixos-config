@@ -59,6 +59,9 @@
     spotifast.inputs.nixpkgs.follows = "nixpkgs";
     # sonora.url = "github:sonorahq/sonora";
 
+    nix-xilinx.url = "github:MIT-OpenCompute/xilinx-flake";
+    nix-xilinx.inputs.nixpkgs.follows = "nixpkgs";
+
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
     flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
 
