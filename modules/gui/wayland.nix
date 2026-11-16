@@ -1,4 +1,8 @@
-{delib, ...}:
+{
+  delib,
+  host,
+  ...
+}:
 delib.module {
   name = "gui.wayland";
 
@@ -10,6 +14,10 @@ delib.module {
     );
 
   home.ifEnabled = {
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
+    home.sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+      WAYLANDDRV_PRIMARY_MONITOR =
+        (builtins.head (builtins.filter (d: d.primary) host.displays)).portName;
+    };
   };
 }
