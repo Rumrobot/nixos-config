@@ -62,6 +62,9 @@
     nix-xilinx.url = "github:MIT-OpenCompute/xilinx-flake";
     nix-xilinx.inputs.nixpkgs.follows = "nixpkgs";
 
+    steam-config-nix.url = "github:different-name/steam-config-nix";
+    steam-config-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
     flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
 

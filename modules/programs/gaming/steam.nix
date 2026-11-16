@@ -2,15 +2,13 @@
   delib,
   host,
   pkgs,
+  inputs,
   ...
 }:
 delib.module {
   name = "programs.gaming.steam";
 
   options = delib.singleEnableOption host.gamingFeatured;
-
-  # Satisfactory needs to use Proton GE with these launch options to work properly on wayland (niri):
-  # PROTON_ENABLE_WAYLAND=1 WAYLANDDRV_PRIMARY_MONITOR=DP-2 %command%
 
   nixos.ifEnabled = {
     programs.steam = {
@@ -21,5 +19,25 @@ delib.module {
     };
 
     programs.gamescope.enable = true;
+  };
+
+  home.ifEnabled = {myconfig, ...}: {
+    imports = [inputs.steam-config-nix.homeModules.default];
+
+    programs.steam.config = {
+      enable = true;
+
+      apps = {
+        "526870" = {
+          name = "Satisfactory";
+          env = {
+            PROTON_ENABLE_WAYLAND =
+              if myconfig.gui.wayland.enable
+              then 1
+              else 0;
+          };
+        };
+      };
+    };
   };
 }
