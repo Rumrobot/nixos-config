@@ -4,17 +4,36 @@
   homeconfig,
   lib,
   inputs,
+  host,
   ...
 }: let
   dataHome = homeconfig.xdg.dataHome;
   journalDir = "${dataHome}/Steam/steamapps/compatdata/359320/pfx/drive_c/users/steamuser/Saved Games/Frontier Developments/Elite Dangerous";
   hmLib = import "${inputs.home-manager}/modules/lib/stdlib-extended.nix" lib;
+  overlayPython = pkgs.python3.withPackages (ps: with ps; [pyqt6 pywayland pydbus psutil]);
+
+  display = builtins.head (builtins.filter (d: d.primary) host.displays);
+
+  writablePlugins = {
+    EDMC-NeutronDancer = pkgs.fetchzip {
+      url = "https://github.com/dwomble/EDMC-NeutronDancer/releases/download/v2.1.2/EDMC-NeutronDancer.zip";
+      stripRoot = false;
+      hash = "sha256-bULNrmicX5s5Z9pf7n5ZhHrfCQFPOiYIb07PAznGAoQ=";
+    };
+    EDMCModernOverlay = "${pkgs.fetchzip {
+      url = "https://github.com/SweetJonnySauce/EDMCModernOverlay/releases/download/0.9.2/EDMCModernOverlay-linux-0.9.2.tar.gz";
+      stripRoot = false;
+      hash = "sha256-VQwE6LyNA0jhhvW0nPfGp6PSHSqtqqcQzyteRuU8sUo=";
+    }}/EDMCModernOverlay";
+  };
 
   edmarketconnector = pkgs.edmarketconnector.overrideAttrs (old: {
     postFixup =
       (old.postFixup or "")
       + ''
         wrapProgram $out/bin/edmarketconnector \
+          --set EDMC_OVERLAY_PYTHON ${overlayPython}/bin/python \
+          --prefix QT_PLUGIN_PATH : ${lib.makeSearchPath pkgs.qt6.qtbase.qtPluginPrefix [pkgs.qt6.qtbase pkgs.qt6.qtwayland]} \
           --prefix PYTHONPATH : ${pkgs.python3Packages.makePythonPath [pkgs.python3Packages.sqlalchemy]}
       '';
   });
@@ -34,9 +53,40 @@ in
       home.packages = with pkgs; [
         min-ed-launcher
         edmarketconnector
+        wl-clipboard
       ];
 
-      # Needs Steam launch options: PROTON_ENABLE_WAYLAND=1 WAYLANDDRV_PRIMARY_MONITOR=DP-2 MinEdLauncher %command% /autorun /autoquit waitForExit
+      programs.steam.config.apps."359320" = lib.mkIf cfg.steam.enable {
+        name = "Elite Dangerous";
+        env = {
+          LD_LIBRARY_PATH = null;
+          SDL_VIDEODRIVER = "x11";
+          PROTON_ENABLE_WAYLAND = 0;
+        };
+        wrappers = [
+          (lib.getExe pkgs.min-ed-launcher)
+          (lib.getExe pkgs.gamescope)
+          "--backend"
+          "sdl"
+          "--force-grab-cursor"
+          "-f"
+          "-w"
+          "${lib.toString display.width}"
+          "-h"
+          "${lib.toString display.height}"
+          "-W"
+          "${lib.toString display.width}"
+          "-H"
+          "${lib.toString display.height}"
+          "--"
+        ];
+        args = [
+          "/autorun"
+          "/autoquit"
+          "waitForExit"
+        ];
+      };
+
       xdg.configFile."min-ed-launcher/settings.json".text = builtins.toJSON (
         {
           watchForCrashes = false;
@@ -55,9 +105,17 @@ in
 
       # EDMC plugins
       xdg.dataFile = {
-        "EDMarketConnector/plugins/EDMC-Pioneer".source = pkgs.fetchzip {
-          url = "https://github.com/Silarn/EDMC-Pioneer/releases/download/v2.4.2/EDMC-Pioneer-2.4.2.zip";
-          hash = "sha256-YQ3FA70II6FAFvJ9GRwrU7SGpml4Z0GO3WWqw1tzgn4=";
+        "EDMarketConnector/plugins/EDMC-Pioneer".source = pkgs.applyPatches {
+          src = pkgs.fetchzip {
+            url = "https://github.com/Silarn/EDMC-Pioneer/releases/download/v2.4.2/EDMC-Pioneer-2.4.2.zip";
+            hash = "sha256-YQ3FA70II6FAFvJ9GRwrU7SGpml4Z0GO3WWqw1tzgn4=";
+          };
+          # Keep a failed update check from aborting panel creation.
+          postPatch = ''
+            substituteInPlace load.py --replace-fail \
+              'except requests.RequestException | requests.JSONDecodeError:' \
+              'except (requests.RequestException, requests.JSONDecodeError):'
+          '';
         };
         "EDMarketConnector/plugins/ExploData".source = pkgs.fetchzip {
           url = "https://github.com/Silarn/EDMC-Pioneer/releases/download/v2.4.2/ExploData-1.5.1-db-12.native.python.zip";
@@ -68,6 +126,17 @@ in
           hash = "sha256-hdRnrnxzL4ec12Kyh41MBrQd4QwRfcKtS7fWF8HvvB0=";
         };
       };
+
+      # EDMC resolves load.py symlinks; these plugins write beside their code.
+      home.activation.edmcPlugins = hmLib.hm.dag.entryAfter ["linkGeneration"] (
+        lib.concatStringsSep "\n" (lib.mapAttrsToList (name: source: ''
+            run mkdir -p "${dataHome}/EDMarketConnector/plugins/${name}"
+            run ${lib.getExe pkgs.rsync} -rLc --chmod=u+w \
+              --exclude=dev_settings.json \
+              "${source}/" "${dataHome}/EDMarketConnector/plugins/${name}/"
+          '')
+          writablePlugins)
+      );
 
       home.activation.edmcSettings = hmLib.hm.dag.entryAfter ["linkGeneration"] (
         hmLib.hm.generators.mkImpureConfigMerger {
@@ -95,7 +164,7 @@ in
               //
               # Pioneer plugin settings
               {
-                pioneer_min_value = 500000;
+                pioneer_min_value = 10000000;
                 pioneer_shorten = false;
                 pioneer_details = false;
                 pioneer_biological = false;
