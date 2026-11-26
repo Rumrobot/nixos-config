@@ -3,12 +3,13 @@
   pkgs,
   lib,
   config,
+  host,
   ...
 }:
 delib.module {
   name = "programs.gaming.wivrn";
 
-  options = delib.singleEnableOption false;
+  options = delib.singleEnableOption host.vrFeatured;
 
   nixos.ifEnabled = {
     services.wivrn = {

@@ -17,6 +17,7 @@
         "cli"
         "gui"
         "gaming"
+        "vr"
         "development"
         "hacking"
         "powersave"

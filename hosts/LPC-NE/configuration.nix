@@ -14,6 +14,7 @@ delib.host {
     "development"
     "hacking"
     "gaming"
+    "vr"
   ];
 
   displays = [
@@ -86,6 +87,7 @@ delib.host {
 
       gaming = {
         elitedangerous.enable = true;
+        wivrn.enable = false;
       };
     };
   };
