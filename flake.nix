@@ -14,6 +14,9 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    steam-config-nix.url = "github:different-name/steam-config-nix";
+    steam-config-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     awww.url = "git+https://codeberg.org/LGFae/awww";
@@ -62,8 +65,8 @@
     nix-xilinx.url = "github:MIT-OpenCompute/xilinx-flake";
     nix-xilinx.inputs.nixpkgs.follows = "nixpkgs";
 
-    steam-config-nix.url = "github:different-name/steam-config-nix";
-    steam-config-nix.inputs.nixpkgs.follows = "nixpkgs";
+    encore.url = "github:Rumrobot/encore/feat/nix-flake";
+    encore.inputs.nixpkgs.follows = "nixpkgs";
 
     elegoo-slicer.url = "github:Rumrobot/ElegooSlicer-flake";
     flash-studio.url = "github:Rumrobot/FlashStudioDesktop-flake";
