@@ -73,5 +73,10 @@ in
       networking.networkmanager.plugins = with pkgs; [
         networkmanager-openconnect
       ];
+
+      # Basys 3 hardware rule
+      services.udev.extraRules = ''
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Digilent", MODE="0666"
+      '';
     };
   }
